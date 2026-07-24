@@ -168,7 +168,7 @@ body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opa
 .ai-card .badge{display:inline-block;font-family:var(--mono);font-size:.64rem;letter-spacing:.14em;text-transform:uppercase;color:#052430;background:var(--cy);border-radius:999px;padding:3px 10px;margin-bottom:8px}
 .ai-card strong{font-family:var(--disp);font-size:1.02rem;display:block}
 .ai-card span{font-size:.84rem;color:var(--mut)}
-.replay{display:inline-flex;align-items:center;gap:7px;font-family:var(--mono);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--dim);transition:color .5s var(--ez2)}
+.replay{display:inline-flex;align-items:center;gap:7px;min-height:44px;padding:0 8px;margin-right:-8px;font-family:var(--mono);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--mut);transition:color .5s var(--ez2)}
 .replay:hover{color:var(--cy)}
 .replay svg{width:13px;height:13px}
 
@@ -218,8 +218,20 @@ body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opa
 /* ============ METRICS ============ */
 .metrics{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding-block:78px}
 .met-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;text-align:center}
-.met b{display:block;font-family:var(--mono);font-weight:600;font-size:clamp(2.1rem,3.6vw,3rem);color:var(--cy);font-variant-numeric:tabular-nums;letter-spacing:-.02em}
-.met span{font-size:.86rem;color:var(--mut)}
+.met b{display:block;font-family:var(--disp);font-weight:800;font-size:clamp(2.6rem,4.4vw,3.6rem);color:var(--cy);font-variant-numeric:tabular-nums;letter-spacing:-.03em;line-height:1}
+.met span{display:block;margin-top:10px;font-size:.82rem;color:var(--mut)}
+
+/* ============ CINEMATIC BREAK ============ */
+.break{position:relative;padding-block:0;min-height:76vh;display:flex;align-items:center;overflow:hidden;border-block:1px solid var(--line)}
+.break>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;transform:scale(1.04)}
+.break::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(90deg,rgba(7,12,24,.94),rgba(7,12,24,.72) 42%,rgba(7,12,24,.32))}
+.break .wrap{position:relative;z-index:2;padding-block:80px}
+.break h2{max-width:19ch;text-wrap:balance}
+.break p{max-width:46ch;margin-top:18px;font-size:1.02rem}
+@media(max-width:768px){
+  .break{min-height:64vh}
+  .break::after{background:linear-gradient(0deg,rgba(7,12,24,.96),rgba(7,12,24,.55) 60%,rgba(7,12,24,.4))}
+}
 
 /* ============ SCANNER ============ */
 .scan-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center}
@@ -234,7 +246,7 @@ body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opa
 .scan-core.in .ring-fg{stroke-dashoffset:151}
 .grade{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
 .grade b{font-family:var(--disp);font-weight:800;font-size:4.4rem;color:var(--ye);line-height:1}
-.grade i{font-style:normal;font-family:var(--mono);font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;color:var(--dim);margin-top:4px}
+.grade i{font-style:normal;font-family:var(--mono);font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;color:var(--mut);margin-top:4px}
 .scan-ros{display:flex;gap:26px;flex-wrap:wrap;justify-content:center}
 .scan-copy h2{max-width:18ch;margin:18px 0}
 .scan-copy p{max-width:42ch;margin-bottom:30px}
@@ -250,7 +262,10 @@ body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opa
 /* ============ FOUNDER ============ */
 .founder-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:56px;align-items:center}
 .f-photo{aspect-ratio:4/5}
-.f-photo .core{display:flex;align-items:center;justify-content:center;background:radial-gradient(80% 70% at 50% 30%,rgba(14,116,144,.24),transparent 75%),var(--g1)}
+.f-photo .core{position:relative;overflow:hidden;background:var(--g1)}
+.f-photo img{width:100%;height:100%;object-fit:cover;object-position:50% 30%}
+/* cyan grade wash ties the warm photo into the dark AI-lab ground */
+.f-photo .core::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(200deg,rgba(7,12,24,0) 40%,rgba(7,12,24,.55)),radial-gradient(90% 70% at 30% 0%,rgba(34,211,238,.14),transparent 60%)}
 .founder blockquote{font-family:var(--disp);font-weight:600;font-size:clamp(1.25rem,2vw,1.6rem);line-height:1.45;color:var(--ink);margin:22px 0}
 .f-bio{font-size:.95rem;max-width:46ch}
 .f-name{margin-top:22px;font-size:.86rem;color:var(--dim)}
@@ -379,7 +394,7 @@ footer{border-top:1px solid var(--line);padding:72px 0 40px;background:rgba(12,2
     </div>
   </nav>
   <div class="progress" aria-hidden="true"></div>
-  <div class="mnav" id="mnav">
+  <div class="mnav" id="mnav" aria-hidden="true">
     <a href="./" style="transition-delay:.08s">Home</a>
     <a href="https://www.thedigitalsmile.com/about-us" style="transition-delay:.14s">Our Philosophy</a>
     <a href="https://www.thedigitalsmile.com/services" style="transition-delay:.2s">Services</a>
@@ -529,6 +544,14 @@ footer{border-top:1px solid var(--line);padding:72px 0 40px;background:rgba(12,2
   </div>
 </section>
 
+<section class="break" aria-labelledby="break-h">
+  <img src="assets/img/clinic-ai.webp" width="1800" height="1013" loading="lazy" decoding="async" alt="A modern dental practice at night, lit by cool cyan light.">
+  <div class="wrap">
+    <h2 id="break-h" class="rv">The practices that win the next decade are the ones AI recommends.</h2>
+    <p class="rv" style="--d:.1s">Search is turning into answers. We make sure that when a patient asks, your practice is the one that comes back.</p>
+  </div>
+</section>
+
 <section aria-labelledby="sys-h">
   <div class="wrap">
     <div class="sys-head">
@@ -628,12 +651,8 @@ footer{border-top:1px solid var(--line);padding:72px 0 40px;background:rgba(12,2
 <section class="founder" aria-labelledby="fnd-h">
   <div class="wrap founder-grid">
     <div class="shell hud f-photo rv tilt">
-      <!-- TODO: founder photo -->
       <div class="core">
-        <svg viewBox="0 0 100 100" width="76" height="76" role="img" aria-label="The Digital Smile monogram, placeholder for founder photo">
-          <rect x="18" y="60" width="15" height="30" rx="5" fill="#FACC15"/>
-          <path d="M 76 19 L 43 19 A 17 17 0 0 0 43 53 L 57 53 A 15.5 15.5 0 0 1 57 84 L 40 84" fill="none" stroke="#22D3EE" stroke-width="13.5" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
+        <img src="assets/img/founder-gabriel.webp" width="720" height="900" loading="lazy" decoding="async" alt="Gabriel Segall, founder of The Digital Smile, seated during a recorded conversation.">
       </div>
     </div>
     <div class="rv" style="--d:.12s">
@@ -769,6 +788,7 @@ function clamp(v,a,b){ return v<a?a:(v>b?b:v); }
 var burger=$("#burger"), mnav=$("#mnav");
 if(burger&&mnav){
   var navOpen=false;
+  var mLinks=$$("a",mnav);
   var setNav=function(open){
     navOpen=open;
     burger.classList.toggle("x",open);
@@ -776,10 +796,20 @@ if(burger&&mnav){
     burger.setAttribute("aria-expanded",String(open));
     burger.setAttribute("aria-label",open?"Close menu":"Open menu");
     document.body.style.overflow=open?"hidden":"";
+    mnav.setAttribute("aria-hidden",String(!open));
+    if(open && mLinks[0]) mLinks[0].focus();
+    else burger.focus();
   };
   burger.addEventListener("click",function(){ setNav(!navOpen); });
-  $$("a",mnav).forEach(function(a){ a.addEventListener("click",function(){ setNav(false); }); });
+  mLinks.forEach(function(a){ a.addEventListener("click",function(){ setNav(false); }); });
   document.addEventListener("keydown",function(e){ if(e.key==="Escape"&&navOpen) setNav(false); });
+  /* trap Tab within the open overlay so focus never lands on the page behind it */
+  mnav.addEventListener("keydown",function(e){
+    if(e.key!=="Tab"||!navOpen||!mLinks.length) return;
+    var first=mLinks[0], last=mLinks[mLinks.length-1];
+    if(e.shiftKey && document.activeElement===first){ e.preventDefault(); last.focus(); }
+    else if(!e.shiftKey && document.activeElement===last){ e.preventDefault(); first.focus(); }
+  });
 }
 
 /* ---------- reveal choreography ---------- */
