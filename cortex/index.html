@@ -1094,10 +1094,10 @@ if(FINE){
      4 long roots (one per quadrant) opening in a V. Front view reads
      as the 2-lobe / 2-root icon; rotating reveals all 4 cusps + roots.
      Team spec: 4 cusps, 4 roots. */
-  /* ref proportions: crown ~64% of height and wider than tall (~1.1:1),
-     near-vertical sides, soft waist; roots ~36%, thick cones almost flush
-     with the crown sides */
-  var PROF=[[0.34,1.03],[0.62,1.06],[0.75,0.94],[0.78,0.55],[0.74,0.20],[0.66,-0.08],[0.58,-0.28],[0.54,-0.38]];
+  /* ref proportions: crown ~66% of height, wider than tall (~1.28:1),
+     fat rounded sides; roots ~34%, THICK blunt cones that together span
+     the full crown base with almost no gap between them */
+  var PROF=[[0.42,1.02],[0.75,1.05],[0.92,0.90],[0.99,0.52],[0.94,0.18],[0.84,-0.06],[0.76,-0.18],[0.72,-0.24]];
   function cr(a,b,c,d,t){ /* Catmull-Rom */
     var t2=t*t,t3=t2*t;
     return .5*((2*b)+(-a+c)*t+(2*a-5*b+4*c-d)*t2+(-a+3*b-3*c+d)*t3);
@@ -1109,14 +1109,14 @@ if(FINE){
     return [Math.max(0.01,cr(p0[0],p1[0],p2[0],p3[0],u)), cr(p0[1],p1[1],p2[1],p3[1],u)];
   }
   var pts=[], edges=[], ringsIdx=[], profLUT=[];
-  var EDGE_CAP=1600; /* current geometry uses 1316 edges; recheck if densifying */
+  var EDGE_CAP=1600; /* current geometry uses 1471 edges; recheck if densifying */
   var RINGS=17, k, j, i, q;
   /* 4 cusp lobes: lift the upper rings at the quadrant angles; the
      unlifted 0/90 axes become the saddle valleys between lobes */
   function cuspLift(r,y,a){
     if(y<0.7) return 0;
-    var g=Math.exp(-Math.pow((r-0.55)/0.26,2));
-    return 0.12*g*(0.5+0.5*Math.cos(4*a+Math.PI));
+    var g=Math.exp(-Math.pow((r-0.62)/0.30,2));
+    return 0.10*g*(0.5+0.5*Math.cos(4*a+Math.PI));
   }
   for(k=0;k<RINGS;k++){
     var t=k/(RINGS-1), rp=profAt(t), r=rp[0], y=rp[1];
@@ -1148,24 +1148,24 @@ if(FINE){
   /* 4 roots in the quadrants (2 front + 2 back): the front view shows the
      icon's two thick cones nearly flush with the crown sides; rotating
      reveals all four. Explicit start->end centers, cone taper. */
-  var ROOT_TOP=-0.30, ROOT_RINGS=9;
+  var ROOT_TOP=-0.16, ROOT_RINGS=9;
   var ROOTS=[
-    {sx: 0.32, sz: 0.18, ex: 0.37, ez: 0.25, apexY:-1.15, r0:0.24},
-    {sx:-0.32, sz: 0.18, ex:-0.36, ez: 0.25, apexY:-1.05, r0:0.23},
-    {sx: 0.32, sz:-0.18, ex: 0.36, ez:-0.25, apexY:-1.03, r0:0.22},
-    {sx:-0.32, sz:-0.18, ex:-0.37, ez:-0.25, apexY:-1.10, r0:0.23}
+    {sx: 0.32, sz: 0.18, ex: 0.39, ez: 0.24, apexY:-1.18, r0:0.30},
+    {sx:-0.32, sz: 0.18, ex:-0.38, ez: 0.24, apexY:-1.10, r0:0.29},
+    {sx: 0.32, sz:-0.18, ex: 0.38, ez:-0.24, apexY:-1.08, r0:0.28},
+    {sx:-0.32, sz:-0.18, ex:-0.39, ez:-0.24, apexY:-1.14, r0:0.29}
   ];
   var rootEnv=[]; /* [u] -> max lateral reach, for the scan ellipse */
   ROOTS.forEach(function(rt){
     var prev=null;
     for(var s=0;s<ROOT_RINGS;s++){
       var u=s/(ROOT_RINGS-1);
-      var m=Math.pow(u,0.8);
+      var m=Math.pow(u,0.5);
       var rcx=rt.sx+(rt.ex-rt.sx)*m, rcz=rt.sz+(rt.ez-rt.sz)*m;
       var yv=ROOT_TOP+(rt.apexY-ROOT_TOP)*u;
-      var rr=rt.r0*(1-0.72*Math.pow(u,1.1))+0.02;
+      var rr=rt.r0*(1-0.82*u)+0.02;
       rootEnv[s]=Math.max(rootEnv[s]||0,Math.sqrt(rcx*rcx+rcz*rcz)+rr);
-      var count=Math.max(7,Math.round(14*(1-u*0.45)));
+      var count=Math.max(8,Math.round(16*(1-u*0.45)));
       var ring=[];
       for(q=0;q<count;q++){
         var a=q/count*Math.PI*2;
@@ -1187,7 +1187,7 @@ if(FINE){
   });
   /* scan-ellipse envelope for the root zone (average apex depth) */
   for(k=0;k<ROOT_RINGS;k++){
-    profLUT.push([ROOT_TOP-0.06+(-1.08-ROOT_TOP)*(k/(ROOT_RINGS-1)), rootEnv[k]]);
+    profLUT.push([ROOT_TOP-0.06+(-1.12-ROOT_TOP)*(k/(ROOT_RINGS-1)), rootEnv[k]]);
   }
   /* 6 orbital data nodes */
   var orbs=[];
@@ -1208,7 +1208,7 @@ if(FINE){
 
   /* ----- state ----- */
   var RMt=RM;
-  var rotY=0.10, vel=0, tiltX=0, BASE_TILT=-0.18;
+  var rotY=0.10, vel=0, tiltX=0, BASE_TILT=-0.10;
   var dragging=false,lastX=0,lastY=0,resumeAt=0;
   var W=0,H=0,DPR=1;
   var visible=false, running=false, raf=0;
@@ -1231,7 +1231,7 @@ if(FINE){
     var rx=BASE_TILT+tiltX;
     var sy=Math.sin(rotY), cyr=Math.cos(rotY), sx=Math.sin(rx), cxr=Math.cos(rx);
     var scanOn=!RMt, scanY=0;
-    if(scanOn) scanY=1.12-((now%4500)/4500)*2.35;
+    if(scanOn) scanY=1.10-((now%4500)/4500)*2.25;
     var n=pts.length,p,X,Z,Y2,Z2,per;
     if(P.length!==n){ P.length=n; for(i=0;i<n;i++) P[i]=[0,0,0,0]; }
     for(i=0;i<n;i++){
@@ -1252,7 +1252,7 @@ if(FINE){
     }
     ctx.stroke();
     /* scan plane ellipse */
-    if(scanOn && scanY>-1.12 && scanY<1.02){
+    if(scanOn && scanY>-1.09 && scanY<1.00){
       var rr=radiusAt(scanY);
       var Ys=scanY*cxr, Zs=scanY*sx;
       var pers=F/(F+Zs);
