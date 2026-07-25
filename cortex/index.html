@@ -252,9 +252,36 @@ body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opa
 .scan-copy p{max-width:42ch;margin-bottom:30px}
 
 /* ============ TESTIMONIALS ============ */
-.quotes{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:56px}
+.quotes{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:16px}
 .quotes .shell:nth-child(2){transform:translateY(26px)}
 .q-core{padding:30px}
+/* video testimonials: local thumbnails; Wistia iframe injected only on play */
+.vt-feat{display:grid;grid-template-columns:1.55fr 1fr;gap:16px;margin-top:56px}
+.vt-feat .q-core{display:flex;flex-direction:column;justify-content:center;height:100%}
+.vt-play{position:relative;display:block;border-radius:var(--r-md);overflow:hidden;background:var(--g2)}
+.vt-feat .vt-play,.vt-feat .vt-embed{aspect-ratio:16/9;height:100%}
+.vt-card .vt-play,.vt-card .vt-embed{aspect-ratio:4/5}
+.vt-play img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .8s var(--ez2)}
+.vt-play::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 52%,rgba(7,12,24,.82));pointer-events:none}
+.vt-play:focus-visible{outline:2px solid var(--cy);outline-offset:-6px;box-shadow:inset 0 0 0 8px rgba(7,12,24,.85)}
+.vt-ic{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:62px;height:62px;border-radius:999px;display:flex;align-items:center;justify-content:center;background:rgba(7,12,24,.62);border:1px solid rgba(34,211,238,.45);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);transition:background-color .5s var(--ez2),border-color .5s var(--ez2);z-index:1}
+.vt-card .vt-ic{width:50px;height:50px;backdrop-filter:none;-webkit-backdrop-filter:none;background:rgba(7,12,24,.78)}
+.vt-ic svg{width:20px;height:20px;margin-left:3px}
+.vt-dur{position:absolute;top:14px;right:14px;z-index:1;padding:5px 10px;border-radius:999px;background:rgba(7,12,24,.8);color:var(--ink)}
+.vt-name{position:absolute;left:16px;bottom:12px;right:16px;z-index:1;font-family:var(--disp);font-weight:600;font-size:.92rem;color:var(--ink)}
+/* rail thumbnails ship their own baked-in captions: suppress redundant overlay chrome */
+.vt-card .vt-dur,.vt-card .vt-name{display:none}
+.vt-card .vt-play::after{content:none}
+.vt-embed iframe{display:block;width:100%;height:100%;border:0;border-radius:var(--r-md)}
+.vt-rail{display:grid;grid-auto-flow:column;grid-auto-columns:clamp(200px,62vw,238px);gap:16px;margin-top:16px;overflow-x:auto;padding:2px 2px 14px;scroll-snap-type:x proximity;scrollbar-width:thin;scrollbar-color:rgba(34,211,238,.35) transparent}
+.vt-rail::-webkit-scrollbar{height:8px}
+.vt-rail::-webkit-scrollbar-thumb{background:rgba(34,211,238,.35);border-radius:999px}
+.vt-rail::-webkit-scrollbar-track{background:transparent}
+.vt-rail .shell{scroll-snap-align:start}
+@media(pointer:fine){
+  .vt-play:hover img{transform:scale(1.04)}
+  .vt-play:hover .vt-ic{background:rgba(34,211,238,.2);border-color:var(--cy)}
+}
 .q-core blockquote{font-size:1.04rem;color:var(--ink);line-height:1.6}
 .q-core figcaption{margin-top:16px;font-size:.85rem;color:var(--dim)}
 .q-core figcaption b{color:var(--cy);font-weight:600;display:block;font-family:var(--disp);font-size:.9rem}
@@ -323,7 +350,7 @@ footer{border-top:1px solid var(--line);padding:72px 0 40px;background:rgba(12,2
   .mods{grid-template-columns:1fr}
   .m-feat,.m-2,.m-wide{grid-column:span 1;grid-row:auto}
   .m-wide .core{flex-direction:column;align-items:flex-start;gap:8px}
-  .pain-grid,.quotes,.met-grid,.pipe-nodes{grid-template-columns:1fr}
+  .pain-grid,.quotes,.met-grid,.pipe-nodes,.vt-feat{grid-template-columns:1fr}
   .quotes .shell:nth-child(2){transform:none}
   .foot-grid{grid-template-columns:1fr}
   .hero-ctas .btn{width:100%;justify-content:space-between}
@@ -423,8 +450,8 @@ footer{border-top:1px solid var(--line);padding:72px 0 40px;background:rgba(12,2
     </div>
     <div class="shell hud tooth-shell rv" style="--d:.15s">
       <div class="core tooth-core">
-        <canvas id="tooth" tabindex="0" role="button" aria-label="Interactive 3D scan of an upper first molar: four cusps, three roots. Drag or use arrow keys to rotate. Press Enter to run a free AI scan of your practice."></canvas>
-        <p class="tooth-tag ro">Upper first molar: 4 cusps, 3 roots</p>
+        <canvas id="tooth" tabindex="0" role="button" aria-label="Interactive 3D scan of a molar: four cusps, four roots. Drag or use arrow keys to rotate. Press Enter to run a free AI scan of your practice."></canvas>
+        <p class="tooth-tag ro">Molar: 4 cusps, 4 roots</p>
         <a class="tooth-cap" id="toothScanLink" href="https://www.thedigitalsmile.com/ai-visibility-checker"><span class="ro">Drag to rotate. <b>Tap to scan your practice</b></span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" fill="none" stroke="#22D3EE" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
       </div>
     </div>
@@ -624,22 +651,82 @@ footer{border-top:1px solid var(--line);padding:72px 0 40px;background:rgba(12,2
 <section aria-labelledby="quo-h">
   <div class="wrap">
     <h2 id="quo-h" class="rv" style="max-width:20ch">Practices that stopped guessing.</h2>
+    <div class="vt-feat">
+      <div class="shell hud rv"><div class="core">
+        <a class="vt-play" href="https://fast.wistia.net/embed/iframe/8w3e2lj8bb" target="_blank" rel="noopener" data-vid="8w3e2lj8bb" data-vtitle="Video testimonial: Dr. Petersen" aria-label="Play video testimonial from Dr. Petersen, 48 seconds">
+          <img src="assets/img/vt-8w3e2lj8bb.webp" width="960" height="540" loading="lazy" decoding="async" alt="">
+          <span class="vt-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z" fill="#E6F6FB"/></svg></span>
+          <span class="vt-dur ro">0:48</span>
+          <span class="vt-name">Dr. Petersen</span>
+        </a>
+      </div></div>
+      <figure class="shell rv" style="--d:.1s"><div class="core q-core">
+        <blockquote>"11 patients in the practice in the first 30 days working with us..."</blockquote>
+        <figcaption><b>Dr. Petersen</b></figcaption>
+      </div></figure>
+    </div>
+    <div class="vt-rail rv" role="list" aria-label="Video testimonials from partner practices">
+      <div class="shell vt-card" role="listitem"><div class="core">
+        <a class="vt-play" href="https://fast.wistia.net/embed/iframe/wasw2qzio7" target="_blank" rel="noopener" data-vid="wasw2qzio7" data-vtitle="Video testimonial: Dr. Allen Gotora" aria-label="Play video testimonial from Dr. Allen Gotora, 1 minute 1 second">
+          <img src="assets/img/vt-wasw2qzio7.webp" width="480" height="600" loading="lazy" decoding="async" alt="">
+          <span class="vt-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z" fill="#E6F6FB"/></svg></span>
+          <span class="vt-dur ro">1:01</span>
+          <span class="vt-name">Dr. Allen Gotora</span>
+        </a>
+      </div></div>
+      <div class="shell vt-card" role="listitem"><div class="core">
+        <a class="vt-play" href="https://fast.wistia.net/embed/iframe/euuglkkhi3" target="_blank" rel="noopener" data-vid="euuglkkhi3" data-vtitle="Video testimonial: Dr. Radhika" aria-label="Play video testimonial from Dr. Radhika, 47 seconds">
+          <img src="assets/img/vt-euuglkkhi3.webp" width="480" height="600" loading="lazy" decoding="async" alt="">
+          <span class="vt-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z" fill="#E6F6FB"/></svg></span>
+          <span class="vt-dur ro">0:47</span>
+          <span class="vt-name">Dr. Radhika</span>
+        </a>
+      </div></div>
+      <div class="shell vt-card" role="listitem"><div class="core">
+        <a class="vt-play" href="https://fast.wistia.net/embed/iframe/eum2dkj6f5" target="_blank" rel="noopener" data-vid="eum2dkj6f5" data-vtitle="Video testimonial: Fleetwood Dental" aria-label="Play video testimonial from Fleetwood Dental, 55 seconds">
+          <img src="assets/img/vt-eum2dkj6f5.webp" width="480" height="600" loading="lazy" decoding="async" alt="">
+          <span class="vt-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z" fill="#E6F6FB"/></svg></span>
+          <span class="vt-dur ro">0:55</span>
+          <span class="vt-name">Fleetwood Dental</span>
+        </a>
+      </div></div>
+      <div class="shell vt-card" role="listitem"><div class="core">
+        <a class="vt-play" href="https://fast.wistia.net/embed/iframe/9ra0ce4me5" target="_blank" rel="noopener" data-vid="9ra0ce4me5" data-vtitle="Video testimonial: Divine Smiles" aria-label="Play video testimonial from Divine Smiles, 25 seconds">
+          <img src="assets/img/vt-9ra0ce4me5.webp" width="480" height="600" loading="lazy" decoding="async" alt="">
+          <span class="vt-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z" fill="#E6F6FB"/></svg></span>
+          <span class="vt-dur ro">0:25</span>
+          <span class="vt-name">Divine Smiles</span>
+        </a>
+      </div></div>
+      <div class="shell vt-card" role="listitem"><div class="core">
+        <a class="vt-play" href="https://fast.wistia.net/embed/iframe/mt02uidmxp" target="_blank" rel="noopener" data-vid="mt02uidmxp" data-vtitle="Video testimonial: Lone Mountain" aria-label="Play video testimonial from Lone Mountain, 27 seconds">
+          <img src="assets/img/vt-mt02uidmxp.webp" width="480" height="600" loading="lazy" decoding="async" alt="">
+          <span class="vt-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z" fill="#E6F6FB"/></svg></span>
+          <span class="vt-dur ro">0:27</span>
+          <span class="vt-name">Lone Mountain</span>
+        </a>
+      </div></div>
+      <div class="shell vt-card" role="listitem"><div class="core">
+        <a class="vt-play" href="https://fast.wistia.net/embed/iframe/pk5ijtmpyn" target="_blank" rel="noopener" data-vid="pk5ijtmpyn" data-vtitle="Video testimonial: Siouxland" aria-label="Play video testimonial from Siouxland, 45 seconds">
+          <img src="assets/img/vt-pk5ijtmpyn.webp" width="480" height="600" loading="lazy" decoding="async" alt="">
+          <span class="vt-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z" fill="#E6F6FB"/></svg></span>
+          <span class="vt-dur ro">0:45</span>
+          <span class="vt-name">Siouxland</span>
+        </a>
+      </div></div>
+    </div>
     <div class="quotes">
       <figure class="shell rv"><div class="core q-core">
-        <blockquote>"Working with Gabriel and his team has been one of the best decisions we have ever made. They brought in new business every month in ways we couldn't before."</blockquote>
-        <figcaption><b>Saulo Valderrábano</b>Practice owner</figcaption>
+        <blockquote>"Working with Gabriel and his team has been one of the best decisions we have ever made. They were able to bring in new business every month in ways we couldn't before..."</blockquote>
+        <figcaption><b>Saulo Valderrábano</b></figcaption>
       </div></figure>
       <figure class="shell rv" style="--d:.1s"><div class="core q-core">
-        <blockquote>"First-quality visits aimed at dental implant treatments. They've been able to fill up our calendar. 100% recommended."</blockquote>
-        <figcaption><b>Dr. Yaritza Dominguez</b>Implant dentistry</figcaption>
+        <blockquote>"...A great tool to obtain first-quality visits aimed at dental implant treatments, they've been able to fill up our calendar. 100% recommended."</blockquote>
+        <figcaption><b>Dr. Yaritza Dominguez</b></figcaption>
       </div></figure>
       <figure class="shell rv" style="--d:.16s"><div class="core q-core">
-        <blockquote>"Very professional. Always available, prepared in the field, and brings results."</blockquote>
-        <figcaption><b>Carolina Bertaggia</b>Practice manager</figcaption>
-      </div></figure>
-      <figure class="shell rv" style="--d:.24s"><div class="core q-core">
-        <blockquote>"11 patients in the practice in the first 30 days working with us."</blockquote>
-        <figcaption><b>Dr. Petersen</b>General dentistry</figcaption>
+        <blockquote>"I found The Digital Smile Team very professional. Always available, prepared in the field, and brings results."</blockquote>
+        <figcaption><b>Carolina Bertaggia</b></figcaption>
       </div></figure>
     </div>
     <div class="rv" style="margin-top:38px;text-align:center">
@@ -1008,9 +1095,9 @@ if(FINE){
   var ctx=cv.getContext("2d");
 
   /* ----- geometry (built once) -----
-     Maxillary first molar: crown lathe (4 cusps) down to the cervix,
-     then 3 separate roots (palatal, mesiobuccal, distobuccal).
-     Anatomy matters: dentists notice. */
+     Molar: crown lathe (4 cusps) down to the cervix, then 4 separate
+     roots, one per quadrant (2 palatal + 2 buccal).
+     Team spec: 4 cusps, 4 roots. Dentists notice. */
   var PROF=[[0.05,1.05],[0.62,1.02],[0.80,0.85],[0.86,0.55],[0.84,0.20],[0.72,-0.08],[0.60,-0.30]];
   function cr(a,b,c,d,t){ /* Catmull-Rom */
     var t2=t*t,t3=t2*t;
@@ -1023,7 +1110,7 @@ if(FINE){
     return [Math.max(0.01,cr(p0[0],p1[0],p2[0],p3[0],u)), cr(p0[1],p1[1],p2[1],p3[1],u)];
   }
   var pts=[], edges=[], ringsIdx=[], profLUT=[];
-  var EDGE_CAP=1400;
+  var EDGE_CAP=1400; /* current geometry uses 1221 edges; recheck if densifying */
   var RINGS=17, k, j, i, q;
   for(k=0;k<RINGS;k++){
     var t=k/(RINGS-1), rp=profAt(t), r=rp[0], y=rp[1];
@@ -1059,13 +1146,14 @@ if(FINE){
       pts.push({x:c[0]+Math.cos(an)*rr*0.32, y:c[1]+h*0.32*0.55, z:c[2]+Math.sin(an)*rr*0.32, k:0});
     }
   });
-  /* 3 roots from the trunk: palatal (largest), mesiobuccal, distobuccal.
-     Each root drifts outward from the trunk then curves back near the apex. */
+  /* 4 roots from the trunk, one per quadrant: 2 palatal (larger, deeper)
+     + 2 buccal. Each drifts outward then curves back near the apex. */
   var ROOT_TOP=-0.28, ROOT_RINGS=8;
   var ROOTS=[
-    {ang:Math.PI/2,      drift:0.38, apexY:-1.32, r0:0.24},
-    {ang:Math.PI/2+2.09, drift:0.34, apexY:-1.16, r0:0.20},
-    {ang:Math.PI/2-2.09, drift:0.32, apexY:-1.06, r0:0.18}
+    {ang:Math.PI*0.25, drift:0.36, apexY:-1.30, r0:0.21},
+    {ang:Math.PI*0.75, drift:0.36, apexY:-1.24, r0:0.20},
+    {ang:Math.PI*1.25, drift:0.33, apexY:-1.10, r0:0.18},
+    {ang:Math.PI*1.75, drift:0.33, apexY:-1.16, r0:0.19}
   ];
   var rootEnv=[]; /* [u] -> max lateral reach, for the scan ellipse */
   ROOTS.forEach(function(rt){
@@ -1098,7 +1186,7 @@ if(FINE){
   });
   /* scan-ellipse envelope for the root zone (average apex depth) */
   for(k=0;k<ROOT_RINGS;k++){
-    profLUT.push([ROOT_TOP-0.06+(-1.18-ROOT_TOP)*(k/(ROOT_RINGS-1)), rootEnv[k]]);
+    profLUT.push([ROOT_TOP-0.06+(-1.20-ROOT_TOP)*(k/(ROOT_RINGS-1)), rootEnv[k]]);
   }
   /* gumline brand ring at the cervix */
   for(q=0;q<90;q++){
@@ -1298,6 +1386,56 @@ if(FINE){
   }else{ visible=true; setRun(); }
   document.addEventListener("visibilitychange",setRun);
   draw(performance.now());
+})();
+
+/* ================================================================
+   VIDEO TESTIMONIALS: thumbnail link -> inline Wistia iframe on play.
+   No third-party request happens until the visitor asks for one.
+   Only one video plays at a time; opening another reverts the last.
+   ================================================================ */
+(function(){
+  var open=null; /* {holder, anchor} of the currently embedded video */
+  function revert(){
+    if(open&&open.holder.parentNode){
+      open.holder.parentNode.replaceChild(open.anchor,open.holder);
+    }
+    open=null;
+  }
+  var warmed=false;
+  function warm(){ /* preconnect on first intent so play does not pay cold DNS+TLS */
+    if(warmed) return; warmed=true;
+    var l=document.createElement("link");
+    l.rel="preconnect"; l.href="https://fast.wistia.net/";
+    document.head.appendChild(l);
+  }
+  document.addEventListener("keydown",function(e){
+    if(e.key==="Escape"&&open){ var a=open.anchor; revert(); a.focus(); }
+  });
+  var plays=document.querySelectorAll(".vt-play[data-vid]");
+  for(var i=0;i<plays.length;i++){
+    (function(a){
+      a.addEventListener("pointerenter",warm);
+      a.addEventListener("touchstart",warm,{passive:true});
+      a.addEventListener("focusin",warm);
+      a.addEventListener("click",function(ev){
+        /* modified clicks keep their native open-in-new-tab meaning */
+        if(ev.metaKey||ev.ctrlKey||ev.shiftKey||ev.altKey||ev.button!==0) return;
+        ev.preventDefault();
+        revert();
+        var d=document.createElement("div");
+        d.className="vt-embed";
+        var f=document.createElement("iframe");
+        f.src="https://fast.wistia.net/embed/iframe/"+a.getAttribute("data-vid")+"?autoPlay=true";
+        f.title=a.getAttribute("data-vtitle")||"Video testimonial";
+        f.allow="autoplay; fullscreen";
+        f.setAttribute("allowfullscreen","");
+        d.appendChild(f);
+        a.parentNode.replaceChild(d,a);
+        open={holder:d,anchor:a};
+        f.focus();
+      });
+    })(plays[i]);
+  }
 })();
 })();
 </script>
