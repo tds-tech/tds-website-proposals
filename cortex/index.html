@@ -1095,10 +1095,12 @@ if(FINE){
   var ctx=cv.getContext("2d");
 
   /* ----- geometry (built once) -----
-     Molar: crown lathe (4 cusps) down to the cervix, then 4 separate
-     roots, one per quadrant (2 palatal + 2 buccal).
-     Team spec: 4 cusps, 4 roots. Dentists notice. */
-  var PROF=[[0.05,1.05],[0.62,1.02],[0.80,0.85],[0.86,0.55],[0.84,0.20],[0.72,-0.08],[0.60,-0.30]];
+     Icon-style molar (ref: classic glossy tooth illustration): wide
+     bilobed crown with a center saddle, soft waist at the cervix, then
+     4 long roots (one per quadrant) opening in a V. Front view reads
+     as the 2-lobe / 2-root icon; rotating reveals all 4 cusps + roots.
+     Team spec: 4 cusps, 4 roots. */
+  var PROF=[[0.16,1.10],[0.55,1.14],[0.78,1.04],[0.88,0.80],[0.84,0.45],[0.74,0.12],[0.62,-0.10],[0.54,-0.24]];
   function cr(a,b,c,d,t){ /* Catmull-Rom */
     var t2=t*t,t3=t2*t;
     return .5*((2*b)+(-a+c)*t+(2*a-5*b+4*c-d)*t2+(-a+3*b-3*c+d)*t3);
@@ -1110,16 +1112,23 @@ if(FINE){
     return [Math.max(0.01,cr(p0[0],p1[0],p2[0],p3[0],u)), cr(p0[1],p1[1],p2[1],p3[1],u)];
   }
   var pts=[], edges=[], ringsIdx=[], profLUT=[];
-  var EDGE_CAP=1400; /* current geometry uses 1221 edges; recheck if densifying */
+  var EDGE_CAP=1600; /* current geometry uses 1258 edges; recheck if densifying */
   var RINGS=17, k, j, i, q;
+  /* 4 cusp lobes: lift the upper rings at the quadrant angles; the
+     unlifted 0/90 axes become the saddle valleys between lobes */
+  function cuspLift(r,y,a){
+    if(y<0.7) return 0;
+    var g=Math.exp(-Math.pow((r-0.5)/0.28,2));
+    return 0.16*g*(0.5+0.5*Math.cos(4*a+Math.PI));
+  }
   for(k=0;k<RINGS;k++){
     var t=k/(RINGS-1), rp=profAt(t), r=rp[0], y=rp[1];
     profLUT.push([y,r]);
-    var count=Math.max(10,Math.round(24+16*(r/0.85)));
+    var count=Math.max(10,Math.round(24+16*(r/0.87)));
     var start=pts.length, ring=[];
     for(j=0;j<count;j++){
       var a=j/count*Math.PI*2;
-      pts.push({x:Math.cos(a)*r,y:y,z:Math.sin(a)*r,k:0});
+      pts.push({x:Math.cos(a)*r,y:y+cuspLift(r,y,a),z:Math.sin(a)*r,k:0});
       ring.push(start+j);
     }
     ringsIdx.push(ring);
@@ -1137,23 +1146,16 @@ if(FINE){
       edges.push([A[j],B[m]]);
     }
   }
-  /* 4 cusps: flattened upper hemispheres, fibonacci sampling */
-  var CUSPS=[[0.42,1.02,0.30],[-0.42,1.02,0.30],[0.42,1.02,-0.30],[-0.42,1.02,-0.30]];
-  var GA=Math.PI*(3-Math.sqrt(5));
-  CUSPS.forEach(function(c){
-    for(var q2=0;q2<40;q2++){
-      var h=1-q2/39, rr=Math.sqrt(Math.max(0,1-h*h)), an=GA*q2;
-      pts.push({x:c[0]+Math.cos(an)*rr*0.32, y:c[1]+h*0.32*0.55, z:c[2]+Math.sin(an)*rr*0.32, k:0});
-    }
-  });
-  /* 4 roots from the trunk, one per quadrant: 2 palatal (larger, deeper)
-     + 2 buccal. Each drifts outward then curves back near the apex. */
-  var ROOT_TOP=-0.28, ROOT_RINGS=8;
+  /* 4 roots from the trunk, one per quadrant: separate quickly at the
+     crotch then run long and near-parallel, tapering to rounded tips */
+  /* roots on the axes (left/right/front/back) so the front view shows
+     the icon's wide V; cusp lobes stay on the quadrants (bilobed top) */
+  var ROOT_TOP=-0.12, ROOT_RINGS=9;
   var ROOTS=[
-    {ang:Math.PI*0.25, drift:0.36, apexY:-1.30, r0:0.21},
-    {ang:Math.PI*0.75, drift:0.36, apexY:-1.24, r0:0.20},
-    {ang:Math.PI*1.25, drift:0.33, apexY:-1.10, r0:0.18},
-    {ang:Math.PI*1.75, drift:0.33, apexY:-1.16, r0:0.19}
+    {ang:0,            drift:0.47, apexY:-1.38, r0:0.19},
+    {ang:Math.PI,      drift:0.47, apexY:-1.32, r0:0.18},
+    {ang:Math.PI*0.5,  drift:0.40, apexY:-1.22, r0:0.16},
+    {ang:Math.PI*1.5,  drift:0.40, apexY:-1.28, r0:0.17}
   ];
   var rootEnv=[]; /* [u] -> max lateral reach, for the scan ellipse */
   ROOTS.forEach(function(rt){
@@ -1161,10 +1163,10 @@ if(FINE){
     for(var s=0;s<ROOT_RINGS;s++){
       var u=s/(ROOT_RINGS-1);
       var yv=ROOT_TOP+(rt.apexY-ROOT_TOP)*u;
-      var off=rt.drift*Math.sin(Math.min(1,u*1.25)*Math.PI*0.5)*(1-0.35*u*u);
-      var rr=rt.r0*(1-u*0.92)+0.015;
+      var off=rt.drift*Math.pow(Math.min(1,u*1.8),0.7);
+      var rr=rt.r0*(1-u*0.80)+0.02;
       rootEnv[s]=Math.max(rootEnv[s]||0,off+rr);
-      var count=Math.max(6,Math.round(13*(1-u*0.5)));
+      var count=Math.max(6,Math.round(12*(1-u*0.45)));
       var ring=[];
       for(q=0;q<count;q++){
         var a=q/count*Math.PI*2;
@@ -1186,12 +1188,7 @@ if(FINE){
   });
   /* scan-ellipse envelope for the root zone (average apex depth) */
   for(k=0;k<ROOT_RINGS;k++){
-    profLUT.push([ROOT_TOP-0.06+(-1.20-ROOT_TOP)*(k/(ROOT_RINGS-1)), rootEnv[k]]);
-  }
-  /* gumline brand ring at the cervix */
-  for(q=0;q<90;q++){
-    var ga=q/90*Math.PI*2;
-    pts.push({x:Math.cos(ga)*0.76,y:-0.10,z:Math.sin(ga)*0.76,k:1});
+    profLUT.push([ROOT_TOP-0.06+(-1.31-ROOT_TOP)*(k/(ROOT_RINGS-1)), rootEnv[k]]);
   }
   /* 6 orbital data nodes */
   var orbs=[];
@@ -1212,7 +1209,7 @@ if(FINE){
 
   /* ----- state ----- */
   var RMt=RM;
-  var rotY=0.55, vel=0, tiltX=0, BASE_TILT=-0.18;
+  var rotY=0.10, vel=0, tiltX=0, BASE_TILT=-0.18;
   var dragging=false,lastX=0,lastY=0,resumeAt=0;
   var W=0,H=0,DPR=1;
   var visible=false, running=false, raf=0;
