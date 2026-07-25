@@ -50,7 +50,9 @@ h3{font-size:1.16rem}
 p{color:var(--mut)}
 .wrap{max-width:1180px;margin-inline:auto;padding-inline:24px}
 section{padding-block:112px;position:relative}
-header,main,footer{position:relative;z-index:1}
+main,footer{position:relative;z-index:1}
+/* header above main's stacking context, else scrolled content paints over the fixed nav */
+header{position:relative;z-index:60}
 
 /* blueprint grid overlay: fixed, one system, barely there */
 body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.035;
@@ -150,8 +152,8 @@ body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opa
 .trust p{text-align:center;font-size:.85rem;color:var(--dim);margin-bottom:30px}
 .logos{display:flex;justify-content:space-between;align-items:center;gap:28px 36px;flex-wrap:wrap}
 @media(max-width:640px){.logos{justify-content:center;gap:26px 34px}}
-.logos svg{height:34px;width:auto;opacity:.5;transition:opacity .5s var(--ez2)}
-.logos svg:hover{opacity:.9}
+.logos img{height:28px;width:auto;opacity:.55;transition:opacity .5s var(--ez2)}
+.logos img:hover{opacity:.9}
 
 /* ============ ASK AI DEMO ============ */
 .ask-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:56px;align-items:center}
@@ -259,19 +261,18 @@ body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opa
 .vt-feat{display:grid;grid-template-columns:1.55fr 1fr;gap:16px;margin-top:56px}
 .vt-feat .q-core{display:flex;flex-direction:column;justify-content:center;height:100%}
 .vt-play{position:relative;display:block;border-radius:var(--r-md);overflow:hidden;background:var(--g2)}
-.vt-feat .vt-play,.vt-feat .vt-embed{aspect-ratio:16/9;height:100%}
+.vt-feat .vt-play,.vt-feat .vt-embed{aspect-ratio:16/9}
 .vt-card .vt-play,.vt-card .vt-embed{aspect-ratio:4/5}
 .vt-play img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .8s var(--ez2)}
-.vt-play::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 52%,rgba(7,12,24,.82));pointer-events:none}
 .vt-play:focus-visible{outline:2px solid var(--cy);outline-offset:-6px;box-shadow:inset 0 0 0 8px rgba(7,12,24,.85)}
 .vt-ic{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:62px;height:62px;border-radius:999px;display:flex;align-items:center;justify-content:center;background:rgba(7,12,24,.62);border:1px solid rgba(34,211,238,.45);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);transition:background-color .5s var(--ez2),border-color .5s var(--ez2);z-index:1}
 .vt-card .vt-ic{width:50px;height:50px;backdrop-filter:none;-webkit-backdrop-filter:none;background:rgba(7,12,24,.78)}
 .vt-ic svg{width:20px;height:20px;margin-left:3px}
-.vt-dur{position:absolute;top:14px;right:14px;z-index:1;padding:5px 10px;border-radius:999px;background:rgba(7,12,24,.8);color:var(--ink)}
-.vt-name{position:absolute;left:16px;bottom:12px;right:16px;z-index:1;font-family:var(--disp);font-weight:600;font-size:.92rem;color:var(--ink)}
-/* rail thumbnails ship their own baked-in captions: suppress redundant overlay chrome */
-.vt-card .vt-dur,.vt-card .vt-name{display:none}
-.vt-card .vt-play::after{content:none}
+/* caption strip below the media, in our own type: no overlays fighting the frame */
+.vt-meta{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding:12px 16px 10px;margin:0}
+.vt-meta b{font-family:var(--disp);font-weight:600;font-size:.9rem;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.vt-meta .ro{flex:none}
+.vt-card .vt-meta b{font-size:.84rem}
 .vt-embed iframe{display:block;width:100%;height:100%;border:0;border-radius:var(--r-md)}
 .vt-rail{display:grid;grid-auto-flow:column;grid-auto-columns:clamp(200px,62vw,238px);gap:16px;margin-top:16px;overflow-x:auto;padding:2px 2px 14px;scroll-snap-type:x proximity;scrollbar-width:thin;scrollbar-color:rgba(34,211,238,.35) transparent}
 .vt-rail::-webkit-scrollbar{height:8px}
@@ -287,7 +288,8 @@ body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opa
 .q-core figcaption b{color:var(--cy);font-weight:600;display:block;font-family:var(--disp);font-size:.9rem}
 
 /* ============ FOUNDER ============ */
-.founder-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:56px;align-items:center}
+.founder-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:56px;align-items:center}
+@media(max-width:960px){.f-photo{order:-1}}
 .f-photo{aspect-ratio:4/5}
 .f-photo .core{position:relative;overflow:hidden;background:var(--g1)}
 .f-photo img{width:100%;height:100%;object-fit:cover;object-position:50% 30%}
@@ -462,12 +464,11 @@ footer{border-top:1px solid var(--line);padding:72px 0 40px;background:rgba(12,2
   <div class="wrap">
     <h2 id="trust-h" class="ro" style="text-align:center;font-size:.8rem;font-weight:500;margin-bottom:30px">Trusted by 300+ dental practices nationwide</h2>
     <div class="logos rv">
-      <svg viewBox="0 0 72 40" role="img" aria-label="Meridian Dental monogram"><circle cx="20" cy="20" r="17" fill="none" stroke="#7C93A8" stroke-width="2.5"/><text x="20" y="26" text-anchor="middle" font-family="Montserrat,sans-serif" font-weight="800" font-size="15" fill="#7C93A8">MD</text></svg>
-      <svg viewBox="0 0 72 40" role="img" aria-label="Bright Harbor Dental monogram"><rect x="4" y="4" width="32" height="32" rx="9" fill="none" stroke="#7C93A8" stroke-width="2.5"/><text x="20" y="26" text-anchor="middle" font-family="Montserrat,sans-serif" font-weight="800" font-size="15" fill="#7C93A8">BH</text></svg>
-      <svg viewBox="0 0 72 40" role="img" aria-label="Summit Smiles monogram"><path d="M20 4 36 36 H4 Z" fill="none" stroke="#7C93A8" stroke-width="2.5" stroke-linejoin="round"/><text x="20" y="31" text-anchor="middle" font-family="Montserrat,sans-serif" font-weight="800" font-size="12" fill="#7C93A8">SS</text></svg>
-      <svg viewBox="0 0 72 40" role="img" aria-label="Oakline Orthodontics monogram"><path d="M20 3 37 20 20 37 3 20 Z" fill="none" stroke="#7C93A8" stroke-width="2.5" stroke-linejoin="round"/><text x="20" y="25" text-anchor="middle" font-family="Montserrat,sans-serif" font-weight="800" font-size="12" fill="#7C93A8">OL</text></svg>
-      <svg viewBox="0 0 72 40" role="img" aria-label="Crescent Family Dental monogram"><path d="M28 6 a15 15 0 1 0 0 28 a12 12 0 1 1 0 -28 Z" fill="#7C93A8"/><text x="48" y="26" text-anchor="middle" font-family="Montserrat,sans-serif" font-weight="800" font-size="15" fill="#7C93A8">CF</text></svg>
-      <svg viewBox="0 0 72 40" role="img" aria-label="Northpoint Dental monogram"><circle cx="20" cy="20" r="17" fill="none" stroke="#7C93A8" stroke-width="2.5" stroke-dasharray="4 5"/><text x="20" y="26" text-anchor="middle" font-family="Montserrat,sans-serif" font-weight="800" font-size="15" fill="#7C93A8">NP</text></svg>
+      <img src="assets/img/logo-dominguez.webp" alt="Dominguez y Aparicio Clinica Dental" style="height:44px" width="167" height="96" loading="lazy" decoding="async">
+      <img src="assets/img/logo-cukier.webp" alt="Glendale Family Dental, Robert P. Cukier DDS" width="582" height="96" loading="lazy" decoding="async">
+      <img src="assets/img/logo-pflugerville.webp" alt="Pflugerville Family Dentistry" width="758" height="96" loading="lazy" decoding="async">
+      <img src="assets/img/logo-jericho.webp" alt="Jericho Dental" width="605" height="96" loading="lazy" decoding="async">
+      <img src="assets/img/logo-alphadental.webp" alt="Alpha Dental Excellence" style="height:40px" width="290" height="96" loading="lazy" decoding="async">
     </div>
   </div>
 </section>
@@ -656,9 +657,8 @@ footer{border-top:1px solid var(--line);padding:72px 0 40px;background:rgba(12,2
         <a class="vt-play" href="https://fast.wistia.net/embed/iframe/8w3e2lj8bb" target="_blank" rel="noopener" data-vid="8w3e2lj8bb" data-vtitle="Video testimonial: Dr. Petersen" aria-label="Play video testimonial from Dr. Petersen, 48 seconds">
           <img src="assets/img/vt-8w3e2lj8bb.webp" width="960" height="540" loading="lazy" decoding="async" alt="">
           <span class="vt-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z" fill="#E6F6FB"/></svg></span>
-          <span class="vt-dur ro">0:48</span>
-          <span class="vt-name">Dr. Petersen</span>
         </a>
+        <p class="vt-meta"><b>Dr. Petersen</b><span class="ro">0:48</span></p>
       </div></div>
       <figure class="shell rv" style="--d:.1s"><div class="core q-core">
         <blockquote>"11 patients in the practice in the first 30 days working with us..."</blockquote>
@@ -670,49 +670,43 @@ footer{border-top:1px solid var(--line);padding:72px 0 40px;background:rgba(12,2
         <a class="vt-play" href="https://fast.wistia.net/embed/iframe/wasw2qzio7" target="_blank" rel="noopener" data-vid="wasw2qzio7" data-vtitle="Video testimonial: Dr. Allen Gotora" aria-label="Play video testimonial from Dr. Allen Gotora, 1 minute 1 second">
           <img src="assets/img/vt-wasw2qzio7.webp" width="480" height="600" loading="lazy" decoding="async" alt="">
           <span class="vt-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z" fill="#E6F6FB"/></svg></span>
-          <span class="vt-dur ro">1:01</span>
-          <span class="vt-name">Dr. Allen Gotora</span>
         </a>
+        <p class="vt-meta"><b>Dr. Allen Gotora</b><span class="ro">1:01</span></p>
       </div></div>
       <div class="shell vt-card" role="listitem"><div class="core">
         <a class="vt-play" href="https://fast.wistia.net/embed/iframe/euuglkkhi3" target="_blank" rel="noopener" data-vid="euuglkkhi3" data-vtitle="Video testimonial: Dr. Radhika" aria-label="Play video testimonial from Dr. Radhika, 47 seconds">
           <img src="assets/img/vt-euuglkkhi3.webp" width="480" height="600" loading="lazy" decoding="async" alt="">
           <span class="vt-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z" fill="#E6F6FB"/></svg></span>
-          <span class="vt-dur ro">0:47</span>
-          <span class="vt-name">Dr. Radhika</span>
         </a>
+        <p class="vt-meta"><b>Dr. Radhika</b><span class="ro">0:47</span></p>
       </div></div>
       <div class="shell vt-card" role="listitem"><div class="core">
         <a class="vt-play" href="https://fast.wistia.net/embed/iframe/eum2dkj6f5" target="_blank" rel="noopener" data-vid="eum2dkj6f5" data-vtitle="Video testimonial: Fleetwood Dental" aria-label="Play video testimonial from Fleetwood Dental, 55 seconds">
           <img src="assets/img/vt-eum2dkj6f5.webp" width="480" height="600" loading="lazy" decoding="async" alt="">
           <span class="vt-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z" fill="#E6F6FB"/></svg></span>
-          <span class="vt-dur ro">0:55</span>
-          <span class="vt-name">Fleetwood Dental</span>
         </a>
+        <p class="vt-meta"><b>Fleetwood Dental</b><span class="ro">0:55</span></p>
       </div></div>
       <div class="shell vt-card" role="listitem"><div class="core">
         <a class="vt-play" href="https://fast.wistia.net/embed/iframe/9ra0ce4me5" target="_blank" rel="noopener" data-vid="9ra0ce4me5" data-vtitle="Video testimonial: Divine Smiles" aria-label="Play video testimonial from Divine Smiles, 25 seconds">
           <img src="assets/img/vt-9ra0ce4me5.webp" width="480" height="600" loading="lazy" decoding="async" alt="">
           <span class="vt-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z" fill="#E6F6FB"/></svg></span>
-          <span class="vt-dur ro">0:25</span>
-          <span class="vt-name">Divine Smiles</span>
         </a>
+        <p class="vt-meta"><b>Divine Smiles</b><span class="ro">0:25</span></p>
       </div></div>
       <div class="shell vt-card" role="listitem"><div class="core">
-        <a class="vt-play" href="https://fast.wistia.net/embed/iframe/mt02uidmxp" target="_blank" rel="noopener" data-vid="mt02uidmxp" data-vtitle="Video testimonial: Lone Mountain" aria-label="Play video testimonial from Lone Mountain, 27 seconds">
+        <a class="vt-play" href="https://fast.wistia.net/embed/iframe/mt02uidmxp" target="_blank" rel="noopener" data-vid="mt02uidmxp" data-vtitle="Video testimonial: Lone Mountain Dental" aria-label="Play video testimonial from Lone Mountain Dental, 27 seconds">
           <img src="assets/img/vt-mt02uidmxp.webp" width="480" height="600" loading="lazy" decoding="async" alt="">
           <span class="vt-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z" fill="#E6F6FB"/></svg></span>
-          <span class="vt-dur ro">0:27</span>
-          <span class="vt-name">Lone Mountain</span>
         </a>
+        <p class="vt-meta"><b>Lone Mountain Dental</b><span class="ro">0:27</span></p>
       </div></div>
       <div class="shell vt-card" role="listitem"><div class="core">
-        <a class="vt-play" href="https://fast.wistia.net/embed/iframe/pk5ijtmpyn" target="_blank" rel="noopener" data-vid="pk5ijtmpyn" data-vtitle="Video testimonial: Siouxland" aria-label="Play video testimonial from Siouxland, 45 seconds">
+        <a class="vt-play" href="https://fast.wistia.net/embed/iframe/pk5ijtmpyn" target="_blank" rel="noopener" data-vid="pk5ijtmpyn" data-vtitle="Video testimonial: Siouxland Oral Surgery" aria-label="Play video testimonial from Siouxland Oral Surgery, 45 seconds">
           <img src="assets/img/vt-pk5ijtmpyn.webp" width="480" height="600" loading="lazy" decoding="async" alt="">
           <span class="vt-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z" fill="#E6F6FB"/></svg></span>
-          <span class="vt-dur ro">0:45</span>
-          <span class="vt-name">Siouxland</span>
         </a>
+        <p class="vt-meta"><b>Siouxland Oral Surgery</b><span class="ro">0:45</span></p>
       </div></div>
     </div>
     <div class="quotes">
@@ -737,16 +731,16 @@ footer{border-top:1px solid var(--line);padding:72px 0 40px;background:rgba(12,2
 
 <section class="founder" aria-labelledby="fnd-h">
   <div class="wrap founder-grid">
-    <div class="shell hud f-photo rv tilt">
-      <div class="core">
-        <img src="assets/img/founder-gabriel.webp" width="720" height="900" loading="lazy" decoding="async" alt="Gabriel Segall, founder of The Digital Smile, seated during a recorded conversation.">
-      </div>
-    </div>
     <div class="rv" style="--d:.12s">
       <h2 id="fnd-h">Built by someone who grew up in dentistry.</h2>
       <blockquote>"I entered the dental sector at an early age; my father is a maxillofacial surgeon. That is why our system is built around what practices actually need."</blockquote>
       <p class="f-bio">Creator of the RTRS system, committed to transparent, results-first partnerships with every practice we take on.</p>
       <p class="f-name"><b>Gabriel Segall</b>Founder, The Digital Smile</p>
+    </div>
+    <div class="shell hud f-photo rv tilt">
+      <div class="core">
+        <img src="assets/img/founder-gabriel.webp" width="720" height="900" loading="lazy" decoding="async" alt="Gabriel Segall, founder of The Digital Smile, seated during a recorded conversation.">
+      </div>
     </div>
   </div>
 </section>
