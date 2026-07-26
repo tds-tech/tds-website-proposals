@@ -225,9 +225,23 @@ body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opa
 /* ============ SYSTEM PIPELINE ============ */
 .sys-head{display:grid;grid-template-columns:1fr auto;gap:28px;align-items:end}
 .pipe{position:relative;margin-top:70px}
-.pipe-line{position:absolute;left:0;right:0;top:-2px;height:56px;pointer-events:none}
+/* connector: straight rule through the four node dots; draws once on
+   reveal (scroll storytelling), dots light in sequence behind it */
+.pipe-track{position:absolute;top:25px;left:12.5%;right:12.5%;height:2px;border-radius:2px;background:rgba(34,211,238,.10);overflow:hidden;pointer-events:none}
+.pipe-fill{position:absolute;inset:0;background:linear-gradient(90deg,var(--te),var(--cy));transform:scaleX(0);transform-origin:0 50%;transition:transform 1.6s var(--ez) .15s}
+.pipe:has(.node.in) .pipe-fill{transform:scaleX(1)}
 .pipe-nodes{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;position:relative}
-.node-dot{width:12px;height:12px;border-radius:50%;background:var(--g0);border:2px solid var(--cy);margin:20px auto 18px;box-shadow:0 0 0 5px rgba(34,211,238,.1)}
+.node-dot{width:12px;height:12px;border-radius:50%;background:var(--g0);border:2px solid rgba(34,211,238,.35);margin:20px auto 18px;box-shadow:0 0 0 5px rgba(34,211,238,0);transition:border-color .5s var(--ez2),box-shadow .5s var(--ez2)}
+.pipe:has(.node.in) .node:nth-child(1) .node-dot{transition-delay:.15s}
+.pipe:has(.node.in) .node:nth-child(2) .node-dot{transition-delay:.55s}
+.pipe:has(.node.in) .node:nth-child(3) .node-dot{transition-delay:.95s}
+.pipe:has(.node.in) .node:nth-child(4) .node-dot{transition-delay:1.35s}
+.pipe:has(.node.in) .node-dot{border-color:var(--cy);box-shadow:0 0 0 5px rgba(34,211,238,.1)}
+/* no :has support: line and dots simply render lit */
+@supports not (selector(:has(a))){
+  .pipe-fill{transform:scaleX(1)}
+  .node-dot{border-color:var(--cy);box-shadow:0 0 0 5px rgba(34,211,238,.1)}
+}
 .node .core{padding:24px;text-align:center}
 .node h3{font-size:1rem;margin-bottom:8px}
 .node p{font-size:.87rem;line-height:1.55}
@@ -274,10 +288,8 @@ body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opa
 .quotes .shell:nth-child(2){transform:translateY(26px)}
 .q-core{padding:30px}
 /* video testimonials: local thumbnails; Wistia iframe injected only on play */
-.vt-feat{display:grid;grid-template-columns:1.55fr 1fr;gap:16px;margin-top:56px}
-.vt-feat .q-core{display:flex;flex-direction:column;justify-content:center;height:100%}
+.vt-wrap{position:relative;margin-top:48px}
 .vt-play{position:relative;display:block;border-radius:var(--r-md);overflow:hidden;background:var(--g2)}
-.vt-feat .vt-play,.vt-feat .vt-embed{aspect-ratio:16/9}
 .vt-card .vt-play,.vt-card .vt-embed{aspect-ratio:4/5}
 .vt-play img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .8s var(--ez2)}
 .vt-play:focus-visible{outline:2px solid var(--cy);outline-offset:-6px;box-shadow:inset 0 0 0 8px rgba(7,12,24,.85)}
@@ -290,11 +302,19 @@ body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opa
 .vt-meta .ro{flex:none}
 .vt-card .vt-meta b{font-size:.84rem}
 .vt-embed iframe{display:block;width:100%;height:100%;border:0;border-radius:var(--r-md)}
-.vt-rail{display:grid;grid-auto-flow:column;grid-auto-columns:clamp(200px,62vw,238px);gap:16px;margin-top:16px;overflow-x:auto;padding:2px 2px 14px;scroll-snap-type:x proximity;scrollbar-width:thin;scrollbar-color:rgba(34,211,238,.35) transparent}
+.vt-rail{display:grid;grid-auto-flow:column;grid-auto-columns:clamp(230px,70vw,292px);gap:16px;overflow-x:auto;padding:2px 2px 14px;scroll-snap-type:x proximity;scrollbar-width:thin;scrollbar-color:rgba(34,211,238,.35) transparent}
 .vt-rail::-webkit-scrollbar{height:8px}
 .vt-rail::-webkit-scrollbar-thumb{background:rgba(34,211,238,.35);border-radius:999px}
 .vt-rail::-webkit-scrollbar-track{background:transparent}
 .vt-rail .shell{scroll-snap-align:start}
+/* carousel arrows: prev/next scroll one card, edge-floating like a deck */
+.vt-nav{position:absolute;top:50%;transform:translateY(-50%);width:46px;height:46px;border-radius:999px;display:flex;align-items:center;justify-content:center;background:rgba(7,12,24,.85);border:1px solid rgba(34,211,238,.38);color:var(--cy);z-index:2;transition:background-color .4s var(--ez2),border-color .4s var(--ez2),opacity .4s var(--ez2)}
+.vt-nav svg{width:17px;height:17px}
+.vt-nav:hover{background:rgba(34,211,238,.16);border-color:var(--cy)}
+.vt-nav:disabled{opacity:.25;cursor:default;pointer-events:none}
+.vt-prev{left:-10px}
+.vt-next{right:-10px}
+@media(max-width:640px){.vt-prev{left:-6px}.vt-next{right:-6px}.vt-nav{width:42px;height:42px}}
 @media(pointer:fine){
   .vt-play:hover img{transform:scale(1.04)}
   .vt-play:hover .vt-ic{background:rgba(34,211,238,.2);border-color:var(--cy)}
@@ -354,7 +374,7 @@ footer{border-top:1px solid var(--line);padding:72px 0 40px;background:rgba(12,2
 @media(max-width:960px){
   .hero-grid,.ask-grid,.scan-grid,.founder-grid{grid-template-columns:1fr}
   .met-grid,.pipe-nodes{grid-template-columns:repeat(2,1fr)}
-  .pipe-line{display:none}
+  .pipe-track{display:none}
   .foot-grid{grid-template-columns:1fr 1fr}
   .sys-head{grid-template-columns:1fr}
 }
@@ -368,7 +388,7 @@ footer{border-top:1px solid var(--line);padding:72px 0 40px;background:rgba(12,2
   .mods{grid-template-columns:1fr}
   .m-feat,.m-2,.m-wide{grid-column:span 1;grid-row:auto}
   .m-wide .core{flex-direction:column;align-items:flex-start;gap:8px}
-  .pain-grid,.quotes,.met-grid,.pipe-nodes,.vt-feat{grid-template-columns:1fr}
+  .pain-grid,.quotes,.met-grid,.pipe-nodes{grid-template-columns:1fr}
   .quotes .shell:nth-child(2){transform:none}
   .foot-grid{grid-template-columns:1fr}
   .hero-ctas .btn{width:100%;justify-content:space-between}
@@ -412,6 +432,8 @@ footer{border-top:1px solid var(--line);padding:72px 0 40px;background:rgba(12,2
   .m-feat .shell-e,.scan-core::before,.bub-a .caret,.pulse,.h1-line,.progress,body::after,.nav{animation:none}
   .tbar{position:fixed}
   .hero-glow{display:none}
+  .pipe-fill{transition:none;transform:scaleX(1)}
+  .node-dot{transition:none;border-color:var(--cy);box-shadow:0 0 0 5px rgba(34,211,238,.1)}
   .h1-line{transform:none}
   .spot::before{display:none}
   .tilt{transition:none}
@@ -422,44 +444,84 @@ footer{border-top:1px solid var(--line);padding:72px 0 40px;background:rgba(12,2
 }
 
 /* ============================================================
-   VARIANT B: color-banded sections.
-   Bridge to the current live site's concept: sections alternate
-   background colors instead of one continuous dark canvas.
-   Two electric blue-violet statement bands (metrics, final CTA)
-   echo the live site's blue; supporting bands go deep indigo.
-   Appended after the base stylesheet by build.py --variant b.
+   VARIANT B: light lab.
+   Same Cortex structure on the brand-manual light colorimetry
+   (base #0F172A ink, #F9FAFB surface, teal #0E7490, cyan #22D3EE).
+   The instruments (tooth hologram, chat demo, scanner) stay dark:
+   screens on a light lab bench. Appended by build.py --variant b.
    ============================================================ */
-:root{--vb1:#3D4BD8;--vb2:#5F6EF2;--band:#0A1233;--bandline:rgba(122,138,255,.16)}
+:root{
+  --g0:#F7FAFC; --g1:#FFFFFF; --g2:#EAF1F6;
+  --ink:#0F172A; --mut:#42586D; --dim:#64798D;
+  --line:rgba(15,42,70,.12); --line2:rgba(15,42,70,.22);
+}
+::selection{background:rgba(14,116,144,.22);color:#0F172A}
 
-/* announcement bar nods to the live site's violet accent */
-.tbar b{color:#93A0FF}
+/* readout voice + accents: teal carries the accent on light surfaces */
+.ro{color:#0E7490}
+.ro b{color:#0E7490}
+.eyebrow{color:#0E7490;border-color:rgba(14,116,144,.35);background:rgba(14,116,144,.06)}
+.hero h1 em{color:#0E7490}
+.mnav .m-cta{color:#0E7490}
+.q-core figcaption b{color:#0E7490}
+.met b{color:#0E7490}
 
-/* hero picks up a violet undertone behind the tooth */
-.hero-bg{background:radial-gradient(60% 55% at 72% 42%,rgba(67,83,232,.30),transparent 70%),radial-gradient(40% 40% at 12% 85%,rgba(34,211,238,.08),transparent 70%)}
-.hero-glow{background:radial-gradient(620px at var(--hx,62%) var(--hy,38%),rgba(99,113,245,.16),rgba(34,211,238,.05) 46%,transparent 70%)}
+/* background systems */
+body::before{opacity:.03;background-image:linear-gradient(rgba(14,116,144,.9) 1px,transparent 1px),linear-gradient(90deg,rgba(14,116,144,.9) 1px,transparent 1px)}
+@supports (animation-timeline: scroll()){
+  body::after{opacity:.05;background-image:radial-gradient(rgba(14,116,144,1) 1px,transparent 1px)}
+}
+.hero-bg{background:radial-gradient(60% 55% at 72% 42%,rgba(14,116,144,.10),transparent 70%),radial-gradient(40% 40% at 12% 85%,rgba(34,211,238,.07),transparent 70%)}
+.hero-glow{background:radial-gradient(620px at var(--hx,62%) var(--hy,38%),rgba(14,116,144,.09),rgba(34,211,238,.04) 46%,transparent 70%)}
+.spot::before{background:radial-gradient(240px at var(--mx,50%) var(--my,50%),rgba(14,116,144,.07),transparent 60%)}
 
-/* trust bar: first tint step off the hero */
-.trust{background:#080F22}
+/* chrome: nav goes light glass; announcement bar stays black like the live site */
+.nav{background:rgba(249,250,252,.82)}
+.mnav{background:rgba(249,250,252,.94)}
+.shell{background:rgba(15,42,70,.03)}
+.core{box-shadow:0 1px 2px rgba(15,42,70,.05)}
+.hud::after{--hc:rgba(14,116,144,.45)}
+footer{background:rgba(15,42,70,.03)}
 
-/* indigo bands */
-section[aria-labelledby="ask-h"],
-section[aria-labelledby="sys-h"],
-section[aria-labelledby="quo-h"],
-section[aria-labelledby="faq-h"]{background:var(--band);border-block:1px solid var(--bandline)}
-section[aria-labelledby="ask-h"] .core,
-section[aria-labelledby="sys-h"] .core,
-section[aria-labelledby="quo-h"] .core,
-section[aria-labelledby="faq-h"] .core{background:#0D1830}
+/* dark islands: instrument screens keep the dark skin via scoped vars */
+.tooth-core,.chat-core,.scan-core{
+  --g0:#070C18; --g1:#0C1424; --g2:#101B31;
+  --ink:#EAF3F8; --mut:#93A8BC; --dim:#6B8093;
+  --line:rgba(148,184,210,.13); --line2:rgba(148,184,210,.22);
+}
+.break{--ink:#EAF3F8;--mut:#B9CADC}
 
-/* electric blue-violet statement bands */
-.metrics,.final{background:linear-gradient(135deg,var(--vb1),var(--vb2));border-color:rgba(255,255,255,.22)}
-/* stats read white-on-blue like the live site */
-.metrics .met b{color:#fff}
-.metrics .met>span{color:#DFE4FF}
-.final .shell{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.26)}
-.final .core{background:#0B1130}
+/* secondary button + inline chevrons: cyan is too weak on white */
+.btn-s{color:#0E7490;border-color:rgba(14,116,144,.45)}
+.btn-s:hover{border-color:#0E7490}
+.btn-s .arr{background:rgba(14,116,144,.10)}
+.btn-s svg path{stroke:#0E7490}
+.replay:hover{color:#22D3EE}
 
-/* founder stays on the base canvas; FAQ band hands off to the CTA */
+/* service cards: teal washes instead of deep-sea gradients */
+.m-feat .core{background:radial-gradient(80% 90% at 20% 0%,rgba(14,116,144,.10),transparent 60%),var(--g1)}
+.m-grad .core{background:linear-gradient(150deg,rgba(14,116,144,.16),rgba(234,241,246,.9) 62%),var(--g1)}
+.m-dots .core{background-image:radial-gradient(rgba(14,116,144,.18) 1px,transparent 1px)}
+.mod-ic svg{stroke:#0E7490}
+
+/* color is inherited as a resolved value: elements inside dark surfaces
+   that never declare color need explicit light ink */
+.break h2{color:#EAF3F8}
+.ai-card strong{color:#EAF3F8}
+
+/* trust logos are white monochrome: invert to ink on light */
+.logos img{opacity:1;filter:invert(1) opacity(.6)}
+.logos img:hover{opacity:1;filter:invert(1) opacity(.92)}
+
+/* pipeline connector + carousel arrows */
+.pipe-track{background:rgba(14,116,144,.15)}
+.pipe:has(.node.in) .node-dot{border-color:#0E7490;box-shadow:0 0 0 5px rgba(14,116,144,.10)}
+.faq-q[aria-expanded="true"] .pl{border-color:rgba(14,116,144,.5)}
+.faq-q .pl::before,.faq-q .pl::after{background:#0E7490}
+.vt-nav{background:rgba(255,255,255,.92);border-color:rgba(14,116,144,.4);color:#0E7490}
+.vt-nav:hover{background:rgba(14,116,144,.10);border-color:#0E7490}
+.vt-rail{scrollbar-color:rgba(14,116,144,.35) transparent}
+.vt-rail::-webkit-scrollbar-thumb{background:rgba(14,116,144,.35)}
 
 </style>
 </head>
@@ -536,6 +598,100 @@ section[aria-labelledby="faq-h"] .core{background:#0D1830}
       <img src="assets/img/logo-pflugerville.webp" alt="Pflugerville Family Dentistry" width="758" height="96" loading="lazy" decoding="async">
       <img src="assets/img/logo-jericho.webp" alt="Jericho Dental" width="605" height="96" loading="lazy" decoding="async">
       <img src="assets/img/logo-alphadental.webp" alt="Alpha Dental Excellence" style="height:40px" width="290" height="96" loading="lazy" decoding="async">
+    </div>
+  </div>
+</section>
+
+<section class="founder" aria-labelledby="fnd-h">
+  <div class="wrap founder-grid">
+    <div class="rv" style="--d:.12s">
+      <h2 id="fnd-h">Built by someone who grew up in dentistry.</h2>
+      <blockquote>"I entered the dental sector at an early age; my father is a maxillofacial surgeon. That is why our system is built around what practices actually need."</blockquote>
+      <p class="f-bio">Creator of the RTRS system, committed to transparent, results-first partnerships with every practice we take on.</p>
+      <p class="f-name"><b>Gabriel Segall</b>Founder, The Digital Smile</p>
+    </div>
+    <div class="shell hud f-photo rv tilt">
+      <div class="core">
+        <img src="assets/img/founder-gabriel.webp" width="720" height="900" loading="lazy" decoding="async" alt="Gabriel Segall, founder of The Digital Smile, seated during a recorded conversation.">
+      </div>
+    </div>
+  </div>
+</section>
+
+<section aria-labelledby="quo-h">
+  <div class="wrap">
+    <h2 id="quo-h" class="rv" style="max-width:20ch">Practices that stopped guessing.</h2>
+    <div class="vt-wrap rv">
+      <div class="vt-rail" id="vtRail" role="list" aria-label="Video testimonials from partner practices">
+      <div class="shell vt-card" role="listitem"><div class="core">
+        <a class="vt-play" href="https://fast.wistia.net/embed/iframe/wasw2qzio7" target="_blank" rel="noopener" data-vid="wasw2qzio7" data-vtitle="Video testimonial: Dr. Allen Gotora" aria-label="Play video testimonial from Dr. Allen Gotora, 1 minute 1 second">
+          <img src="assets/img/vt-wasw2qzio7.webp" width="480" height="600" loading="lazy" decoding="async" alt="">
+          <span class="vt-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z" fill="#E6F6FB"/></svg></span>
+        </a>
+        <p class="vt-meta"><b>Dr. Allen Gotora</b><span class="ro">1:01</span></p>
+      </div></div>
+      <div class="shell vt-card" role="listitem"><div class="core">
+        <a class="vt-play" href="https://fast.wistia.net/embed/iframe/8w3e2lj8bb" target="_blank" rel="noopener" data-vid="8w3e2lj8bb" data-vtitle="Video testimonial: Dr. Petersen" aria-label="Play video testimonial from Dr. Petersen, 48 seconds">
+          <img src="assets/img/vt-8w3e2lj8bb.webp" width="480" height="600" loading="lazy" decoding="async" alt="">
+          <span class="vt-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z" fill="#E6F6FB"/></svg></span>
+        </a>
+        <p class="vt-meta"><b>Dr. Petersen</b><span class="ro">0:48</span></p>
+      </div></div>
+      <div class="shell vt-card" role="listitem"><div class="core">
+        <a class="vt-play" href="https://fast.wistia.net/embed/iframe/euuglkkhi3" target="_blank" rel="noopener" data-vid="euuglkkhi3" data-vtitle="Video testimonial: Dr. Radhika" aria-label="Play video testimonial from Dr. Radhika, 47 seconds">
+          <img src="assets/img/vt-euuglkkhi3.webp" width="480" height="600" loading="lazy" decoding="async" alt="">
+          <span class="vt-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z" fill="#E6F6FB"/></svg></span>
+        </a>
+        <p class="vt-meta"><b>Dr. Radhika</b><span class="ro">0:47</span></p>
+      </div></div>
+      <div class="shell vt-card" role="listitem"><div class="core">
+        <a class="vt-play" href="https://fast.wistia.net/embed/iframe/eum2dkj6f5" target="_blank" rel="noopener" data-vid="eum2dkj6f5" data-vtitle="Video testimonial: Fleetwood Dental" aria-label="Play video testimonial from Fleetwood Dental, 55 seconds">
+          <img src="assets/img/vt-eum2dkj6f5.webp" width="480" height="600" loading="lazy" decoding="async" alt="">
+          <span class="vt-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z" fill="#E6F6FB"/></svg></span>
+        </a>
+        <p class="vt-meta"><b>Fleetwood Dental</b><span class="ro">0:55</span></p>
+      </div></div>
+      <div class="shell vt-card" role="listitem"><div class="core">
+        <a class="vt-play" href="https://fast.wistia.net/embed/iframe/9ra0ce4me5" target="_blank" rel="noopener" data-vid="9ra0ce4me5" data-vtitle="Video testimonial: Divine Smiles" aria-label="Play video testimonial from Divine Smiles, 25 seconds">
+          <img src="assets/img/vt-9ra0ce4me5.webp" width="480" height="600" loading="lazy" decoding="async" alt="">
+          <span class="vt-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z" fill="#E6F6FB"/></svg></span>
+        </a>
+        <p class="vt-meta"><b>Divine Smiles</b><span class="ro">0:25</span></p>
+      </div></div>
+      <div class="shell vt-card" role="listitem"><div class="core">
+        <a class="vt-play" href="https://fast.wistia.net/embed/iframe/mt02uidmxp" target="_blank" rel="noopener" data-vid="mt02uidmxp" data-vtitle="Video testimonial: Lone Mountain Dental" aria-label="Play video testimonial from Lone Mountain Dental, 27 seconds">
+          <img src="assets/img/vt-mt02uidmxp.webp" width="480" height="600" loading="lazy" decoding="async" alt="">
+          <span class="vt-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z" fill="#E6F6FB"/></svg></span>
+        </a>
+        <p class="vt-meta"><b>Lone Mountain Dental</b><span class="ro">0:27</span></p>
+      </div></div>
+      <div class="shell vt-card" role="listitem"><div class="core">
+        <a class="vt-play" href="https://fast.wistia.net/embed/iframe/pk5ijtmpyn" target="_blank" rel="noopener" data-vid="pk5ijtmpyn" data-vtitle="Video testimonial: Siouxland Oral Surgery" aria-label="Play video testimonial from Siouxland Oral Surgery, 45 seconds">
+          <img src="assets/img/vt-pk5ijtmpyn.webp" width="480" height="600" loading="lazy" decoding="async" alt="">
+          <span class="vt-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z" fill="#E6F6FB"/></svg></span>
+        </a>
+        <p class="vt-meta"><b>Siouxland Oral Surgery</b><span class="ro">0:45</span></p>
+      </div></div>
+      </div>
+      <button class="vt-nav vt-prev" id="vtPrev" aria-label="Previous videos" aria-controls="vtRail"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M10 3 5 8l5 5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <button class="vt-nav vt-next" id="vtNext" aria-label="More videos" aria-controls="vtRail"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="m6 3 5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+    </div>
+    <div class="quotes">
+      <figure class="shell rv"><div class="core q-core">
+        <blockquote>"Working with Gabriel and his team has been one of the best decisions we have ever made. They were able to bring in new business every month in ways we couldn't before..."</blockquote>
+        <figcaption><b>Saulo Valderrábano</b></figcaption>
+      </div></figure>
+      <figure class="shell rv" style="--d:.1s"><div class="core q-core">
+        <blockquote>"...A great tool to obtain first-quality visits aimed at dental implant treatments, they've been able to fill up our calendar. 100% recommended."</blockquote>
+        <figcaption><b>Dr. Yaritza Dominguez</b></figcaption>
+      </div></figure>
+      <figure class="shell rv" style="--d:.16s"><div class="core q-core">
+        <blockquote>"I found The Digital Smile Team very professional. Always available, prepared in the field, and brings results."</blockquote>
+        <figcaption><b>Carolina Bertaggia</b></figcaption>
+      </div></figure>
+    </div>
+    <div class="rv" style="margin-top:38px;text-align:center">
+      <a class="btn btn-s" href="https://www.thedigitalsmile.com/case-studies">Read the full case studies <span class="arr"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" fill="none" stroke="#22D3EE" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
     </div>
   </div>
 </section>
@@ -654,11 +810,7 @@ section[aria-labelledby="faq-h"] .core{background:#0D1830}
       <p class="rv" style="--d:.1s;max-width:36ch;font-size:.96rem">The RTRS system Gabriel built runs every client engagement: transparent by design, measured to booked cases, predictable month over month.</p>
     </div>
     <div class="pipe">
-      <svg class="pipe-line" viewBox="0 0 1000 56" preserveAspectRatio="none" aria-hidden="true">
-        <path id="pipePath" d="M 125 28 C 208 8, 292 8, 375 28 C 458 48, 542 48, 625 28 C 708 8, 792 8, 875 28" fill="none" stroke="rgba(34,211,238,.22)" stroke-width="1.5"/>
-        <circle id="pipeDot" r="4" fill="#22D3EE"></circle>
-        <circle id="pipeGlow" r="9" fill="rgba(34,211,238,.25)"></circle>
-      </svg>
+      <div class="pipe-track" aria-hidden="true"><span class="pipe-fill"></span></div>
       <div class="pipe-nodes">
         <div class="node rv"><div class="node-dot" aria-hidden="true"></div><div class="shell"><div class="core">
           <h3>AI query landscape</h3><p>We map what patients in your area ask AI assistants, and where you show up today.</p>
@@ -716,101 +868,7 @@ section[aria-labelledby="faq-h"] .core{background:#0D1830}
   </div>
 </section>
 
-<section aria-labelledby="quo-h">
-  <div class="wrap">
-    <h2 id="quo-h" class="rv" style="max-width:20ch">Practices that stopped guessing.</h2>
-    <div class="vt-feat">
-      <div class="shell hud rv"><div class="core">
-        <a class="vt-play" href="https://fast.wistia.net/embed/iframe/8w3e2lj8bb" target="_blank" rel="noopener" data-vid="8w3e2lj8bb" data-vtitle="Video testimonial: Dr. Petersen" aria-label="Play video testimonial from Dr. Petersen, 48 seconds">
-          <img src="assets/img/vt-8w3e2lj8bb.webp" width="960" height="540" loading="lazy" decoding="async" alt="">
-          <span class="vt-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z" fill="#E6F6FB"/></svg></span>
-        </a>
-        <p class="vt-meta"><b>Dr. Petersen</b><span class="ro">0:48</span></p>
-      </div></div>
-      <figure class="shell rv" style="--d:.1s"><div class="core q-core">
-        <blockquote>"11 patients in the practice in the first 30 days working with us..."</blockquote>
-        <figcaption><b>Dr. Petersen</b></figcaption>
-      </div></figure>
-    </div>
-    <div class="vt-rail rv" role="list" aria-label="Video testimonials from partner practices">
-      <div class="shell vt-card" role="listitem"><div class="core">
-        <a class="vt-play" href="https://fast.wistia.net/embed/iframe/wasw2qzio7" target="_blank" rel="noopener" data-vid="wasw2qzio7" data-vtitle="Video testimonial: Dr. Allen Gotora" aria-label="Play video testimonial from Dr. Allen Gotora, 1 minute 1 second">
-          <img src="assets/img/vt-wasw2qzio7.webp" width="480" height="600" loading="lazy" decoding="async" alt="">
-          <span class="vt-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z" fill="#E6F6FB"/></svg></span>
-        </a>
-        <p class="vt-meta"><b>Dr. Allen Gotora</b><span class="ro">1:01</span></p>
-      </div></div>
-      <div class="shell vt-card" role="listitem"><div class="core">
-        <a class="vt-play" href="https://fast.wistia.net/embed/iframe/euuglkkhi3" target="_blank" rel="noopener" data-vid="euuglkkhi3" data-vtitle="Video testimonial: Dr. Radhika" aria-label="Play video testimonial from Dr. Radhika, 47 seconds">
-          <img src="assets/img/vt-euuglkkhi3.webp" width="480" height="600" loading="lazy" decoding="async" alt="">
-          <span class="vt-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z" fill="#E6F6FB"/></svg></span>
-        </a>
-        <p class="vt-meta"><b>Dr. Radhika</b><span class="ro">0:47</span></p>
-      </div></div>
-      <div class="shell vt-card" role="listitem"><div class="core">
-        <a class="vt-play" href="https://fast.wistia.net/embed/iframe/eum2dkj6f5" target="_blank" rel="noopener" data-vid="eum2dkj6f5" data-vtitle="Video testimonial: Fleetwood Dental" aria-label="Play video testimonial from Fleetwood Dental, 55 seconds">
-          <img src="assets/img/vt-eum2dkj6f5.webp" width="480" height="600" loading="lazy" decoding="async" alt="">
-          <span class="vt-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z" fill="#E6F6FB"/></svg></span>
-        </a>
-        <p class="vt-meta"><b>Fleetwood Dental</b><span class="ro">0:55</span></p>
-      </div></div>
-      <div class="shell vt-card" role="listitem"><div class="core">
-        <a class="vt-play" href="https://fast.wistia.net/embed/iframe/9ra0ce4me5" target="_blank" rel="noopener" data-vid="9ra0ce4me5" data-vtitle="Video testimonial: Divine Smiles" aria-label="Play video testimonial from Divine Smiles, 25 seconds">
-          <img src="assets/img/vt-9ra0ce4me5.webp" width="480" height="600" loading="lazy" decoding="async" alt="">
-          <span class="vt-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z" fill="#E6F6FB"/></svg></span>
-        </a>
-        <p class="vt-meta"><b>Divine Smiles</b><span class="ro">0:25</span></p>
-      </div></div>
-      <div class="shell vt-card" role="listitem"><div class="core">
-        <a class="vt-play" href="https://fast.wistia.net/embed/iframe/mt02uidmxp" target="_blank" rel="noopener" data-vid="mt02uidmxp" data-vtitle="Video testimonial: Lone Mountain Dental" aria-label="Play video testimonial from Lone Mountain Dental, 27 seconds">
-          <img src="assets/img/vt-mt02uidmxp.webp" width="480" height="600" loading="lazy" decoding="async" alt="">
-          <span class="vt-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z" fill="#E6F6FB"/></svg></span>
-        </a>
-        <p class="vt-meta"><b>Lone Mountain Dental</b><span class="ro">0:27</span></p>
-      </div></div>
-      <div class="shell vt-card" role="listitem"><div class="core">
-        <a class="vt-play" href="https://fast.wistia.net/embed/iframe/pk5ijtmpyn" target="_blank" rel="noopener" data-vid="pk5ijtmpyn" data-vtitle="Video testimonial: Siouxland Oral Surgery" aria-label="Play video testimonial from Siouxland Oral Surgery, 45 seconds">
-          <img src="assets/img/vt-pk5ijtmpyn.webp" width="480" height="600" loading="lazy" decoding="async" alt="">
-          <span class="vt-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z" fill="#E6F6FB"/></svg></span>
-        </a>
-        <p class="vt-meta"><b>Siouxland Oral Surgery</b><span class="ro">0:45</span></p>
-      </div></div>
-    </div>
-    <div class="quotes">
-      <figure class="shell rv"><div class="core q-core">
-        <blockquote>"Working with Gabriel and his team has been one of the best decisions we have ever made. They were able to bring in new business every month in ways we couldn't before..."</blockquote>
-        <figcaption><b>Saulo Valderrábano</b></figcaption>
-      </div></figure>
-      <figure class="shell rv" style="--d:.1s"><div class="core q-core">
-        <blockquote>"...A great tool to obtain first-quality visits aimed at dental implant treatments, they've been able to fill up our calendar. 100% recommended."</blockquote>
-        <figcaption><b>Dr. Yaritza Dominguez</b></figcaption>
-      </div></figure>
-      <figure class="shell rv" style="--d:.16s"><div class="core q-core">
-        <blockquote>"I found The Digital Smile Team very professional. Always available, prepared in the field, and brings results."</blockquote>
-        <figcaption><b>Carolina Bertaggia</b></figcaption>
-      </div></figure>
-    </div>
-    <div class="rv" style="margin-top:38px;text-align:center">
-      <a class="btn btn-s" href="https://www.thedigitalsmile.com/case-studies">Read the full case studies <span class="arr"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" fill="none" stroke="#22D3EE" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
-    </div>
-  </div>
-</section>
 
-<section class="founder" aria-labelledby="fnd-h">
-  <div class="wrap founder-grid">
-    <div class="rv" style="--d:.12s">
-      <h2 id="fnd-h">Built by someone who grew up in dentistry.</h2>
-      <blockquote>"I entered the dental sector at an early age; my father is a maxillofacial surgeon. That is why our system is built around what practices actually need."</blockquote>
-      <p class="f-bio">Creator of the RTRS system, committed to transparent, results-first partnerships with every practice we take on.</p>
-      <p class="f-name"><b>Gabriel Segall</b>Founder, The Digital Smile</p>
-    </div>
-    <div class="shell hud f-photo rv tilt">
-      <div class="core">
-        <img src="assets/img/founder-gabriel.webp" width="720" height="900" loading="lazy" decoding="async" alt="Gabriel Segall, founder of The Digital Smile, seated during a recorded conversation.">
-      </div>
-    </div>
-  </div>
-</section>
 
 <section aria-labelledby="faq-h">
   <div class="wrap faq-wrap">
@@ -1086,38 +1144,26 @@ $$(".faq-item").forEach(function(item){
   }else{ play(); }
 })();
 
-/* ---------- system pipeline pulse (SVG animateMotion) ---------- */
+/* ---------- video carousel arrows (rail scrolls one card per tap) ---------- */
 (function(){
-  var path=$("#pipePath"), dot=$("#pipeDot"), glow=$("#pipeGlow");
-  if(!path||!dot) return;
-  var svg=path.ownerSVGElement;
-  if(RM){
-    try{
-      var mid=path.getPointAtLength(path.getTotalLength()/2);
-      [dot,glow].forEach(function(c){ if(c){ c.setAttribute("cx",mid.x); c.setAttribute("cy",mid.y); } });
-    }catch(e){}
-    return;
+  var rail=$("#vtRail"), prev=$("#vtPrev"), next=$("#vtNext");
+  if(!rail||!prev||!next) return;
+  function step(){
+    var card=rail.firstElementChild;
+    return card ? card.getBoundingClientRect().width+16 : 300;
   }
-  var NS="http://www.w3.org/2000/svg";
-  [dot,glow].forEach(function(c){
-    if(!c) return;
-    var am=document.createElementNS(NS,"animateMotion");
-    am.setAttribute("dur","5.5s");
-    am.setAttribute("repeatCount","indefinite");
-    am.setAttribute("calcMode","spline");
-    am.setAttribute("keyPoints","0;1");
-    am.setAttribute("keyTimes","0;1");
-    am.setAttribute("keySplines","0.45 0.05 0.55 0.95");
-    var mp=document.createElementNS(NS,"mpath");
-    mp.setAttribute("href","#pipePath");
-    mp.setAttributeNS("http://www.w3.org/1999/xlink","xlink:href","#pipePath");
-    am.appendChild(mp);
-    c.appendChild(am);
-  });
-  if("IntersectionObserver" in window){
-    new IntersectionObserver(function(entries){
-      if(entries[0].isIntersecting) svg.unpauseAnimations(); else svg.pauseAnimations();
-    },{threshold:.05}).observe(svg);
+  prev.addEventListener("click",function(){ rail.scrollBy({left:-step(),behavior:RM?"auto":"smooth"}); });
+  next.addEventListener("click",function(){ rail.scrollBy({left:step(),behavior:RM?"auto":"smooth"}); });
+  /* disable arrows at the ends: edge-card visibility, no scroll listener */
+  if("IntersectionObserver" in window && rail.children.length){
+    var io=new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if(en.target===rail.firstElementChild) prev.disabled=en.intersectionRatio>.95;
+        if(en.target===rail.lastElementChild) next.disabled=en.intersectionRatio>.95;
+      });
+    },{root:rail,threshold:[0,.95,1]});
+    io.observe(rail.firstElementChild);
+    io.observe(rail.lastElementChild);
   }
 })();
 
