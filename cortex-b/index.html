@@ -93,9 +93,9 @@ body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opa
 .btn:active{transform:scale(.98)}
 .btn .arr{width:40px;height:40px;border-radius:999px;display:inline-flex;align-items:center;justify-content:center;flex:none;transition:transform .5s var(--ez2)}
 .btn:hover .arr{transform:translate(3px,-1px) scale(1.05)}
-.btn-p{background:var(--cy);color:#052430}
+.btn-p{background:var(--ye);color:#241A02}
 .btn-p .arr{background:rgba(7,12,24,.16)}
-.btn-p:hover{background:#4ADEF2}
+.btn-p:hover{background:#FFD83D}
 .btn-s{border:1px solid rgba(34,211,238,.38);color:var(--cy)}
 .btn-s .arr{background:rgba(34,211,238,.12)}
 .btn-s:hover{border-color:rgba(34,211,238,.7)}
@@ -247,11 +247,13 @@ body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opa
 .node p{font-size:.87rem;line-height:1.55}
 
 /* ============ METRICS ============ */
-.metrics{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding-block:78px}
+/* the one light band on the page (client call): white paper, teal stats */
+.metrics{background:#F9FAFB;border-top:1px solid rgba(15,42,70,.08);border-bottom:1px solid rgba(15,42,70,.08);padding-block:78px}
 .met-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;text-align:center}
-.met b{display:block;font-family:var(--disp);font-weight:800;font-size:clamp(2.6rem,4.4vw,3.6rem);color:var(--cy);font-variant-numeric:tabular-nums;letter-spacing:-.03em;line-height:1}
+.met b{display:block;font-family:var(--disp);font-weight:800;font-size:clamp(2.6rem,4.4vw,3.6rem);color:#0E7490;font-variant-numeric:tabular-nums;letter-spacing:-.03em;line-height:1}
 /* direct child only: .cnt inside <b> must keep the display size */
-.met>span{display:block;margin-top:10px;font-size:.82rem;color:var(--mut)}
+.met>span{display:block;margin-top:10px;font-size:.82rem;color:#4A6076}
+.metrics .ro{color:#4A6076}
 
 /* ============ CINEMATIC BREAK ============ */
 .break{position:relative;padding-block:0;min-height:76vh;display:flex;align-items:center;overflow:hidden;border-block:1px solid var(--line)}
@@ -288,7 +290,9 @@ body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opa
 .quotes .shell:nth-child(2){transform:translateY(26px)}
 .q-core{padding:30px}
 /* video testimonials: local thumbnails; Wistia iframe injected only on play */
-.vt-wrap{position:relative;margin-top:48px}
+/* featured testimonial: one larger portrait card, centered */
+.vt-hero{display:flex;justify-content:center;margin-top:52px}
+.vt-hero .vt-card{width:clamp(290px,36vw,430px)}
 .vt-play{position:relative;display:block;border-radius:var(--r-md);overflow:hidden;background:var(--g2)}
 .vt-card .vt-play,.vt-card .vt-embed{aspect-ratio:4/5}
 .vt-play img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .8s var(--ez2)}
@@ -302,19 +306,10 @@ body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opa
 .vt-meta .ro{flex:none}
 .vt-card .vt-meta b{font-size:.84rem}
 .vt-embed iframe{display:block;width:100%;height:100%;border:0;border-radius:var(--r-md)}
-.vt-rail{display:grid;grid-auto-flow:column;grid-auto-columns:clamp(230px,70vw,292px);gap:16px;overflow-x:auto;padding:2px 2px 14px;scroll-snap-type:x proximity;scrollbar-width:thin;scrollbar-color:rgba(34,211,238,.35) transparent}
-.vt-rail::-webkit-scrollbar{height:8px}
-.vt-rail::-webkit-scrollbar-thumb{background:rgba(34,211,238,.35);border-radius:999px}
-.vt-rail::-webkit-scrollbar-track{background:transparent}
-.vt-rail .shell{scroll-snap-align:start}
-/* carousel arrows: prev/next scroll one card, edge-floating like a deck */
-.vt-nav{position:absolute;top:50%;transform:translateY(-50%);width:46px;height:46px;border-radius:999px;display:flex;align-items:center;justify-content:center;background:rgba(7,12,24,.85);border:1px solid rgba(34,211,238,.38);color:var(--cy);z-index:2;transition:background-color .4s var(--ez2),border-color .4s var(--ez2),opacity .4s var(--ez2)}
-.vt-nav svg{width:17px;height:17px}
-.vt-nav:hover{background:rgba(34,211,238,.16);border-color:var(--cy)}
-.vt-nav:disabled{opacity:.25;cursor:default;pointer-events:none}
-.vt-prev{left:-10px}
-.vt-next{right:-10px}
-@media(max-width:640px){.vt-prev{left:-6px}.vt-next{right:-6px}.vt-nav{width:42px;height:42px}}
+/* supporting testimonials: rows of three, like the live site */
+.vt-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:16px}
+@media(max-width:960px){.vt-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:640px){.vt-grid{grid-template-columns:1fr}.vt-hero .vt-card{width:100%}}
 @media(pointer:fine){
   .vt-play:hover img{transform:scale(1.04)}
   .vt-play:hover .vt-ic{background:rgba(34,211,238,.2);border-color:var(--cy)}
@@ -423,7 +418,7 @@ footer{border-top:1px solid var(--line);padding:72px 0 40px;background:rgba(12,2
 .tilt{will-change:transform}
 /* 7. glow pulse on primary CTA */
 .pulse{animation:ctapulse 4s var(--ez2) infinite}
-@keyframes ctapulse{0%,100%{box-shadow:0 0 0 0 rgba(34,211,238,0),0 0 22px rgba(34,211,238,.18)}50%{box-shadow:0 0 0 1px rgba(34,211,238,.25),0 0 34px rgba(34,211,238,.4)}}
+@keyframes ctapulse{0%,100%{box-shadow:0 0 0 0 rgba(250,204,21,0),0 0 22px rgba(250,204,21,.16)}50%{box-shadow:0 0 0 1px rgba(250,204,21,.25),0 0 30px rgba(250,204,21,.35)}}
 
 /* ============ REDUCED MOTION ============ */
 @media(prefers-reduced-motion:reduce){
@@ -464,7 +459,8 @@ footer{border-top:1px solid var(--line);padding:72px 0 40px;background:rgba(12,2
 .hero h1 em{color:#0E7490}
 .mnav .m-cta{color:#0E7490}
 .q-core figcaption b{color:#0E7490}
-.met b{color:#0E7490}
+/* the stats band is white in both variants; on light it gets pure white */
+.metrics{background:#FFFFFF}
 
 /* background systems */
 body::before{opacity:.03;background-image:linear-gradient(rgba(14,116,144,.9) 1px,transparent 1px),linear-gradient(90deg,rgba(14,116,144,.9) 1px,transparent 1px)}
@@ -518,10 +514,6 @@ footer{background:rgba(15,42,70,.03)}
 .pipe:has(.node.in) .node-dot{border-color:#0E7490;box-shadow:0 0 0 5px rgba(14,116,144,.10)}
 .faq-q[aria-expanded="true"] .pl{border-color:rgba(14,116,144,.5)}
 .faq-q .pl::before,.faq-q .pl::after{background:#0E7490}
-.vt-nav{background:rgba(255,255,255,.92);border-color:rgba(14,116,144,.4);color:#0E7490}
-.vt-nav:hover{background:rgba(14,116,144,.10);border-color:#0E7490}
-.vt-rail{scrollbar-color:rgba(14,116,144,.35) transparent}
-.vt-rail::-webkit-scrollbar-thumb{background:rgba(14,116,144,.35)}
 
 </style>
 </head>
@@ -621,60 +613,58 @@ footer{background:rgba(15,42,70,.03)}
 <section aria-labelledby="quo-h">
   <div class="wrap">
     <h2 id="quo-h" class="rv" style="max-width:20ch">Practices that stopped guessing.</h2>
-    <div class="vt-wrap rv">
-      <div class="vt-rail" id="vtRail" role="list" aria-label="Video testimonials from partner practices">
-      <div class="shell vt-card" role="listitem"><div class="core">
+    <div class="vt-hero rv">
+      <div class="shell hud vt-card"><div class="core">
         <a class="vt-play" href="https://fast.wistia.net/embed/iframe/wasw2qzio7" target="_blank" rel="noopener" data-vid="wasw2qzio7" data-vtitle="Video testimonial: Dr. Allen Gotora" aria-label="Play video testimonial from Dr. Allen Gotora, 1 minute 1 second">
-          <img src="assets/img/vt-wasw2qzio7.webp" width="480" height="600" loading="lazy" decoding="async" alt="">
+          <img src="assets/img/vt-wasw2qzio7.webp" width="600" height="750" loading="lazy" decoding="async" alt="">
           <span class="vt-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z" fill="#E6F6FB"/></svg></span>
         </a>
         <p class="vt-meta"><b>Dr. Allen Gotora</b><span class="ro">1:01</span></p>
       </div></div>
-      <div class="shell vt-card" role="listitem"><div class="core">
+    </div>
+    <div class="vt-grid" role="list" aria-label="Video testimonials from partner practices">
+      <div class="shell vt-card rv" role="listitem"><div class="core">
         <a class="vt-play" href="https://fast.wistia.net/embed/iframe/8w3e2lj8bb" target="_blank" rel="noopener" data-vid="8w3e2lj8bb" data-vtitle="Video testimonial: Dr. Petersen" aria-label="Play video testimonial from Dr. Petersen, 48 seconds">
           <img src="assets/img/vt-8w3e2lj8bb.webp" width="480" height="600" loading="lazy" decoding="async" alt="">
           <span class="vt-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z" fill="#E6F6FB"/></svg></span>
         </a>
         <p class="vt-meta"><b>Dr. Petersen</b><span class="ro">0:48</span></p>
       </div></div>
-      <div class="shell vt-card" role="listitem"><div class="core">
+      <div class="shell vt-card rv" style="--d:.1s" role="listitem"><div class="core">
         <a class="vt-play" href="https://fast.wistia.net/embed/iframe/euuglkkhi3" target="_blank" rel="noopener" data-vid="euuglkkhi3" data-vtitle="Video testimonial: Dr. Radhika" aria-label="Play video testimonial from Dr. Radhika, 47 seconds">
           <img src="assets/img/vt-euuglkkhi3.webp" width="480" height="600" loading="lazy" decoding="async" alt="">
           <span class="vt-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z" fill="#E6F6FB"/></svg></span>
         </a>
         <p class="vt-meta"><b>Dr. Radhika</b><span class="ro">0:47</span></p>
       </div></div>
-      <div class="shell vt-card" role="listitem"><div class="core">
+      <div class="shell vt-card rv" style="--d:.2s" role="listitem"><div class="core">
         <a class="vt-play" href="https://fast.wistia.net/embed/iframe/eum2dkj6f5" target="_blank" rel="noopener" data-vid="eum2dkj6f5" data-vtitle="Video testimonial: Fleetwood Dental" aria-label="Play video testimonial from Fleetwood Dental, 55 seconds">
           <img src="assets/img/vt-eum2dkj6f5.webp" width="480" height="600" loading="lazy" decoding="async" alt="">
           <span class="vt-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z" fill="#E6F6FB"/></svg></span>
         </a>
         <p class="vt-meta"><b>Fleetwood Dental</b><span class="ro">0:55</span></p>
       </div></div>
-      <div class="shell vt-card" role="listitem"><div class="core">
+      <div class="shell vt-card rv" style="--d:.3s" role="listitem"><div class="core">
         <a class="vt-play" href="https://fast.wistia.net/embed/iframe/9ra0ce4me5" target="_blank" rel="noopener" data-vid="9ra0ce4me5" data-vtitle="Video testimonial: Divine Smiles" aria-label="Play video testimonial from Divine Smiles, 25 seconds">
           <img src="assets/img/vt-9ra0ce4me5.webp" width="480" height="600" loading="lazy" decoding="async" alt="">
           <span class="vt-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z" fill="#E6F6FB"/></svg></span>
         </a>
         <p class="vt-meta"><b>Divine Smiles</b><span class="ro">0:25</span></p>
       </div></div>
-      <div class="shell vt-card" role="listitem"><div class="core">
+      <div class="shell vt-card rv" style="--d:.4s" role="listitem"><div class="core">
         <a class="vt-play" href="https://fast.wistia.net/embed/iframe/mt02uidmxp" target="_blank" rel="noopener" data-vid="mt02uidmxp" data-vtitle="Video testimonial: Lone Mountain Dental" aria-label="Play video testimonial from Lone Mountain Dental, 27 seconds">
           <img src="assets/img/vt-mt02uidmxp.webp" width="480" height="600" loading="lazy" decoding="async" alt="">
           <span class="vt-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z" fill="#E6F6FB"/></svg></span>
         </a>
         <p class="vt-meta"><b>Lone Mountain Dental</b><span class="ro">0:27</span></p>
       </div></div>
-      <div class="shell vt-card" role="listitem"><div class="core">
+      <div class="shell vt-card rv" style="--d:.5s" role="listitem"><div class="core">
         <a class="vt-play" href="https://fast.wistia.net/embed/iframe/pk5ijtmpyn" target="_blank" rel="noopener" data-vid="pk5ijtmpyn" data-vtitle="Video testimonial: Siouxland Oral Surgery" aria-label="Play video testimonial from Siouxland Oral Surgery, 45 seconds">
           <img src="assets/img/vt-pk5ijtmpyn.webp" width="480" height="600" loading="lazy" decoding="async" alt="">
           <span class="vt-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z" fill="#E6F6FB"/></svg></span>
         </a>
         <p class="vt-meta"><b>Siouxland Oral Surgery</b><span class="ro">0:45</span></p>
       </div></div>
-      </div>
-      <button class="vt-nav vt-prev" id="vtPrev" aria-label="Previous videos" aria-controls="vtRail"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M10 3 5 8l5 5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-      <button class="vt-nav vt-next" id="vtNext" aria-label="More videos" aria-controls="vtRail"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="m6 3 5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
     </div>
     <div class="quotes">
       <figure class="shell rv"><div class="core q-core">
@@ -1038,7 +1028,7 @@ function runCounter(el){
   var comma=el.hasAttribute("data-comma");
   var fmt=function(v){ return (comma?v.toLocaleString("en-US"):String(v))+suffix; };
   if(RM){ el.textContent=fmt(target); return; }
-  var t0=null, dur=1500;
+  var t0=null, dur=2000;
   function step(t){
     if(t0===null) t0=t;
     var p=clamp((t-t0)/dur,0,1);
@@ -1142,29 +1132,6 @@ $$(".faq-item").forEach(function(item){
     },{threshold:.5});
     chatIO.observe(panel);
   }else{ play(); }
-})();
-
-/* ---------- video carousel arrows (rail scrolls one card per tap) ---------- */
-(function(){
-  var rail=$("#vtRail"), prev=$("#vtPrev"), next=$("#vtNext");
-  if(!rail||!prev||!next) return;
-  function step(){
-    var card=rail.firstElementChild;
-    return card ? card.getBoundingClientRect().width+16 : 300;
-  }
-  prev.addEventListener("click",function(){ rail.scrollBy({left:-step(),behavior:RM?"auto":"smooth"}); });
-  next.addEventListener("click",function(){ rail.scrollBy({left:step(),behavior:RM?"auto":"smooth"}); });
-  /* disable arrows at the ends: edge-card visibility, no scroll listener */
-  if("IntersectionObserver" in window && rail.children.length){
-    var io=new IntersectionObserver(function(entries){
-      entries.forEach(function(en){
-        if(en.target===rail.firstElementChild) prev.disabled=en.intersectionRatio>.95;
-        if(en.target===rail.lastElementChild) next.disabled=en.intersectionRatio>.95;
-      });
-    },{root:rail,threshold:[0,.95,1]});
-    io.observe(rail.firstElementChild);
-    io.observe(rail.lastElementChild);
-  }
 })();
 
 /* ---------- spotlight cards + subtle tilt (desktop only) ---------- */
