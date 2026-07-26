@@ -93,9 +93,9 @@ body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opa
 .btn:active{transform:scale(.98)}
 .btn .arr{width:40px;height:40px;border-radius:999px;display:inline-flex;align-items:center;justify-content:center;flex:none;transition:transform .5s var(--ez2)}
 .btn:hover .arr{transform:translate(3px,-1px) scale(1.05)}
-.btn-p{background:var(--ye);color:#241A02}
+.btn-p{background:var(--cy);color:#052430}
 .btn-p .arr{background:rgba(7,12,24,.16)}
-.btn-p:hover{background:#FFD83D}
+.btn-p:hover{background:#4ADEF2}
 .btn-s{border:1px solid rgba(34,211,238,.38);color:var(--cy)}
 .btn-s .arr{background:rgba(34,211,238,.12)}
 .btn-s:hover{border-color:rgba(34,211,238,.7)}
@@ -189,15 +189,6 @@ body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opa
 .replay:hover{color:var(--cy)}
 .replay svg{width:13px;height:13px}
 
-/* ============ PAIN ============ */
-.pain h2{max-width:22ch}
-.pain-grid{display:grid;grid-template-columns:5fr 7fr;gap:16px;margin-top:56px}
-.pain-grid .shell:nth-child(3){grid-column:1/-1}
-.pain-core{padding:30px}
-.pain-core h3{margin-bottom:10px}
-.pain-core p{font-size:.96rem}
-.pain-wide{display:grid;grid-template-columns:1fr auto;gap:28px;align-items:center}
-@media(max-width:900px){.pain-wide{grid-template-columns:1fr}}
 
 /* ============ SERVICES (modules) ============ */
 .mods{display:grid;grid-template-columns:repeat(6,1fr);grid-auto-rows:minmax(150px,auto);gap:14px;margin-top:56px}
@@ -222,29 +213,6 @@ body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opa
 .mod-ic{width:38px;height:38px;border-radius:var(--r-sm);border:1px solid var(--line2);display:flex;align-items:center;justify-content:center;margin-bottom:auto;flex:none}
 .mod-ic svg{width:18px;height:18px;stroke:var(--cy);fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
 
-/* ============ SYSTEM PIPELINE ============ */
-.sys-head{display:grid;grid-template-columns:1fr auto;gap:28px;align-items:end}
-.pipe{position:relative;margin-top:70px}
-/* connector: straight rule through the four node dots; draws once on
-   reveal (scroll storytelling), dots light in sequence behind it */
-.pipe-track{position:absolute;top:25px;left:12.5%;right:12.5%;height:2px;border-radius:2px;background:rgba(34,211,238,.10);overflow:hidden;pointer-events:none}
-.pipe-fill{position:absolute;inset:0;background:linear-gradient(90deg,var(--te),var(--cy));transform:scaleX(0);transform-origin:0 50%;transition:transform 1.6s var(--ez) .15s}
-.pipe:has(.node.in) .pipe-fill{transform:scaleX(1)}
-.pipe-nodes{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;position:relative}
-.node-dot{width:12px;height:12px;border-radius:50%;background:var(--g0);border:2px solid rgba(34,211,238,.35);margin:20px auto 18px;box-shadow:0 0 0 5px rgba(34,211,238,0);transition:border-color .5s var(--ez2),box-shadow .5s var(--ez2)}
-.pipe:has(.node.in) .node:nth-child(1) .node-dot{transition-delay:.15s}
-.pipe:has(.node.in) .node:nth-child(2) .node-dot{transition-delay:.55s}
-.pipe:has(.node.in) .node:nth-child(3) .node-dot{transition-delay:.95s}
-.pipe:has(.node.in) .node:nth-child(4) .node-dot{transition-delay:1.35s}
-.pipe:has(.node.in) .node-dot{border-color:var(--cy);box-shadow:0 0 0 5px rgba(34,211,238,.1)}
-/* no :has support: line and dots simply render lit */
-@supports not (selector(:has(a))){
-  .pipe-fill{transform:scaleX(1)}
-  .node-dot{border-color:var(--cy);box-shadow:0 0 0 5px rgba(34,211,238,.1)}
-}
-.node .core{padding:24px;text-align:center}
-.node h3{font-size:1rem;margin-bottom:8px}
-.node p{font-size:.87rem;line-height:1.55}
 
 /* ============ METRICS ============ */
 .metrics{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding-block:78px}
@@ -253,17 +221,6 @@ body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opa
 /* direct child only: .cnt inside <b> must keep the display size */
 .met>span{display:block;margin-top:10px;font-size:.82rem;color:var(--mut)}
 
-/* ============ CINEMATIC BREAK ============ */
-.break{position:relative;padding-block:0;min-height:76vh;display:flex;align-items:center;overflow:hidden;border-block:1px solid var(--line)}
-.break>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;transform:scale(1.04)}
-.break::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(90deg,rgba(7,12,24,.94),rgba(7,12,24,.72) 42%,rgba(7,12,24,.32))}
-.break .wrap{position:relative;z-index:2;padding-block:80px}
-.break h2{max-width:19ch;text-wrap:balance}
-.break p{max-width:46ch;margin-top:18px;font-size:1.02rem}
-@media(max-width:768px){
-  .break{min-height:64vh}
-  .break::after{background:linear-gradient(0deg,rgba(7,12,24,.96),rgba(7,12,24,.55) 60%,rgba(7,12,24,.4))}
-}
 
 /* ============ SCANNER ============ */
 .scan-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center}
@@ -365,10 +322,8 @@ footer{border-top:1px solid var(--line);padding:72px 0 40px;background:rgba(12,2
 /* ============ RESPONSIVE ============ */
 @media(max-width:960px){
   .hero-grid,.ask-grid,.scan-grid,.founder-grid{grid-template-columns:1fr}
-  .met-grid,.pipe-nodes{grid-template-columns:repeat(2,1fr)}
-  .pipe-track{display:none}
+  .met-grid{grid-template-columns:repeat(2,1fr)}
   .foot-grid{grid-template-columns:1fr 1fr}
-  .sys-head{grid-template-columns:1fr}
 }
 @media(max-width:768px){
   section{padding-block:72px}
@@ -380,7 +335,7 @@ footer{border-top:1px solid var(--line);padding:72px 0 40px;background:rgba(12,2
   .mods{grid-template-columns:1fr}
   .m-feat,.m-2,.m-wide{grid-column:span 1;grid-row:auto}
   .m-wide .core{flex-direction:column;align-items:flex-start;gap:8px}
-  .pain-grid,.quotes,.met-grid,.pipe-nodes{grid-template-columns:1fr}
+  .quotes,.met-grid{grid-template-columns:1fr}
   .foot-grid{grid-template-columns:1fr}
   .hero-ctas .btn{width:100%;justify-content:space-between}
 }
@@ -414,7 +369,7 @@ footer{border-top:1px solid var(--line);padding:72px 0 40px;background:rgba(12,2
 .tilt{will-change:transform}
 /* 7. glow pulse on primary CTA */
 .pulse{animation:ctapulse 4s var(--ez2) infinite}
-@keyframes ctapulse{0%,100%{box-shadow:0 0 0 0 rgba(250,204,21,0),0 0 22px rgba(250,204,21,.16)}50%{box-shadow:0 0 0 1px rgba(250,204,21,.25),0 0 30px rgba(250,204,21,.35)}}
+@keyframes ctapulse{0%,100%{box-shadow:0 0 0 0 rgba(34,211,238,0),0 0 22px rgba(34,211,238,.18)}50%{box-shadow:0 0 0 1px rgba(34,211,238,.25),0 0 34px rgba(34,211,238,.4)}}
 
 /* ============ REDUCED MOTION ============ */
 @media(prefers-reduced-motion:reduce){
@@ -423,8 +378,6 @@ footer{border-top:1px solid var(--line);padding:72px 0 40px;background:rgba(12,2
   .m-feat .shell-e,.scan-core::before,.bub-a .caret,.pulse,.h1-line,.progress,body::after,.nav{animation:none}
   .tbar{position:fixed}
   .hero-glow{display:none}
-  .pipe-fill{transition:none;transform:scaleX(1)}
-  .node-dot{transition:none;border-color:var(--cy);box-shadow:0 0 0 5px rgba(34,211,238,.1)}
   .h1-line{transform:none}
   .spot::before{display:none}
   .tilt{transition:none}
@@ -632,29 +585,6 @@ footer{border-top:1px solid var(--line);padding:72px 0 40px;background:rgba(12,2
   </div>
 </section>
 
-<section class="pain" aria-labelledby="pain-h">
-  <div class="wrap">
-    <h2 id="pain-h" class="rv">Most dental marketing was not built for the AI era.</h2>
-    <div class="pain-grid">
-      <div class="shell rv"><div class="core pain-core spot">
-        <h3>The results page is disappearing</h3>
-        <p>Patients no longer scroll ten blue links. They ask an assistant and act on a single answer. If your practice is not in that answer, you are not in the decision.</p>
-      </div></div>
-      <div class="shell rv" style="--d:.1s"><div class="core pain-core spot">
-        <h3>Agencies still sell clicks</h3>
-        <p>Traffic, impressions, and ranking reports look busy but do not fill chairs. The only metric that matters is qualified patients on your calendar, and most agencies never measure that far.</p>
-      </div></div>
-      <div class="shell rv" style="--d:.2s"><div class="core pain-core spot pain-wide">
-        <div>
-          <h3>You cannot fix what you cannot see</h3>
-          <p>Most practices have never measured how AI assistants describe them, or whether they appear at all. That blind spot is exactly where we start.</p>
-        </div>
-        <p class="ro">16-point audit <b>90s or less</b></p>
-      </div></div>
-    </div>
-  </div>
-</section>
-
 <section aria-labelledby="svc-h">
   <div class="wrap">
     <span class="eyebrow rv">Service modules</span>
@@ -699,40 +629,6 @@ footer{border-top:1px solid var(--line);padding:72px 0 40px;background:rgba(12,2
           <p>We help your front desk and treatment coordinators convert the opportunities the system generates.</p>
         </div>
       </div></div></div>
-    </div>
-  </div>
-</section>
-
-<section class="break" aria-labelledby="break-h">
-  <img src="assets/img/clinic-ai.webp" width="1800" height="1013" loading="lazy" decoding="async" alt="A modern dental practice at night, lit by cool cyan light.">
-  <div class="wrap">
-    <h2 id="break-h" class="rv">The practices that win the next decade are the ones AI recommends.</h2>
-    <p class="rv" style="--d:.1s">Search is turning into answers. We make sure that when a patient asks, your practice is the one that comes back.</p>
-  </div>
-</section>
-
-<section aria-labelledby="sys-h">
-  <div class="wrap">
-    <div class="sys-head">
-      <h2 id="sys-h" class="rv" style="max-width:20ch">One system, three moves: Attract, Convert, Scale.</h2>
-      <p class="rv" style="--d:.1s;max-width:36ch;font-size:.96rem">The RTRS system Gabriel built runs every client engagement: transparent by design, measured to booked cases, predictable month over month.</p>
-    </div>
-    <div class="pipe">
-      <div class="pipe-track" aria-hidden="true"><span class="pipe-fill"></span></div>
-      <div class="pipe-nodes">
-        <div class="node rv"><div class="node-dot" aria-hidden="true"></div><div class="shell"><div class="core">
-          <h3>AI query landscape</h3><p>We map what patients in your area ask AI assistants, and where you show up today.</p>
-        </div></div></div>
-        <div class="node rv" style="--d:.1s"><div class="node-dot" aria-hidden="true"></div><div class="shell"><div class="core">
-          <h3>Entity and authority build</h3><p>Your practice becomes the source AI and search engines trust: structured, cited, verified.</p>
-        </div></div></div>
-        <div class="node rv" style="--d:.2s"><div class="node-dot" aria-hidden="true"></div><div class="shell"><div class="core">
-          <h3>Conversion linkage</h3><p>Appointment setting and qualification connect every inquiry to a real consultation.</p>
-        </div></div></div>
-        <div class="node rv" style="--d:.3s"><div class="node-dot" aria-hidden="true"></div><div class="shell"><div class="core">
-          <h3>Booked cases</h3><p>Transparent reporting and sales training compound results, month over month.</p>
-        </div></div></div>
-      </div>
     </div>
   </div>
 </section>
