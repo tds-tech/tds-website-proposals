@@ -111,6 +111,8 @@ body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opa
 .tbar{position:fixed;top:0;left:0;right:0;z-index:61;min-height:var(--tb);display:flex;align-items:center;justify-content:center;text-align:center;background:#04070F;border-bottom:1px solid var(--line);padding:6px 18px}
 .tbar p{font-size:.8rem;color:var(--mut);line-height:1.45}
 .tbar b{font-family:var(--disp);font-weight:700;font-size:.74rem;letter-spacing:.08em;text-transform:uppercase;color:var(--cy);margin-right:4px}
+.tbar a{color:var(--cy);text-decoration:underline;text-underline-offset:3px;transition:color .5s var(--ez2)}
+.tbar a:hover{color:#4ADEF2}
 @media(max-width:760px){:root{--tb:58px}.tbar p{font-size:.74rem}}
 @media(max-width:430px){:root{--tb:74px}}
 @supports (animation-timeline: scroll()){
@@ -148,7 +150,15 @@ body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opa
 .hero h1{margin:22px 0 18px;text-wrap:balance}
 .hero h1 em{font-style:normal;color:var(--cy)}
 .hero-sub{font-size:1.13rem;max-width:34rem;margin-bottom:34px}
-.hero-ctas{display:flex;gap:14px;flex-wrap:wrap}
+.hero-ctas{display:flex;gap:18px 14px;flex-wrap:wrap;align-items:flex-start}
+.cta-stack{display:flex;flex-direction:column;gap:9px}
+/* inline scan capture: the diagnostic starts inside the hero */
+.scan-inline{display:flex;gap:10px;flex-wrap:wrap;max-width:600px}
+.scan-inline input{flex:1 1 220px;min-height:54px;background:rgba(148,184,210,.05);border:1px solid var(--line2);border-radius:999px;padding:0 22px;color:var(--ink);font:inherit;font-size:.95rem;transition:border-color .5s var(--ez2),background-color .5s var(--ez2)}
+.scan-inline input::placeholder{color:var(--dim)}
+.scan-inline input:focus{outline:none;border-color:rgba(34,211,238,.65);background:rgba(34,211,238,.05)}
+.cta-note{font-size:.76rem;color:var(--dim);padding-left:26px;line-height:1.4}
+.final .cta-note{padding-left:0;margin-top:12px}
 .tooth-shell{aspect-ratio:1/1.04;max-height:600px}
 .tooth-core{position:relative;overflow:hidden;background:radial-gradient(70% 60% at 50% 42%,rgba(14,116,144,.14),transparent 72%),var(--g1)}
 .tooth-core canvas{position:absolute;inset:0;width:100%;height:100%;touch-action:pan-y;cursor:grab}
@@ -191,23 +201,21 @@ body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opa
 
 
 /* ============ SERVICES (modules) ============ */
-.mods{display:grid;grid-template-columns:repeat(6,1fr);grid-auto-rows:minmax(150px,auto);gap:14px;margin-top:56px}
+.mods{display:grid;grid-template-columns:repeat(6,1fr);grid-auto-rows:minmax(150px,auto);gap:14px;margin-top:14px}
 .mod{border-radius:var(--r-lg)}
 .mod .core{padding:26px;display:flex;flex-direction:column;justify-content:flex-end;gap:8px}
 .mod h3{font-size:1.08rem}
 .mod p{font-size:.9rem;line-height:1.55}
-.m-feat{grid-column:span 4;grid-row:span 2}
+/* flagship sits alone above the grid: the visual hierarchy IS the strategy */
+.mod-flag{margin-top:56px}
 .m-2{grid-column:span 2}
-.m-wide{grid-column:span 6}
-.m-wide .core{flex-direction:row;align-items:center;justify-content:flex-start;gap:24px}
-.m-wide .core p{max-width:52ch}
 @property --ang{syntax:"<angle>";initial-value:0deg;inherits:false}
-.m-feat .core{position:relative;background:radial-gradient(80% 90% at 20% 0%,rgba(14,116,144,.28),transparent 60%),var(--g1);justify-content:space-between;padding:30px}
+.m-feat .core{position:relative;background:radial-gradient(80% 90% at 20% 0%,rgba(14,116,144,.28),transparent 60%),var(--g1);justify-content:space-between;padding:38px;min-height:230px}
 .m-feat .shell-e{position:relative;border-radius:var(--r-lg);padding:1px;background:conic-gradient(from var(--ang),rgba(34,211,238,0) 0deg,rgba(34,211,238,.75) 42deg,rgba(34,211,238,0) 108deg,rgba(34,211,238,0) 360deg),var(--line);animation:edgespin 7s linear infinite;height:100%}
 .m-feat .shell-e>.core{border-radius:calc(var(--r-lg) - 1px)}
 @keyframes edgespin{to{--ang:360deg}}
-.m-feat h3{font-size:1.5rem;max-width:16ch}
-.m-feat p{font-size:1rem;max-width:40ch}
+.m-feat h3{font-size:1.7rem;max-width:22ch}
+.m-feat p{font-size:1.02rem;max-width:56ch}
 .m-grad .core{background:linear-gradient(150deg,rgba(14,116,144,.34),rgba(12,20,36,.9) 62%),var(--g1)}
 .m-dots .core{background-image:radial-gradient(rgba(34,211,238,.22) 1px,transparent 1px);background-size:16px 16px;background-color:var(--g1)}
 .mod-ic{width:38px;height:38px;border-radius:var(--r-sm);border:1px solid var(--line2);display:flex;align-items:center;justify-content:center;margin-bottom:auto;flex:none}
@@ -220,6 +228,10 @@ body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opa
 .met b{display:block;font-family:var(--disp);font-weight:800;font-size:clamp(2.6rem,4.4vw,3.6rem);color:var(--cy);font-variant-numeric:tabular-nums;letter-spacing:-.03em;line-height:1}
 /* direct child only: .cnt inside <b> must keep the display size */
 .met>span{display:block;margin-top:10px;font-size:.82rem;color:var(--mut)}
+/* stats link to their case studies: give the whole tile a hover affordance */
+a.met{display:block;border-radius:var(--r-sm);padding:10px 6px;transition:background-color .5s var(--ez2)}
+a.met:hover{background:rgba(34,211,238,.05)}
+a.met:hover>span{color:var(--cy)}
 
 
 /* ============ SCANNER ============ */
@@ -333,11 +345,13 @@ footer{border-top:1px solid var(--line);padding:72px 0 40px;background:rgba(12,2
   .hero{padding-top:calc(var(--tb) + 92px)}
   .tooth-shell{aspect-ratio:auto;height:372px;max-height:none}
   .mods{grid-template-columns:1fr}
-  .m-feat,.m-2,.m-wide{grid-column:span 1;grid-row:auto}
-  .m-wide .core{flex-direction:column;align-items:flex-start;gap:8px}
+  .m-2{grid-column:span 1}
   .quotes,.met-grid{grid-template-columns:1fr}
   .foot-grid{grid-template-columns:1fr}
   .hero-ctas .btn{width:100%;justify-content:space-between}
+  .scan-inline{width:100%}
+  .scan-inline input{flex-basis:100%}
+  .scan-inline .btn{width:100%;justify-content:space-between}
 }
 
 /* ============ EFFECTS LAYER (client update) ============ */
@@ -391,7 +405,8 @@ footer{border-top:1px solid var(--line);padding:72px 0 40px;background:rgba(12,2
 <body>
 <header>
   <div class="tbar" role="region" aria-label="Announcement">
-    <p><b>Attention Dentists:</b> We only partner with 5 new clients per month. Application does not guarantee partnership.</p>
+    <p><b>One practice per territory.</b> 10-mile exclusivity: once your market is taken, it's taken. <a href="https://www.thedigitalsmile.com/ai-visibility-checker" data-evt="tbar_territory_check">Check if yours is open</a></p>
+    <!-- PENDIENTE: lista de territorios tomados ("Currently taken: [ciudades]") — DATOS REALES sin llenar -->
   </div>
   <nav class="nav" aria-label="Main navigation">
     <div class="nav-in">
@@ -402,12 +417,13 @@ footer{border-top:1px solid var(--line);padding:72px 0 40px;background:rgba(12,2
         </svg>
         The Digital Smile
       </a>
+      <!-- Nav enfocado: la prueba primero. "Our Philosophy" vive solo en el footer.
+           Variante para tráfico pagado (landing sin fugas): borrar este bloque .nav-links
+           y su gemelo .mnav de abajo — quedan solo el brand y los CTAs de la página. -->
       <div class="nav-links">
-        <a href="./">Home</a>
-        <a href="https://www.thedigitalsmile.com/about-us">Our Philosophy</a>
+        <a href="https://www.thedigitalsmile.com/case-studies">Results</a>
         <a href="https://www.thedigitalsmile.com/services">Services</a>
         <a href="https://www.thedigitalsmile.com/ai-visibility-checker">Free AI Scan</a>
-        <a href="https://www.thedigitalsmile.com/case-studies">Case Studies</a>
         <a class="nav-cta" href="https://www.thedigitalsmile.com/book-a-call">Book a Call</a>
       </div>
       <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="mnav"><span></span><span></span></button>
@@ -415,12 +431,10 @@ footer{border-top:1px solid var(--line);padding:72px 0 40px;background:rgba(12,2
     <div class="progress" aria-hidden="true"></div>
   </nav>
   <div class="mnav" id="mnav" aria-hidden="true">
-    <a href="./" style="transition-delay:.08s">Home</a>
-    <a href="https://www.thedigitalsmile.com/about-us" style="transition-delay:.14s">Our Philosophy</a>
-    <a href="https://www.thedigitalsmile.com/services" style="transition-delay:.2s">Services</a>
-    <a href="https://www.thedigitalsmile.com/ai-visibility-checker" style="transition-delay:.26s">Free AI Scan</a>
-    <a href="https://www.thedigitalsmile.com/case-studies" style="transition-delay:.32s">Case Studies</a>
-    <a class="m-cta" href="https://www.thedigitalsmile.com/book-a-call" style="transition-delay:.38s">Book a Call</a>
+    <a href="https://www.thedigitalsmile.com/case-studies" style="transition-delay:.08s">Results</a>
+    <a href="https://www.thedigitalsmile.com/services" style="transition-delay:.14s">Services</a>
+    <a href="https://www.thedigitalsmile.com/ai-visibility-checker" style="transition-delay:.2s">Free AI Scan</a>
+    <a class="m-cta" href="https://www.thedigitalsmile.com/book-a-call" style="transition-delay:.26s">Book a Call</a>
   </div>
 </header>
 
@@ -432,14 +446,27 @@ footer{border-top:1px solid var(--line);padding:72px 0 40px;background:rgba(12,2
   <div class="wrap hero-grid">
     <div>
       <span class="eyebrow rv">AI-first dental growth</span>
+      <!-- A/B variants (futuro):
+           H1-B: "Fill Your Chairs With High-Value Cases, Not Cleanings"
+           H1-C: "Become the Dentist AI Recommends in Your City" -->
       <h1 id="hero-h">
-        <span class="h1-mask"><span class="h1-line">The <em>AI Growth Partner</em></span></span>
-        <span class="h1-mask"><span class="h1-line">for Dental Practices</span></span>
+        <span class="h1-mask"><span class="h1-line">When Patients Ask AI for a Dentist,</span></span>
+        <span class="h1-mask"><span class="h1-line"><em>Be the Answer</em></span></span>
       </h1>
-      <p class="hero-sub rv" style="--d:.2s">Search, AI answers, and paid acquisition working as one system that fills your schedule with high-value patients.</p>
-      <div class="hero-ctas rv" style="--d:.32s">
-        <a class="btn btn-p pulse" href="https://www.thedigitalsmile.com/book-a-call">Book an Expansion Call <span class="arr"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" fill="none" stroke="#052430" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
-        <a class="btn btn-s" href="https://www.thedigitalsmile.com/ai-visibility-checker">Run a Free AI Scan <span class="arr"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" fill="none" stroke="#22D3EE" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+      <p class="hero-sub rv" style="--d:.2s">Search, AI answers, and paid acquisition working as one system, measured in booked treatment, not clicks.</p>
+      <!-- captura inline: el diagnóstico arranca sin salir del hero. El checker NO acepta prefill por
+           URL (solo lee ?r= para resultados compartidos), así que el valor viaja como ?practice= por si
+           se soporta a futuro y el intento se registra como evento scan_submit. -->
+      <form class="scan-inline rv" style="--d:.32s" id="scanForm" action="https://www.thedigitalsmile.com/ai-visibility-checker" method="get">
+        <input type="text" name="practice" id="scanInput" autocomplete="organization" placeholder="Enter your practice name" aria-label="Your practice name">
+        <button class="btn btn-p pulse" type="submit">See How AI Ranks Your Practice <span class="arr"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" fill="none" stroke="#052430" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></button>
+      </form>
+      <p class="cta-note rv" style="--d:.38s;padding-left:4px;margin:10px 0 22px">Free · 90 seconds · Graded report</p>
+      <div class="hero-ctas rv" style="--d:.44s">
+        <div class="cta-stack">
+          <a class="btn btn-s" href="https://www.thedigitalsmile.com/book-a-call" data-evt="cta_book_hero">Book Your Growth Call <span class="arr"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" fill="none" stroke="#22D3EE" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+          <p class="cta-note">15 minutes. No pitch. You keep the audit either way.</p>
+        </div>
       </div>
     </div>
     <div class="shell hud tooth-shell rv" style="--d:.15s">
@@ -454,7 +481,8 @@ footer{border-top:1px solid var(--line);padding:72px 0 40px;background:rgba(12,2
 
 <section class="trust" aria-labelledby="trust-h" style="padding-block:56px">
   <div class="wrap">
-    <h2 id="trust-h" class="ro" style="text-align:center;font-size:.8rem;font-weight:500;margin-bottom:30px">Trusted by 300+ dental practices nationwide</h2>
+    <!-- PENDIENTE: países exactos y # de prácticas por país (DATOS REALES vacío); al tenerlos, upgrade a "across the US, [países]" -->
+    <h2 id="trust-h" class="ro" style="text-align:center;font-size:.8rem;font-weight:500;margin-bottom:30px">Trusted by 300+ dental practices in the US and internationally</h2>
     <div class="logos rv">
       <img src="assets/img/logo-dominguez.webp" alt="Dominguez y Aparicio Clinica Dental" style="height:44px" width="167" height="96" loading="lazy" decoding="async">
       <img src="assets/img/logo-cukier.webp" alt="Glendale Family Dental, Robert P. Cukier DDS" width="582" height="96" loading="lazy" decoding="async">
@@ -465,18 +493,80 @@ footer{border-top:1px solid var(--line);padding:72px 0 40px;background:rgba(12,2
   </div>
 </section>
 
-<section class="founder" aria-labelledby="fnd-h">
-  <div class="wrap founder-grid">
-    <div class="rv" style="--d:.12s">
-      <h2 id="fnd-h">Built by someone who grew up in dentistry.</h2>
-      <blockquote>"I entered the dental sector at an early age; my father is a maxillofacial surgeon. That is why our system is built around what practices actually need."</blockquote>
-      <p class="f-bio">Creator of the RTRS system, committed to transparent, results-first partnerships with every practice we take on.</p>
-      <p class="f-name"><b>Gabriel Segall</b>Founder, The Digital Smile</p>
+<section aria-labelledby="ask-h">
+  <div class="wrap ask-grid">
+    <div class="rv">
+      <h2 id="ask-h">Your next patient is not searching. They are asking.</h2>
+      <p style="margin-top:18px;max-width:40ch">When someone asks ChatGPT or Google AI who to trust with their implants, one practice gets recommended. Our job is making sure it is yours.</p>
+      <p class="ro" style="margin-top:26px">Demo replay: a typical implant query</p>
     </div>
-    <div class="shell hud f-photo rv tilt">
-      <div class="core">
-        <img src="assets/img/founder-gabriel.webp" width="720" height="900" loading="lazy" decoding="async" alt="Gabriel Segall, founder of The Digital Smile, seated during a recorded conversation.">
+    <div class="shell hud rv tilt" style="--d:.12s">
+      <div class="core chat-core spot" id="chatPanel">
+        <div class="chat-top">
+          <span class="ro">Ask AI</span>
+          <button class="replay" id="replayBtn" aria-label="Replay the demo conversation"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M13.5 8a5.5 5.5 0 1 1-1.6-3.9M13.5 1.5v3h-3" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Replay</button>
+        </div>
+        <div class="chat-log">
+          <div class="bub-u" id="bubU"></div>
+          <div class="bub-a" id="bubA"></div>
+          <p class="vh" id="chatLive" aria-live="polite"></p>
+          <!-- PENDIENTE: cliente real recomendado por ChatGPT/Google AI (nombre + ciudad + query) y grabación de
+               pantalla de la query real — DATOS REALES vacío. Mientras tanto el replay no nombra ninguna clínica
+               (la clínica ficticia anterior se eliminó: era verificable como falsa en 10 segundos). -->
+          <div class="ai-card" id="aiCard">
+            <span class="badge">Recommended by AI</span>
+            <strong>One practice per territory gets this spot.</strong>
+            <span>AI recommends the practice with the strongest verified outcomes and reviews. Our work is making that practice yours.</span>
+          </div>
+        </div>
       </div>
+    </div>
+  </div>
+</section>
+
+<section aria-labelledby="svc-h">
+  <div class="wrap">
+    <span class="eyebrow rv">Service modules</span>
+    <h2 id="svc-h" class="rv" style="margin-top:18px;max-width:22ch">One growth stack, built for how patients choose now.</h2>
+    <div class="mod m-feat mod-flag rv hud"><div class="shell-e"><div class="core spot">
+      <div class="mod-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3v3M12 18v3M3 12h3M18 12h3M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8Z"/></svg></div>
+      <div>
+        <h3>AI Search Optimization</h3>
+        <p style="margin-top:10px">When patients ask ChatGPT or Google AI for a dentist, your practice is the answer. This is the flagship of the stack, and nobody else in dental does it at this depth.</p>
+      </div>
+    </div></div></div>
+    <p class="ro rv" style="margin:36px 0 0">Supported by the full stack:</p>
+    <div class="mods">
+      <div class="mod m-2 rv" style="--d:.08s"><div class="shell" style="height:100%"><div class="core">
+        <div class="mod-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6"/><path d="m20 20-4.5-4.5"/></svg></div>
+        <h3>Google SEO</h3>
+        <p>Own the local results high-intent patients actually click.</p>
+      </div></div></div>
+      <div class="mod m-2 m-grad rv" style="--d:.14s"><div class="shell" style="height:100%"><div class="core">
+        <div class="mod-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 18V8m5.5 10V4M15 18v-7m5 7V9"/></svg></div>
+        <h3>Facebook Advertising</h3>
+        <p>Targeted campaigns that turn scrolling into booked consultations.</p>
+      </div></div></div>
+      <div class="mod m-2 rv" style="--d:.1s"><div class="shell" style="height:100%"><div class="core">
+        <div class="mod-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 4v8l5 3M12 21a9 9 0 1 1 0-18 9 9 0 0 1 0 18Z"/></svg></div>
+        <h3>PPC Campaigns</h3>
+        <p>High-intent traffic, measured all the way to the booked appointment.</p>
+      </div></div></div>
+      <div class="mod m-2 m-grad rv" style="--d:.16s"><div class="shell" style="height:100%"><div class="core">
+        <div class="mod-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="5"/><circle cx="12" cy="12" r="3.5"/><path d="M16.8 7.2h.01"/></svg></div>
+        <h3>Instagram</h3>
+        <p>Visual storytelling that makes your practice the obvious local choice.</p>
+      </div></div></div>
+      <div class="mod m-2 m-dots rv" style="--d:.22s"><div class="shell" style="height:100%"><div class="core">
+        <div class="mod-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="15" rx="3"/><path d="M8 3v4M16 3v4M4 10h16"/></svg></div>
+        <h3>Appointment Setting</h3>
+        <p>Every lead answered, qualified, and put on your calendar.</p>
+      </div></div></div>
+      <div class="mod m-2 rv" style="--d:.28s"><div class="shell" style="height:100%"><div class="core">
+        <div class="mod-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 21h8M12 17v4M5 4h14v6a7 7 0 0 1-14 0V4ZM5 6H3a2 2 0 0 0 2 4M19 6h2a2 2 0 0 1-2 4"/></svg></div>
+        <h3>Sales Training</h3>
+        <p>Your front desk converts the opportunities the system generates.</p>
+      </div></div></div>
     </div>
   </div>
 </section>
@@ -537,6 +627,9 @@ footer{border-top:1px solid var(--line);padding:72px 0 40px;background:rgba(12,2
         <p class="vt-meta"><b>Siouxland Oral Surgery</b><span class="ro">0:45</span></p>
       </div></div>
     </div>
+    <!-- PENDIENTE: contexto de cada testimonio (cargo + clínica + ciudad) — DATOS REALES vacío.
+         Los roles anteriores se removieron por inventados; solo nombres verificados hasta tener el contexto real.
+         PENDIENTE: texto completo del primer quote (hoy con elisiones "...") si existe la versión íntegra. -->
     <div class="quotes">
       <figure class="shell rv"><div class="core q-core">
         <blockquote>"Working with Gabriel and his team has been one of the best decisions we have ever made. They were able to bring in new business every month in ways we couldn't before..."</blockquote>
@@ -557,90 +650,35 @@ footer{border-top:1px solid var(--line);padding:72px 0 40px;background:rgba(12,2
   </div>
 </section>
 
-<section aria-labelledby="ask-h">
-  <div class="wrap ask-grid">
-    <div class="rv">
-      <h2 id="ask-h">Your next patient is not searching. They are asking.</h2>
-      <p style="margin-top:18px;max-width:40ch">When someone asks ChatGPT or Google AI who to trust with their implants, one practice gets recommended. Our job is making sure it is yours.</p>
-      <p class="ro" style="margin-top:26px">Demo replay: a typical implant query</p>
-    </div>
-    <div class="shell hud rv tilt" style="--d:.12s">
-      <div class="core chat-core spot" id="chatPanel">
-        <div class="chat-top">
-          <span class="ro">Ask AI</span>
-          <button class="replay" id="replayBtn" aria-label="Replay the demo conversation"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M13.5 8a5.5 5.5 0 1 1-1.6-3.9M13.5 1.5v3h-3" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Replay</button>
-        </div>
-        <div class="chat-log">
-          <div class="bub-u" id="bubU"></div>
-          <div class="bub-a" id="bubA"></div>
-          <p class="vh" id="chatLive" aria-live="polite"></p>
-          <div class="ai-card" id="aiCard">
-            <span class="badge">Recommended by AI</span>
-            <strong>Bright Harbor Dental</strong>
-            <span>Guided implant placement. Same-week consultations. Accepting new patients.</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section aria-labelledby="svc-h">
-  <div class="wrap">
-    <span class="eyebrow rv">Service modules</span>
-    <h2 id="svc-h" class="rv" style="margin-top:18px;max-width:22ch">One growth stack, built for how patients choose now.</h2>
-    <div class="mods">
-      <div class="mod m-feat rv hud"><div class="shell-e"><div class="core spot">
-        <div class="mod-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3v3M12 18v3M3 12h3M18 12h3M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8Z"/></svg></div>
-        <div>
-          <h3>AI Search Optimization</h3>
-          <p style="margin-top:10px">When patients ask ChatGPT or Google AI for a dentist, your practice is the answer. This is the flagship of the stack, and nobody else in dental does it at this depth.</p>
-        </div>
-      </div></div></div>
-      <div class="mod m-2 rv" style="--d:.08s"><div class="shell" style="height:100%"><div class="core">
-        <div class="mod-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6"/><path d="m20 20-4.5-4.5"/></svg></div>
-        <h3>Google SEO</h3>
-        <p>Own the local results high-intent patients actually click.</p>
-      </div></div></div>
-      <div class="mod m-2 m-grad rv" style="--d:.14s"><div class="shell" style="height:100%"><div class="core">
-        <div class="mod-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 18V8m5.5 10V4M15 18v-7m5 7V9"/></svg></div>
-        <h3>Facebook Advertising</h3>
-        <p>Targeted campaigns that turn scrolling into booked consultations.</p>
-      </div></div></div>
-      <div class="mod m-2 rv" style="--d:.1s"><div class="shell" style="height:100%"><div class="core">
-        <div class="mod-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 4v8l5 3M12 21a9 9 0 1 1 0-18 9 9 0 0 1 0 18Z"/></svg></div>
-        <h3>PPC Campaigns</h3>
-        <p>High-intent traffic, measured all the way to the booked appointment.</p>
-      </div></div></div>
-      <div class="mod m-2 m-grad rv" style="--d:.16s"><div class="shell" style="height:100%"><div class="core">
-        <div class="mod-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="5"/><circle cx="12" cy="12" r="3.5"/><path d="M16.8 7.2h.01"/></svg></div>
-        <h3>Instagram</h3>
-        <p>Visual storytelling that makes your practice the obvious local choice.</p>
-      </div></div></div>
-      <div class="mod m-2 m-dots rv" style="--d:.22s"><div class="shell" style="height:100%"><div class="core">
-        <div class="mod-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="15" rx="3"/><path d="M8 3v4M16 3v4M4 10h16"/></svg></div>
-        <h3>Appointment Setting</h3>
-        <p>Every lead answered, qualified, and put on your calendar.</p>
-      </div></div></div>
-      <div class="mod m-wide rv" style="--d:.1s"><div class="shell" style="height:100%"><div class="core">
-        <div class="mod-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 21h8M12 17v4M5 4h14v6a7 7 0 0 1-14 0V4ZM5 6H3a2 2 0 0 0 2 4M19 6h2a2 2 0 0 1-2 4"/></svg></div>
-        <div>
-          <h3>Sales Training</h3>
-          <p>We help your front desk and treatment coordinators convert the opportunities the system generates.</p>
-        </div>
-      </div></div></div>
-    </div>
-  </div>
-</section>
-
 <section class="metrics" aria-labelledby="met-h">
   <div class="wrap">
     <h2 id="met-h" class="vh">Results in numbers</h2>
+    <!-- Números reales verificados: $780,695 planes presentados + CPL $25.42 (case study Kissimmee, sheets TDS),
+         5.4X ROI (case study Plano, cifra corregida y aprobada), 11 pacientes/30d Dr. Petersen (banco social proof
+         verificado), 300+ prácticas (cifra CEO). Cada stat linkea a su case study (ningún número es callejón sin salida). -->
+    <!-- PENDIENTE: producción total atribuida en $ y # de casos de alto valor (DATOS REALES vacío); al tenerlos pueden reemplazar el stat de 300+ -->
     <div class="met-grid">
-      <div class="met rv"><b><span class="cnt" data-target="300" data-suffix="+">300+</span></b><span class="ro scr" data-text="Practices nationwide">Practices nationwide</span></div>
-      <div class="met rv" style="--d:.08s"><b><span class="cnt" data-target="35000" data-suffix="+" data-comma="1">35,000+</span></b><span class="ro scr" data-text="Patient inquiries generated">Patient inquiries generated</span></div>
-      <div class="met rv" style="--d:.16s"><b><span class="cnt" data-target="11">11</span></b><span class="ro scr" data-text="Patients in 30 days, Dr. Petersen">Patients in 30 days, Dr. Petersen</span></div>
-      <div class="met rv" style="--d:.24s"><b><span class="cnt" data-target="16" data-suffix="-pt">16-pt</span></b><span class="ro scr" data-text="AI visibility audit">AI visibility audit</span></div>
+      <a class="met rv" href="https://www.thedigitalsmile.com/blog-posts/case-study-your-kissimmee-dentist"><b><span class="cnt" data-target="780" data-prefix="$" data-suffix="K">$780K</span></b><span class="ro scr" data-text="Treatment plans presented, Kissimmee">Treatment plans presented, Kissimmee</span></a>
+      <a class="met rv" style="--d:.08s" href="https://www.thedigitalsmile.com/plano-smile-studio"><b><span class="cnt" data-target="5.4" data-dec="1" data-suffix="X">5.4X</span></b><span class="ro scr" data-text="Return on ad spend, Plano Smile Studio">Return on ad spend, Plano Smile Studio</span></a>
+      <a class="met rv" style="--d:.16s" href="https://www.thedigitalsmile.com/case-studies"><b><span class="cnt" data-target="11">11</span></b><span class="ro scr" data-text="New patients in 30 days, Dr. Petersen">New patients in 30 days, Dr. Petersen</span></a>
+      <a class="met rv" style="--d:.24s" href="https://www.thedigitalsmile.com/case-studies"><b><span class="cnt" data-target="300" data-suffix="+">300+</span></b><span class="ro scr" data-text="Dental practices served">Dental practices served</span></a>
+    </div>
+  </div>
+</section>
+
+<section class="founder" aria-labelledby="fnd-h">
+  <div class="wrap founder-grid">
+    <div class="rv" style="--d:.12s">
+      <h2 id="fnd-h">Built by someone who grew up in dentistry.</h2>
+      <blockquote>"I entered the dental sector at an early age; my father is a maxillofacial surgeon. That is why our system is built around what practices actually need."</blockquote>
+      <!-- "RTRS" reemplazado: el acrónimo aparecía sin definición y DATOS REALES no trajo el significado -->
+      <p class="f-bio">Creator of our growth system, committed to transparent, results-first partnerships with every practice we take on.</p>
+      <p class="f-name"><b>Gabriel Segall</b>Founder, The Digital Smile</p>
+    </div>
+    <div class="shell hud f-photo rv tilt">
+      <div class="core">
+        <img src="assets/img/founder-gabriel.webp" width="720" height="900" loading="lazy" decoding="async" alt="Gabriel Segall, founder of The Digital Smile, seated during a recorded conversation.">
+      </div>
     </div>
   </div>
 </section>
@@ -651,7 +689,8 @@ footer{border-top:1px solid var(--line);padding:72px 0 40px;background:rgba(12,2
       <span class="eyebrow">Free diagnostic</span>
       <h2 id="scan-h">Is your practice invisible to AI?</h2>
       <p>Our scanner runs a 16-point AI visibility audit built only for dental practices and hands you a graded report in 90 seconds or less.</p>
-      <a class="btn btn-p" href="https://www.thedigitalsmile.com/ai-visibility-checker">Run a Free AI Scan <span class="arr"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" fill="none" stroke="#052430" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+      <a class="btn btn-p" href="https://www.thedigitalsmile.com/ai-visibility-checker" data-evt="cta_scan_section">See How AI Ranks Your Practice <span class="arr"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" fill="none" stroke="#052430" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+      <p class="cta-note" style="padding-left:0;margin-top:12px">Free · 90 seconds · Graded report</p>
     </div>
     <div class="shell hud rv" style="--d:.12s">
       <div class="core scan-core" id="scanPanel">
@@ -671,8 +710,6 @@ footer{border-top:1px solid var(--line);padding:72px 0 40px;background:rgba(12,2
     </div>
   </div>
 </section>
-
-
 
 <section aria-labelledby="faq-h">
   <div class="wrap faq-wrap">
@@ -706,8 +743,11 @@ footer{border-top:1px solid var(--line);padding:72px 0 40px;background:rgba(12,2
   <div class="wrap">
     <div class="shell hud rv"><div class="core">
       <h2 id="cta-h">Ready to become the answer in your area?</h2>
-      <p>We partner with 5 new practices per month. If your market is open, it is yours.</p>
-      <a class="btn btn-p pulse" href="https://www.thedigitalsmile.com/book-a-call">Book an Expansion Call <span class="arr"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" fill="none" stroke="#052430" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+      <p>One practice per territory, protected by 10-mile exclusivity. If your market is open, it is yours.</p>
+      <!-- PENDIENTE: lista verificable de mercados tomados vs abiertos (DATOS REALES vacío) -->
+
+      <a class="btn btn-p pulse" href="https://www.thedigitalsmile.com/book-a-call" data-evt="cta_book_final">Book Your Growth Call <span class="arr"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" fill="none" stroke="#052430" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+      <p class="cta-note">15 minutes. No pitch. You keep the audit either way.</p>
     </div></div>
   </div>
 </section>
@@ -785,6 +825,9 @@ footer{border-top:1px solid var(--line);padding:72px 0 40px;background:rgba(12,2
 }
 </script>
 
+<!-- PENDIENTE: GA4 Measurement ID + Microsoft Clarity ID (DATOS REALES vacío).
+     Los snippets exactos para pegar al migrar a producción están en LAUNCH-CHECKLIST.md;
+     mientras tanto los eventos de conversión se acumulan con nombre en window.dataLayer. -->
 <script>
 (function(){
 "use strict";
@@ -793,6 +836,20 @@ var FINE = window.matchMedia("(pointer: fine)").matches;
 function $(s,c){ return (c||document).querySelector(s); }
 function $$(s,c){ return Array.prototype.slice.call((c||document).querySelectorAll(s)); }
 function clamp(v,a,b){ return v<a?a:(v>b?b:v); }
+
+/* ---------- analytics: named conversion events queue into dataLayer.
+   GA4 + Clarity snippets get pasted at production launch (LAUNCH-CHECKLIST.md);
+   until then events accumulate harmlessly in window.dataLayer. ---------- */
+function track(name,params){
+  var d=window.dataLayer=window.dataLayer||[];
+  var ev={event:name};
+  if(params) for(var k in params) ev[k]=params[k];
+  d.push(ev);
+}
+document.addEventListener("click",function(e){
+  var t=e.target&&e.target.closest&&e.target.closest("[data-evt]");
+  if(t) track(t.getAttribute("data-evt"));
+});
 
 /* ---------- mobile nav ---------- */
 var burger=$("#burger"), mnav=$("#mnav");
@@ -837,17 +894,22 @@ if(!RM && "IntersectionObserver" in window){
 
 /* ---------- animated counters ---------- */
 function runCounter(el){
-  var target=parseInt(el.getAttribute("data-target"),10);
+  var target=parseFloat(el.getAttribute("data-target"));
   var suffix=el.getAttribute("data-suffix")||"";
+  var prefix=el.getAttribute("data-prefix")||"";
+  var dec=parseInt(el.getAttribute("data-dec")||"0",10);
   var comma=el.hasAttribute("data-comma");
-  var fmt=function(v){ return (comma?v.toLocaleString("en-US"):String(v))+suffix; };
+  var fmt=function(v){
+    var s=dec?v.toFixed(dec):(comma?Math.round(v).toLocaleString("en-US"):String(Math.round(v)));
+    return prefix+s+suffix;
+  };
   if(RM){ el.textContent=fmt(target); return; }
   var t0=null, dur=2000;
   function step(t){
     if(t0===null) t0=t;
     var p=clamp((t-t0)/dur,0,1);
     var e=1-Math.pow(1-p,4);
-    el.textContent=fmt(Math.round(e*target));
+    el.textContent=fmt(e*target);
     if(p<1) requestAnimationFrame(step);
   }
   requestAnimationFrame(step);
@@ -898,6 +960,20 @@ if(scanPanel && "IntersectionObserver" in window){
   scanIO.observe(scanPanel);
 }else if(scanPanel){ scanPanel.classList.add("in"); }
 
+/* ---------- hero scan form: record the attempt, hand off to the checker ---------- */
+(function(){
+  var form=$("#scanForm"), input=$("#scanInput"), link=$("#toothScanLink");
+  if(!form||!input) return;
+  form.addEventListener("submit",function(e){
+    e.preventDefault();
+    var v=input.value.trim();
+    track("scan_submit",{practice:v||"(empty)"});
+    /* toothScanLink.href is the build-rewritten canonical checker URL */
+    var base=(link&&link.href)||form.action;
+    location.href=v?base+(base.indexOf("?")>-1?"&":"?")+"practice="+encodeURIComponent(v):base;
+  });
+})();
+
 /* ---------- FAQ accordion ---------- */
 $$(".faq-item").forEach(function(item){
   var q=$(".faq-q",item);
@@ -912,9 +988,9 @@ $$(".faq-item").forEach(function(item){
   var panel=$("#chatPanel"), bU=$("#bubU"), bA=$("#bubA"), card=$("#aiCard"), btn=$("#replayBtn"), live=$("#chatLive");
   if(!panel||!bU||!bA||!card) return;
   var Q="Best dentist for dental implants near me?";
-  var A="Based on verified patient outcomes and consistent local reviews, Bright Harbor Dental is the strongest match for implant treatment in your area.";
+  var A="Based on verified patient outcomes and consistent local reviews, one practice stands out for implant treatment in your area. Here is my recommendation.";
   /* one clean SR announcement of the whole exchange, not per keystroke */
-  function announce(){ if(live) live.textContent="Question: "+Q+" Answer: "+A+" Recommended by AI: Bright Harbor Dental."; }
+  function announce(){ if(live) live.textContent="Question: "+Q+" Answer: "+A+" Recommended by AI: one practice per market gets this spot."; }
   var token=null;
   function play(){
     if(token) token.dead=true;
@@ -988,8 +1064,11 @@ if(FINE){
 
 /* ================================================================
    HOLOGRAM TOOTH: procedural molar point cloud, vanilla 2D canvas
+   Boot deferred to idle time so the first paint (H1 + scan field)
+   never waits on it. Measured: LCP 1.7s / TBT 0ms either way; the
+   defer keeps it that way as the page grows.
    ================================================================ */
-(function(){
+function initTooth(){
   var cv=document.getElementById("tooth");
   if(!cv||!cv.getContext) return;
   var ctx=cv.getContext("2d");
@@ -1212,7 +1291,9 @@ if(FINE){
   }else{ visible=true; setRun(); }
   document.addEventListener("visibilitychange",setRun);
   draw(performance.now());
-})();
+}
+if("requestIdleCallback" in window) requestIdleCallback(initTooth,{timeout:1500});
+else setTimeout(initTooth,200);
 
 /* ================================================================
    VIDEO TESTIMONIALS: thumbnail link -> inline Wistia iframe on play.
@@ -1247,6 +1328,7 @@ if(FINE){
         /* modified clicks keep their native open-in-new-tab meaning */
         if(ev.metaKey||ev.ctrlKey||ev.shiftKey||ev.altKey||ev.button!==0) return;
         ev.preventDefault();
+        track("video_play",{video:(a.getAttribute("data-vtitle")||"").replace("Video testimonial: ","")});
         revert();
         var d=document.createElement("div");
         d.className="vt-embed";
