@@ -247,13 +247,11 @@ body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opa
 .node p{font-size:.87rem;line-height:1.55}
 
 /* ============ METRICS ============ */
-/* the one light band on the page (client call): white paper, teal stats */
-.metrics{background:#F9FAFB;border-top:1px solid rgba(15,42,70,.08);border-bottom:1px solid rgba(15,42,70,.08);padding-block:78px}
+.metrics{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding-block:78px}
 .met-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;text-align:center}
-.met b{display:block;font-family:var(--disp);font-weight:800;font-size:clamp(2.6rem,4.4vw,3.6rem);color:#0E7490;font-variant-numeric:tabular-nums;letter-spacing:-.03em;line-height:1}
+.met b{display:block;font-family:var(--disp);font-weight:800;font-size:clamp(2.6rem,4.4vw,3.6rem);color:var(--cy);font-variant-numeric:tabular-nums;letter-spacing:-.03em;line-height:1}
 /* direct child only: .cnt inside <b> must keep the display size */
-.met>span{display:block;margin-top:10px;font-size:.82rem;color:#4A6076}
-.metrics .ro{color:#4A6076}
+.met>span{display:block;margin-top:10px;font-size:.82rem;color:var(--mut)}
 
 /* ============ CINEMATIC BREAK ============ */
 .break{position:relative;padding-block:0;min-height:76vh;display:flex;align-items:center;overflow:hidden;border-block:1px solid var(--line)}
@@ -286,6 +284,7 @@ body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opa
 .scan-copy p{max-width:42ch;margin-bottom:30px}
 
 /* ============ TESTIMONIALS ============ */
+.quotes{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:16px}
 .q-core{padding:30px}
 /* video testimonials: local thumbnails; Wistia iframe injected only on play */
 /* featured testimonial: one larger portrait card, centered */
@@ -381,7 +380,7 @@ footer{border-top:1px solid var(--line);padding:72px 0 40px;background:rgba(12,2
   .mods{grid-template-columns:1fr}
   .m-feat,.m-2,.m-wide{grid-column:span 1;grid-row:auto}
   .m-wide .core{flex-direction:column;align-items:flex-start;gap:8px}
-  .pain-grid,.met-grid,.pipe-nodes{grid-template-columns:1fr}
+  .pain-grid,.quotes,.met-grid,.pipe-nodes{grid-template-columns:1fr}
   .foot-grid{grid-template-columns:1fr}
   .hero-ctas .btn{width:100%;justify-content:space-between}
 }
@@ -584,6 +583,20 @@ footer{border-top:1px solid var(--line);padding:72px 0 40px;background:rgba(12,2
         </a>
         <p class="vt-meta"><b>Siouxland Oral Surgery</b><span class="ro">0:45</span></p>
       </div></div>
+    </div>
+    <div class="quotes">
+      <figure class="shell rv"><div class="core q-core">
+        <blockquote>"Working with Gabriel and his team has been one of the best decisions we have ever made. They were able to bring in new business every month in ways we couldn't before..."</blockquote>
+        <figcaption><b>Saulo Valderrábano</b></figcaption>
+      </div></figure>
+      <figure class="shell rv" style="--d:.1s"><div class="core q-core">
+        <blockquote>"...A great tool to obtain first-quality visits aimed at dental implant treatments, they've been able to fill up our calendar. 100% recommended."</blockquote>
+        <figcaption><b>Dr. Yaritza Dominguez</b></figcaption>
+      </div></figure>
+      <figure class="shell rv" style="--d:.16s"><div class="core q-core">
+        <blockquote>"I found The Digital Smile Team very professional. Always available, prepared in the field, and brings results."</blockquote>
+        <figcaption><b>Carolina Bertaggia</b></figcaption>
+      </div></figure>
     </div>
     <div class="rv" style="margin-top:38px;text-align:center">
       <a class="btn btn-s" href="https://www.thedigitalsmile.com/case-studies">Read the full case studies <span class="arr"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" fill="none" stroke="#22D3EE" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
