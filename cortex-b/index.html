@@ -420,6 +420,47 @@ footer{border-top:1px solid var(--line);padding:72px 0 40px;background:rgba(12,2
   .ai-card{transition:none}
   *{transition-duration:.01ms!important}
 }
+
+/* ============================================================
+   VARIANT B: color-banded sections.
+   Bridge to the current live site's concept: sections alternate
+   background colors instead of one continuous dark canvas.
+   Two electric blue-violet statement bands (metrics, final CTA)
+   echo the live site's blue; supporting bands go deep indigo.
+   Appended after the base stylesheet by build.py --variant b.
+   ============================================================ */
+:root{--vb1:#3D4BD8;--vb2:#5F6EF2;--band:#0A1233;--bandline:rgba(122,138,255,.16)}
+
+/* announcement bar nods to the live site's violet accent */
+.tbar b{color:#93A0FF}
+
+/* hero picks up a violet undertone behind the tooth */
+.hero-bg{background:radial-gradient(60% 55% at 72% 42%,rgba(67,83,232,.30),transparent 70%),radial-gradient(40% 40% at 12% 85%,rgba(34,211,238,.08),transparent 70%)}
+.hero-glow{background:radial-gradient(620px at var(--hx,62%) var(--hy,38%),rgba(99,113,245,.16),rgba(34,211,238,.05) 46%,transparent 70%)}
+
+/* trust bar: first tint step off the hero */
+.trust{background:#080F22}
+
+/* indigo bands */
+section[aria-labelledby="ask-h"],
+section[aria-labelledby="sys-h"],
+section[aria-labelledby="quo-h"],
+section[aria-labelledby="faq-h"]{background:var(--band);border-block:1px solid var(--bandline)}
+section[aria-labelledby="ask-h"] .core,
+section[aria-labelledby="sys-h"] .core,
+section[aria-labelledby="quo-h"] .core,
+section[aria-labelledby="faq-h"] .core{background:#0D1830}
+
+/* electric blue-violet statement bands */
+.metrics,.final{background:linear-gradient(135deg,var(--vb1),var(--vb2));border-color:rgba(255,255,255,.22)}
+/* stats read white-on-blue like the live site */
+.metrics .met b{color:#fff}
+.metrics .met>span{color:#DFE4FF}
+.final .shell{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.26)}
+.final .core{background:#0B1130}
+
+/* founder stays on the base canvas; FAQ band hands off to the CTA */
+
 </style>
 </head>
 <body>
