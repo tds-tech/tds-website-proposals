@@ -220,6 +220,9 @@ body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opa
 .m-dots .core{background-image:radial-gradient(rgba(34,211,238,.22) 1px,transparent 1px);background-size:16px 16px;background-color:var(--g1)}
 .mod-ic{width:38px;height:38px;border-radius:var(--r-sm);border:1px solid var(--line2);display:flex;align-items:center;justify-content:center;margin-bottom:auto;flex:none}
 .mod-ic svg{width:18px;height:18px;stroke:var(--cy);fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+/* platform marks (Simple Icons, inlined) are solid single paths, and they
+   carry the brand by silhouette, so they stay monochrome with the palette */
+.mod-ic.brand svg{width:19px;height:19px;fill:var(--cy);stroke:none}
 
 
 /* ============ METRICS ============ */
@@ -317,6 +320,9 @@ a.met:hover>span{color:var(--cy)}
 .final .core{padding:88px 30px}
 .final h2{max-width:20ch;margin:0 auto 16px}
 .final p{max-width:44ch;margin:0 auto 34px}
+/* verifiable scarcity: real active-client cities, plain text on purpose */
+.final .markets{max-width:64ch;margin:0 auto 34px;font-size:.85rem;color:var(--dim);line-height:2}
+.final .markets .ro{display:inline-block;margin-bottom:6px}
 
 /* ============ FOOTER ============ */
 footer{border-top:1px solid var(--line);padding:72px 0 40px;background:rgba(12,20,36,.5)}
@@ -406,7 +412,7 @@ footer{border-top:1px solid var(--line);padding:72px 0 40px;background:rgba(12,2
 <header>
   <div class="tbar" role="region" aria-label="Announcement">
     <p><b>One practice per territory.</b> 10-mile exclusivity: once your market is taken, it's taken. <a href="https://www.thedigitalsmile.com/ai-visibility-checker" data-evt="tbar_territory_check">Check if yours is open</a></p>
-    <!-- PENDIENTE: lista de territorios tomados ("Currently taken: [ciudades]") — DATOS REALES sin llenar -->
+    <!-- Territorios tomados: la lista verificada de ciudades vive en el cierre (.markets), datos 2026-07 -->
   </div>
   <nav class="nav" aria-label="Main navigation">
     <div class="nav-in">
@@ -481,7 +487,8 @@ footer{border-top:1px solid var(--line);padding:72px 0 40px;background:rgba(12,2
 
 <section class="trust" aria-labelledby="trust-h" style="padding-block:56px">
   <div class="wrap">
-    <!-- PENDIENTE: países exactos y # de prácticas por país (DATOS REALES vacío); al tenerlos, upgrade a "across the US, [países]" -->
+    <!-- Claim geográfico verificado 2026-07: clientes activos en US + Canadá (Markham ON). Sin evidencia de
+         España/Latam en sitio ni registros: no afirmar países específicos hasta que Gabriel los confirme. -->
     <h2 id="trust-h" class="ro" style="text-align:center;font-size:.8rem;font-weight:500;margin-bottom:30px">Trusted by 300+ dental practices in the US and internationally</h2>
     <div class="logos rv">
       <img src="assets/img/logo-dominguez.webp" alt="Dominguez y Aparicio Clinica Dental" style="height:44px" width="167" height="96" loading="lazy" decoding="async">
@@ -489,84 +496,6 @@ footer{border-top:1px solid var(--line);padding:72px 0 40px;background:rgba(12,2
       <img src="assets/img/logo-pflugerville.webp" alt="Pflugerville Family Dentistry" width="758" height="96" loading="lazy" decoding="async">
       <img src="assets/img/logo-jericho.webp" alt="Jericho Dental" width="605" height="96" loading="lazy" decoding="async">
       <img src="assets/img/logo-alphadental.webp" alt="Alpha Dental Excellence" style="height:40px" width="290" height="96" loading="lazy" decoding="async">
-    </div>
-  </div>
-</section>
-
-<section aria-labelledby="ask-h">
-  <div class="wrap ask-grid">
-    <div class="rv">
-      <h2 id="ask-h">Your next patient is not searching. They are asking.</h2>
-      <p style="margin-top:18px;max-width:40ch">When someone asks ChatGPT or Google AI who to trust with their implants, one practice gets recommended. Our job is making sure it is yours.</p>
-      <p class="ro" style="margin-top:26px">Demo replay: a typical implant query</p>
-    </div>
-    <div class="shell hud rv tilt" style="--d:.12s">
-      <div class="core chat-core spot" id="chatPanel">
-        <div class="chat-top">
-          <span class="ro">Ask AI</span>
-          <button class="replay" id="replayBtn" aria-label="Replay the demo conversation"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M13.5 8a5.5 5.5 0 1 1-1.6-3.9M13.5 1.5v3h-3" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Replay</button>
-        </div>
-        <div class="chat-log">
-          <div class="bub-u" id="bubU"></div>
-          <div class="bub-a" id="bubA"></div>
-          <p class="vh" id="chatLive" aria-live="polite"></p>
-          <!-- PENDIENTE: cliente real recomendado por ChatGPT/Google AI (nombre + ciudad + query) y grabación de
-               pantalla de la query real — DATOS REALES vacío. Mientras tanto el replay no nombra ninguna clínica
-               (la clínica ficticia anterior se eliminó: era verificable como falsa en 10 segundos). -->
-          <div class="ai-card" id="aiCard">
-            <span class="badge">Recommended by AI</span>
-            <strong>One practice per territory gets this spot.</strong>
-            <span>AI recommends the practice with the strongest verified outcomes and reviews. Our work is making that practice yours.</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section aria-labelledby="svc-h">
-  <div class="wrap">
-    <span class="eyebrow rv">Service modules</span>
-    <h2 id="svc-h" class="rv" style="margin-top:18px;max-width:22ch">One growth stack, built for how patients choose now.</h2>
-    <div class="mod m-feat mod-flag rv hud"><div class="shell-e"><div class="core spot">
-      <div class="mod-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3v3M12 18v3M3 12h3M18 12h3M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8Z"/></svg></div>
-      <div>
-        <h3>AI Search Optimization</h3>
-        <p style="margin-top:10px">When patients ask ChatGPT or Google AI for a dentist, your practice is the answer. This is the flagship of the stack, and nobody else in dental does it at this depth.</p>
-      </div>
-    </div></div></div>
-    <p class="ro rv" style="margin:36px 0 0">Supported by the full stack:</p>
-    <div class="mods">
-      <div class="mod m-2 rv" style="--d:.08s"><div class="shell" style="height:100%"><div class="core">
-        <div class="mod-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6"/><path d="m20 20-4.5-4.5"/></svg></div>
-        <h3>Google SEO</h3>
-        <p>Own the local results high-intent patients actually click.</p>
-      </div></div></div>
-      <div class="mod m-2 m-grad rv" style="--d:.14s"><div class="shell" style="height:100%"><div class="core">
-        <div class="mod-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 18V8m5.5 10V4M15 18v-7m5 7V9"/></svg></div>
-        <h3>Facebook Advertising</h3>
-        <p>Targeted campaigns that turn scrolling into booked consultations.</p>
-      </div></div></div>
-      <div class="mod m-2 rv" style="--d:.1s"><div class="shell" style="height:100%"><div class="core">
-        <div class="mod-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 4v8l5 3M12 21a9 9 0 1 1 0-18 9 9 0 0 1 0 18Z"/></svg></div>
-        <h3>PPC Campaigns</h3>
-        <p>High-intent traffic, measured all the way to the booked appointment.</p>
-      </div></div></div>
-      <div class="mod m-2 m-grad rv" style="--d:.16s"><div class="shell" style="height:100%"><div class="core">
-        <div class="mod-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="5"/><circle cx="12" cy="12" r="3.5"/><path d="M16.8 7.2h.01"/></svg></div>
-        <h3>Instagram</h3>
-        <p>Visual storytelling that makes your practice the obvious local choice.</p>
-      </div></div></div>
-      <div class="mod m-2 m-dots rv" style="--d:.22s"><div class="shell" style="height:100%"><div class="core">
-        <div class="mod-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="15" rx="3"/><path d="M8 3v4M16 3v4M4 10h16"/></svg></div>
-        <h3>Appointment Setting</h3>
-        <p>Every lead answered, qualified, and put on your calendar.</p>
-      </div></div></div>
-      <div class="mod m-2 rv" style="--d:.28s"><div class="shell" style="height:100%"><div class="core">
-        <div class="mod-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 21h8M12 17v4M5 4h14v6a7 7 0 0 1-14 0V4ZM5 6H3a2 2 0 0 0 2 4M19 6h2a2 2 0 0 1-2 4"/></svg></div>
-        <h3>Sales Training</h3>
-        <p>Your front desk converts the opportunities the system generates.</p>
-      </div></div></div>
     </div>
   </div>
 </section>
@@ -627,7 +556,8 @@ footer{border-top:1px solid var(--line);padding:72px 0 40px;background:rgba(12,2
         <p class="vt-meta"><b>Siouxland Oral Surgery</b><span class="ro">0:45</span></p>
       </div></div>
     </div>
-    <!-- PENDIENTE: contexto de cada testimonio (cargo + clínica + ciudad) — DATOS REALES vacío.
+    <!-- PENDIENTE: contexto de cada testimonio (cargo + clínica + ciudad). Verificado 2026-07: el sitio live
+         tampoco lo publica (solo nombre + foto + quote), así que el dato hay que pedirlo a Gabriel/CSMs.
          Los roles anteriores se removieron por inventados; solo nombres verificados hasta tener el contexto real.
          PENDIENTE: texto completo del primer quote (hoy con elisiones "...") si existe la versión íntegra. -->
     <div class="quotes">
@@ -656,11 +586,14 @@ footer{border-top:1px solid var(--line);padding:72px 0 40px;background:rgba(12,2
     <!-- Números reales verificados: $780,695 planes presentados + CPL $25.42 (case study Kissimmee, sheets TDS),
          5.4X ROI (case study Plano, cifra corregida y aprobada), 11 pacientes/30d Dr. Petersen (banco social proof
          verificado), 300+ prácticas (cifra CEO). Cada stat linkea a su case study (ningún número es callejón sin salida). -->
-    <!-- PENDIENTE: producción total atribuida en $ y # de casos de alto valor (DATOS REALES vacío); al tenerlos pueden reemplazar el stat de 300+ -->
+    <!-- PENDIENTE: producción total atribuida en $ y # de casos de alto valor. Verificado 2026-07: NO existe
+         agregado en ningún sistema (los trackers no registran tipo de tratamiento); los únicos $ auditables
+         por cliente son los de los case studies linkeados abajo. Armar el agregado requiere sumar los
+         Lead Quality sheets por cliente o extender el sync de GHL a las ~30 subcuentas. -->
     <div class="met-grid">
       <a class="met rv" href="https://www.thedigitalsmile.com/blog-posts/case-study-your-kissimmee-dentist"><b><span class="cnt" data-target="780" data-prefix="$" data-suffix="K">$780K</span></b><span class="ro scr" data-text="Treatment plans presented, Kissimmee">Treatment plans presented, Kissimmee</span></a>
-      <a class="met rv" style="--d:.08s" href="https://www.thedigitalsmile.com/plano-smile-studio"><b><span class="cnt" data-target="5.4" data-dec="1" data-suffix="X">5.4X</span></b><span class="ro scr" data-text="Return on ad spend, Plano Smile Studio">Return on ad spend, Plano Smile Studio</span></a>
-      <a class="met rv" style="--d:.16s" href="https://www.thedigitalsmile.com/case-studies"><b><span class="cnt" data-target="11">11</span></b><span class="ro scr" data-text="New patients in 30 days, Dr. Petersen">New patients in 30 days, Dr. Petersen</span></a>
+      <a class="met rv" style="--d:.08s" href="https://www.thedigitalsmile.com/plano-smile-studio"><b><span class="cnt" data-target="5.4" data-dec="1" data-suffix="X">5.4X</span></b><span class="ro scr" data-text="ROI in 4 months, Plano Smile Studio">ROI in 4 months, Plano Smile Studio</span></a>
+      <a class="met rv" style="--d:.16s" href="#quo-h" aria-label="11 new patients in 30 days. Watch Dr. Petersen tell it in his video testimonial on this page."><b><span class="cnt" data-target="11">11</span></b><span class="ro scr" data-text="New patients in 30 days, Dr. Petersen">New patients in 30 days, Dr. Petersen</span></a>
       <a class="met rv" style="--d:.24s" href="https://www.thedigitalsmile.com/case-studies"><b><span class="cnt" data-target="300" data-suffix="+">300+</span></b><span class="ro scr" data-text="Dental practices served">Dental practices served</span></a>
     </div>
   </div>
@@ -678,6 +611,86 @@ footer{border-top:1px solid var(--line);padding:72px 0 40px;background:rgba(12,2
     <div class="shell hud f-photo rv tilt">
       <div class="core">
         <img src="assets/img/founder-gabriel.webp" width="720" height="900" loading="lazy" decoding="async" alt="Gabriel Segall, founder of The Digital Smile, seated during a recorded conversation.">
+      </div>
+    </div>
+  </div>
+</section>
+
+<section aria-labelledby="svc-h">
+  <div class="wrap">
+    <span class="eyebrow rv">Service modules</span>
+    <h2 id="svc-h" class="rv" style="margin-top:18px;max-width:22ch">One growth stack, built for how patients choose now.</h2>
+    <div class="mod m-feat mod-flag rv hud"><div class="shell-e"><div class="core spot">
+      <div class="mod-ic brand" role="img" aria-label="OpenAI"><svg viewBox="0 0 24 24"><path d="M22.2819 9.8211a5.9847 5.9847 0 0 0-.5157-4.9108 6.0462 6.0462 0 0 0-6.5098-2.9A6.0651 6.0651 0 0 0 4.9807 4.1818a5.9847 5.9847 0 0 0-3.9977 2.9 6.0462 6.0462 0 0 0 .7427 7.0966 5.98 5.98 0 0 0 .511 4.9107 6.051 6.051 0 0 0 6.5146 2.9001A5.9847 5.9847 0 0 0 13.2599 24a6.0557 6.0557 0 0 0 5.7718-4.2058 5.9894 5.9894 0 0 0 3.9977-2.9001 6.0557 6.0557 0 0 0-.7475-7.0729zm-9.022 12.6081a4.4755 4.4755 0 0 1-2.8764-1.0408l.1419-.0804 4.7783-2.7582a.7948.7948 0 0 0 .3927-.6813v-6.7369l2.02 1.1686a.071.071 0 0 1 .038.052v5.5826a4.504 4.504 0 0 1-4.4945 4.4944zm-9.6607-4.1254a4.4708 4.4708 0 0 1-.5346-3.0137l.142.0852 4.783 2.7582a.7712.7712 0 0 0 .7806 0l5.8428-3.3685v2.3324a.0804.0804 0 0 1-.0332.0615L9.74 19.9502a4.4992 4.4992 0 0 1-6.1408-1.6464zM2.3408 7.8956a4.485 4.485 0 0 1 2.3655-1.9728V11.6a.7664.7664 0 0 0 .3879.6765l5.8144 3.3543-2.0201 1.1685a.0757.0757 0 0 1-.071 0l-4.8303-2.7865A4.504 4.504 0 0 1 2.3408 7.872zm16.5963 3.8558L13.1038 8.364 15.1192 7.2a.0757.0757 0 0 1 .071 0l4.8303 2.7913a4.4944 4.4944 0 0 1-.6765 8.1042v-5.6772a.79.79 0 0 0-.407-.667zm2.0107-3.0231l-.142-.0852-4.7735-2.7818a.7759.7759 0 0 0-.7854 0L9.409 9.2297V6.8974a.0662.0662 0 0 1 .0284-.0615l4.8303-2.7866a4.4992 4.4992 0 0 1 6.6802 4.66zM8.3065 12.863l-2.02-1.1638a.0804.0804 0 0 1-.038-.0567V6.0742a4.4992 4.4992 0 0 1 7.3757-3.4537l-.142.0805L8.704 5.459a.7948.7948 0 0 0-.3927.6813zm1.0976-2.3654l2.602-1.4998 2.6069 1.4998v2.9994l-2.5974 1.4997-2.6067-1.4997Z"/></svg></div>
+      <div>
+        <h3>AI Search Optimization</h3>
+        <p style="margin-top:10px">When patients ask ChatGPT or Google AI for a dentist, your practice is the answer. This is the flagship of the stack, and nobody else in dental does it at this depth.</p>
+      </div>
+    </div></div></div>
+    <p class="ro rv" style="margin:36px 0 0">Supported by the full stack:</p>
+    <div class="mods">
+      <div class="mod m-2 rv" style="--d:.08s"><div class="shell" style="height:100%"><div class="core">
+        <div class="mod-ic brand" role="img" aria-label="Google"><svg viewBox="0 0 24 24"><path d="M12.48 10.92v3.28h7.84c-.24 1.84-.853 3.187-1.787 4.133-1.147 1.147-2.933 2.4-6.053 2.4-4.827 0-8.6-3.893-8.6-8.72s3.773-8.72 8.6-8.72c2.6 0 4.507 1.027 5.907 2.347l2.307-2.307C18.747 1.44 16.133 0 12.48 0 5.867 0 .307 5.387.307 12s5.56 12 12.173 12c3.573 0 6.267-1.173 8.373-3.36 2.16-2.16 2.84-5.213 2.84-7.667 0-.76-.053-1.467-.173-2.053H12.48z"/></svg></div>
+        <h3>Google SEO</h3>
+        <p>Own the local results high-intent patients actually click.</p>
+      </div></div></div>
+      <div class="mod m-2 m-grad rv" style="--d:.14s"><div class="shell" style="height:100%"><div class="core">
+        <div class="mod-ic brand" role="img" aria-label="Meta"><svg viewBox="0 0 24 24"><path d="M6.915 4.03c-1.968 0-3.683 1.28-4.871 3.113C.704 9.208 0 11.883 0 14.449c0 .706.07 1.369.21 1.973a6.624 6.624 0 0 0 .265.86 5.297 5.297 0 0 0 .371.761c.696 1.159 1.818 1.927 3.593 1.927 1.497 0 2.633-.671 3.965-2.444.76-1.012 1.144-1.626 2.663-4.32l.756-1.339.186-.325c.061.1.121.196.183.3l2.152 3.595c.724 1.21 1.665 2.556 2.47 3.314 1.046.987 1.992 1.22 3.06 1.22 1.075 0 1.876-.355 2.455-.843a3.743 3.743 0 0 0 .81-.973c.542-.939.861-2.127.861-3.745 0-2.72-.681-5.357-2.084-7.45-1.282-1.912-2.957-2.93-4.716-2.93-1.047 0-2.088.467-3.053 1.308-.652.57-1.257 1.29-1.82 2.05-.69-.875-1.335-1.547-1.958-2.056-1.182-.966-2.315-1.303-3.454-1.303zm10.16 2.053c1.147 0 2.188.758 2.992 1.999 1.132 1.748 1.647 4.195 1.647 6.4 0 1.548-.368 2.9-1.839 2.9-.58 0-1.027-.23-1.664-1.004-.496-.601-1.343-1.878-2.832-4.358l-.617-1.028a44.908 44.908 0 0 0-1.255-1.98c.07-.109.141-.224.211-.327 1.12-1.667 2.118-2.602 3.358-2.602zm-10.201.553c1.265 0 2.058.791 2.675 1.446.307.327.737.871 1.234 1.579l-1.02 1.566c-.757 1.163-1.882 3.017-2.837 4.338-1.191 1.649-1.81 1.817-2.486 1.817-.524 0-1.038-.237-1.383-.794-.263-.426-.464-1.13-.464-2.046 0-2.221.63-4.535 1.66-6.088.454-.687.964-1.226 1.533-1.533a2.264 2.264 0 0 1 1.088-.285z"/></svg></div>
+        <h3>Facebook Advertising</h3>
+        <p>Targeted campaigns that turn scrolling into booked consultations.</p>
+      </div></div></div>
+      <div class="mod m-2 rv" style="--d:.1s"><div class="shell" style="height:100%"><div class="core">
+        <div class="mod-ic brand" role="img" aria-label="Google Ads"><svg viewBox="0 0 24 24"><path d="M3.9998 22.9291C1.7908 22.9291 0 21.1383 0 18.9293s1.7908-3.9998 3.9998-3.9998 3.9998 1.7908 3.9998 3.9998-1.7908 3.9998-3.9998 3.9998zm19.4643-6.0004L15.4632 3.072C14.3586 1.1587 11.9121.5028 9.9988 1.6074S7.4295 5.1585 8.5341 7.0718l8.0009 13.8567c1.1046 1.9133 3.5511 2.5679 5.4644 1.4646 1.9134-1.1046 2.568-3.5511 1.4647-5.4644zM7.5137 4.8438L1.5645 15.1484A4.5 4.5 0 0 1 4 14.4297c2.5597-.0075 4.6248 2.1585 4.4941 4.7148l3.2168-5.5723-3.6094-6.25c-.4499-.7793-.6322-1.6394-.5878-2.4784z"/></svg></div>
+        <h3>PPC Campaigns</h3>
+        <p>High-intent traffic, measured all the way to the booked appointment.</p>
+      </div></div></div>
+      <div class="mod m-2 m-grad rv" style="--d:.16s"><div class="shell" style="height:100%"><div class="core">
+        <div class="mod-ic brand" role="img" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M7.0301.084c-1.2768.0602-2.1487.264-2.911.5634-.7888.3075-1.4575.72-2.1228 1.3877-.6652.6677-1.075 1.3368-1.3802 2.127-.2954.7638-.4956 1.6365-.552 2.914-.0564 1.2775-.0689 1.6882-.0626 4.947.0062 3.2586.0206 3.6671.0825 4.9473.061 1.2765.264 2.1482.5635 2.9107.308.7889.72 1.4573 1.388 2.1228.6679.6655 1.3365 1.0743 2.1285 1.38.7632.295 1.6361.4961 2.9134.552 1.2773.056 1.6884.069 4.9462.0627 3.2578-.0062 3.668-.0207 4.9478-.0814 1.28-.0607 2.147-.2652 2.9098-.5633.7889-.3086 1.4578-.72 2.1228-1.3881.665-.6682 1.0745-1.3378 1.3795-2.1284.2957-.7632.4966-1.636.552-2.9124.056-1.2809.0692-1.6898.063-4.948-.0063-3.2583-.021-3.6668-.0817-4.9465-.0607-1.2797-.264-2.1487-.5633-2.9117-.3084-.7889-.72-1.4568-1.3876-2.1228C21.2982 1.33 20.628.9208 19.8378.6165 19.074.321 18.2017.1197 16.9244.0645 15.6471.0093 15.236-.005 11.977.0014 8.718.0076 8.31.0215 7.0301.0839m.1402 21.6932c-1.17-.0509-1.8053-.2453-2.2287-.408-.5606-.216-.96-.4771-1.3819-.895-.422-.4178-.6811-.8186-.9-1.378-.1644-.4234-.3624-1.058-.4171-2.228-.0595-1.2645-.072-1.6442-.079-4.848-.007-3.2037.0053-3.583.0607-4.848.05-1.169.2456-1.805.408-2.2282.216-.5613.4762-.96.895-1.3816.4188-.4217.8184-.6814 1.3783-.9003.423-.1651 1.0575-.3614 2.227-.4171 1.2655-.06 1.6447-.072 4.848-.079 3.2033-.007 3.5835.005 4.8495.0608 1.169.0508 1.8053.2445 2.228.408.5608.216.96.4754 1.3816.895.4217.4194.6816.8176.9005 1.3787.1653.4217.3617 1.056.4169 2.2263.0602 1.2655.0739 1.645.0796 4.848.0058 3.203-.0055 3.5834-.061 4.848-.051 1.17-.245 1.8055-.408 2.2294-.216.5604-.4763.96-.8954 1.3814-.419.4215-.8181.6811-1.3783.9-.4224.1649-1.0577.3617-2.2262.4174-1.2656.0595-1.6448.072-4.8493.079-3.2045.007-3.5825-.006-4.848-.0608M16.953 5.5864A1.44 1.44 0 1 0 18.39 4.144a1.44 1.44 0 0 0-1.437 1.4424M5.8385 12.012c.0067 3.4032 2.7706 6.1557 6.173 6.1493 3.4026-.0065 6.157-2.7701 6.1506-6.1733-.0065-3.4032-2.771-6.1565-6.174-6.1498-3.403.0067-6.156 2.771-6.1496 6.1738M8 12.0077a4 4 0 1 1 4.008 3.9921A3.9996 3.9996 0 0 1 8 12.0077"/></svg></div>
+        <h3>Instagram</h3>
+        <p>Visual storytelling that makes your practice the obvious local choice.</p>
+      </div></div></div>
+      <div class="mod m-2 m-dots rv" style="--d:.22s"><div class="shell" style="height:100%"><div class="core">
+        <div class="mod-ic brand" role="img" aria-label="Google Calendar"><svg viewBox="0 0 24 24"><path d="M18.316 5.684H24v12.632h-5.684V5.684zM5.684 24h12.632v-5.684H5.684V24zM18.316 5.684V0H1.895A1.894 1.894 0 0 0 0 1.895v16.421h5.684V5.684h12.632zm-7.207 6.25v-.065c.272-.144.5-.349.687-.617s.279-.595.279-.982c0-.379-.099-.72-.3-1.025a2.05 2.05 0 0 0-.832-.714 2.703 2.703 0 0 0-1.197-.257c-.6 0-1.094.156-1.481.467-.386.311-.65.671-.793 1.078l1.085.452c.086-.249.224-.461.413-.633.189-.172.445-.257.767-.257.33 0 .602.088.816.264a.86.86 0 0 1 .322.703c0 .33-.12.589-.36.778-.24.19-.535.284-.886.284h-.567v1.085h.633c.407 0 .748.109 1.02.327.272.218.407.499.407.843 0 .336-.129.614-.387.832s-.565.327-.924.327c-.351 0-.651-.103-.897-.311-.248-.208-.422-.502-.521-.881l-1.096.452c.178.616.505 1.082.977 1.401.472.319.984.478 1.538.477a2.84 2.84 0 0 0 1.293-.291c.382-.193.684-.458.902-.794.218-.336.327-.72.327-1.149 0-.429-.115-.797-.344-1.105a2.067 2.067 0 0 0-.881-.689zm2.093-1.931l.602.913L15 10.045v5.744h1.187V8.446h-.827l-2.158 1.557zM22.105 0h-3.289v5.184H24V1.895A1.894 1.894 0 0 0 22.105 0zm-3.289 23.5l4.684-4.684h-4.684V23.5zM0 22.105C0 23.152.848 24 1.895 24h3.289v-5.184H0v3.289z"/></svg></div>
+        <h3>Appointment Setting</h3>
+        <p>Every lead answered, qualified, and put on your calendar.</p>
+      </div></div></div>
+      <div class="mod m-2 rv" style="--d:.28s"><div class="shell" style="height:100%"><div class="core">
+        <div class="mod-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 21h8M12 17v4M5 4h14v6a7 7 0 0 1-14 0V4ZM5 6H3a2 2 0 0 0 2 4M19 6h2a2 2 0 0 1-2 4"/></svg></div>
+        <h3>Sales Training</h3>
+        <p>Your front desk converts the opportunities the system generates.</p>
+      </div></div></div>
+    </div>
+  </div>
+</section>
+
+
+<section aria-labelledby="ask-h">
+  <div class="wrap ask-grid">
+    <div class="rv">
+      <h2 id="ask-h">Your next patient is not searching. They are asking.</h2>
+      <p style="margin-top:18px;max-width:40ch">When someone asks ChatGPT or Google AI who to trust with their implants, one practice gets recommended. Our job is making sure it is yours.</p>
+      <p class="ro" style="margin-top:26px">Demo replay: a typical implant query</p>
+    </div>
+    <div class="shell hud rv tilt" style="--d:.12s">
+      <div class="core chat-core spot" id="chatPanel">
+        <div class="chat-top">
+          <span class="ro">Ask AI</span>
+          <button class="replay" id="replayBtn" aria-label="Replay the demo conversation"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M13.5 8a5.5 5.5 0 1 1-1.6-3.9M13.5 1.5v3h-3" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Replay</button>
+        </div>
+        <div class="chat-log">
+          <div class="bub-u" id="bubU"></div>
+          <div class="bub-a" id="bubA"></div>
+          <p class="vh" id="chatLive" aria-live="polite"></p>
+          <!-- PENDIENTE: cliente real recomendado por ChatGPT/Google AI (nombre + ciudad + query) y grabación de
+               pantalla de la query real. Verificado 2026-07: ningún caso confirmado todavía; mejor candidato
+               real si se quiere nombre: Plano Smile Studio (su case study es del programa SEO & AI Search).
+               Mientras tanto el replay no nombra ninguna clínica (la ficticia anterior se eliminó). -->
+          <div class="ai-card" id="aiCard">
+            <span class="badge">Recommended by AI</span>
+            <strong>One practice per territory gets this spot.</strong>
+            <span>AI recommends the practice with the strongest verified outcomes and reviews. Our work is making that practice yours.</span>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -743,8 +756,10 @@ footer{border-top:1px solid var(--line);padding:72px 0 40px;background:rgba(12,2
   <div class="wrap">
     <div class="shell hud rv"><div class="core">
       <h2 id="cta-h">Ready to become the answer in your area?</h2>
-      <p>One practice per territory, protected by 10-mile exclusivity. If your market is open, it is yours.</p>
-      <!-- PENDIENTE: lista verificable de mercados tomados vs abiertos (DATOS REALES vacío) -->
+      <p style="margin-bottom:16px">One practice per territory, protected by 10-mile exclusivity. If your market is open, it is yours.</p>
+      <!-- Ciudades de clientes activos, verificadas 2026-07 contra los registries internos de la agencia
+           (solo ciudades, sin nombres de clínicas). Lista no exhaustiva: cubre los clientes en trackers. -->
+      <p class="markets"><span class="ro">Active partner markets include</span><br>Boston MA · Miami FL · Houston TX · Plano TX · Nashville TN · Provo UT · Redmond WA · Tukwila WA · Modesto CA · Encino CA · Dearborn MI · Twin Falls ID · Sioux Falls SD · Coconut Creek FL · Kearny NJ · Kissimmee FL · Orlando FL · Silver Spring MD · Windsor NY · Markham ON</p>
 
       <a class="btn btn-p pulse" href="https://www.thedigitalsmile.com/book-a-call" data-evt="cta_book_final">Book Your Growth Call <span class="arr"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" fill="none" stroke="#052430" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
       <p class="cta-note">15 minutes. No pitch. You keep the audit either way.</p>
@@ -825,9 +840,10 @@ footer{border-top:1px solid var(--line);padding:72px 0 40px;background:rgba(12,2
 }
 </script>
 
-<!-- PENDIENTE: GA4 Measurement ID + Microsoft Clarity ID (DATOS REALES vacío).
-     Los snippets exactos para pegar al migrar a producción están en LAUNCH-CHECKLIST.md;
-     mientras tanto los eventos de conversión se acumulan con nombre en window.dataLayer. -->
+<!-- GA4 LIVE: G-ELNNVDXCK3 es el property real de www.thedigitalsmile.com (verificado 2026-07 contra el
+     sitio publicado). El draft reporta con hostname tds-tech.github.io: filtrable en GA4 y documentado
+     en LAUNCH-CHECKLIST.md. PENDIENTE: Microsoft Clarity (TDS no tiene cuenta/ID; crear y pegar snippet). -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ELNNVDXCK3"></script>
 <script>
 (function(){
 "use strict";
@@ -837,15 +853,13 @@ function $(s,c){ return (c||document).querySelector(s); }
 function $$(s,c){ return Array.prototype.slice.call((c||document).querySelectorAll(s)); }
 function clamp(v,a,b){ return v<a?a:(v>b?b:v); }
 
-/* ---------- analytics: named conversion events queue into dataLayer.
-   GA4 + Clarity snippets get pasted at production launch (LAUNCH-CHECKLIST.md);
-   until then events accumulate harmlessly in window.dataLayer. ---------- */
-function track(name,params){
-  var d=window.dataLayer=window.dataLayer||[];
-  var ev={event:name};
-  if(params) for(var k in params) ev[k]=params[k];
-  d.push(ev);
-}
+/* ---------- analytics: GA4 (gtag) with named conversion events.
+   Clarity pending: no TDS account exists yet (LAUNCH-CHECKLIST.md). ---------- */
+window.dataLayer=window.dataLayer||[];
+function gtag(){dataLayer.push(arguments);}
+gtag("js",new Date());
+gtag("config","G-ELNNVDXCK3");
+function track(name,params){ gtag("event",name,params||{}); }
 document.addEventListener("click",function(e){
   var t=e.target&&e.target.closest&&e.target.closest("[data-evt]");
   if(t) track(t.getAttribute("data-evt"));
