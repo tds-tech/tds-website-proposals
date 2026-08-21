@@ -63,7 +63,7 @@ body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opa
 .vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 
 /* mono readout voice: only where it states something true */
-.ro{font-family:var(--mono);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:#1899BC}
+.ro{font-family:var(--mono);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(34,211,238,.75)}
 .ro b{color:var(--cy);font-weight:600}
 
 /* eyebrow pills (max 3 on page: hero, services, scanner) */
@@ -100,6 +100,9 @@ body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opa
 .btn-s .arr{background:rgba(34,211,238,.12)}
 .btn-s:hover{border-color:rgba(34,211,238,.7)}
 .btn .arr svg{width:16px;height:16px}
+/* arrow strokes centralized: CSS wins over the per-instance SVG attrs */
+.btn-p svg path{stroke:#052430}
+.btn-s svg path{stroke:var(--cy)}
 
 /* reveal choreography */
 .rv{opacity:0;transform:translateY(28px);filter:blur(6px);transition:opacity .8s var(--ez),transform .8s var(--ez),filter .8s var(--ez);transition-delay:var(--d,0s)}
@@ -128,8 +131,9 @@ body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opa
 .nav-links{display:flex;gap:26px;margin-left:auto;align-items:center}
 .nav-links a{font-size:.88rem;color:var(--mut);transition:color .5s var(--ez2)}
 .nav-links a:hover{color:var(--ink)}
-.nav-links a.nav-cta{background:var(--cy);color:#052430;border-radius:999px;padding:10px 20px;font-family:var(--disp);font-weight:700;font-size:.85rem;transition:background-color .5s var(--ez2),transform .5s var(--ez2)}
-.nav-links a.nav-cta:hover{background:#4ADEF2;color:#052430}
+/* ghost pill: the ONE filled-cyan button in the first viewport is the hero CTA */
+.nav-links a.nav-cta{background:rgba(34,211,238,.10);color:var(--cy);box-shadow:inset 0 0 0 1px rgba(34,211,238,.35);border-radius:999px;padding:10px 20px;font-family:var(--disp);font-weight:700;font-size:.85rem;transition:background-color .5s var(--ez2),color .5s var(--ez2),transform .5s var(--ez2)}
+.nav-links a.nav-cta:hover{background:var(--cy);color:#052430}
 .nav-links a.nav-cta:active{transform:scale(.98)}
 .burger{display:none;width:44px;height:44px;margin-left:auto;position:relative}
 .burger span{position:absolute;left:11px;width:22px;height:2px;background:var(--ink);border-radius:2px;transition:transform .6s var(--ez2),opacity .4s var(--ez2)}
@@ -161,7 +165,7 @@ body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opa
 .final .cta-note{padding-left:0;margin-top:12px}
 .tooth-shell{aspect-ratio:1/1.04;max-height:600px}
 .tooth-core{position:relative;overflow:hidden;background:radial-gradient(70% 60% at 50% 42%,rgba(14,116,144,.14),transparent 72%),var(--g1)}
-.tooth-core canvas{position:absolute;inset:0;width:100%;height:100%;touch-action:pan-y;cursor:grab}
+.tooth-core canvas{position:absolute;inset:0;width:100%;height:100%;touch-action:pan-y;cursor:grab;filter:saturate(.85) brightness(.95)}
 .tooth-core canvas:active{cursor:grabbing}
 /* focus ring must survive .tooth-core overflow:hidden, so inset it */
 .tooth-core canvas:focus-visible{outline:2px solid var(--cy);outline-offset:-6px;border-radius:var(--r-md)}
@@ -191,7 +195,8 @@ body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opa
 @keyframes blink{50%{opacity:0}}
 .ai-card{margin-top:4px;border:1px solid rgba(34,211,238,.32);border-radius:var(--r-sm);padding:15px 17px;background:rgba(34,211,238,.05);opacity:0;transform:translateY(14px);transition:opacity .7s var(--ez),transform .7s var(--ez)}
 .ai-card.show{opacity:1;transform:none}
-.ai-card .badge{display:inline-block;font-family:var(--mono);font-size:.64rem;letter-spacing:.14em;text-transform:uppercase;color:#052430;background:var(--cy);border-radius:999px;padding:3px 10px;margin-bottom:8px}
+/* ghost pill: filled cyan is reserved for real buttons, this is a label */
+.ai-card .badge{display:inline-block;font-family:var(--mono);font-size:.64rem;letter-spacing:.14em;text-transform:uppercase;color:var(--cy);background:rgba(34,211,238,.12);box-shadow:inset 0 0 0 1px rgba(34,211,238,.35);border-radius:999px;padding:3px 10px;margin-bottom:8px}
 .ai-card strong{font-family:var(--disp);font-size:1.02rem;display:block}
 .ai-card span{font-size:.84rem;color:var(--mut)}
 .replay{display:inline-flex;align-items:center;gap:7px;min-height:44px;padding:0 8px;margin-right:-8px;font-family:var(--mono);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--mut);transition:color .5s var(--ez2)}
@@ -219,13 +224,15 @@ body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opa
 /* ============ METRICS ============ */
 .metrics{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding-block:78px}
 .met-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;text-align:center}
-.met b{display:block;font-family:var(--disp);font-weight:800;font-size:clamp(2.6rem,4.4vw,3.6rem);color:var(--cy);font-variant-numeric:tabular-nums;letter-spacing:-.03em;line-height:1}
+/* numerals in ink: saturated cyan stays the "act here" currency; the linked tiles light up on hover */
+.met b{display:block;font-family:var(--disp);font-weight:800;font-size:clamp(2.6rem,4.4vw,3.6rem);color:var(--ink);font-variant-numeric:tabular-nums;letter-spacing:-.03em;line-height:1;transition:color .5s var(--ez2)}
 /* direct child only: .cnt inside <b> must keep the display size */
 .met>span{display:block;margin-top:10px;font-size:.82rem;color:var(--mut)}
 /* stats link to their case studies: give the whole tile a hover affordance */
 a.met{display:block;border-radius:var(--r-sm);padding:10px 6px;transition:background-color .5s var(--ez2)}
 a.met:hover{background:rgba(34,211,238,.05)}
 a.met:hover>span{color:var(--cy)}
+a.met:hover b{color:var(--cy)}
 
 
 /* ============ SCANNER ============ */
@@ -252,11 +259,16 @@ a.met:hover>span{color:var(--cy)}
 /* video testimonials: local thumbnails; Wistia iframe injected only on play */
 .vt-play{position:relative;display:block;border-radius:var(--r-md);overflow:hidden;background:var(--g2)}
 .vt-card .vt-play,.vt-card .vt-embed{aspect-ratio:4/5}
-.vt-play img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .8s var(--ez2)}
+/* grade wash: same integration the founder photo gets — partial desat + teal multiply
+   pulls the white/red client thumbs into the palette; hover restores the raw footage */
+.vt-play img{display:block;width:100%;height:100%;object-fit:cover;filter:saturate(.55) brightness(.85) contrast(.97);transition:transform .8s var(--ez2),filter .6s var(--ez2)}
+.vt-play::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,rgba(14,116,144,.22),rgba(7,12,24,.30));mix-blend-mode:multiply;transition:opacity .6s var(--ez2)}
 .vt-play:focus-visible{outline:2px solid var(--cy);outline-offset:-6px;box-shadow:inset 0 0 0 8px rgba(7,12,24,.85)}
 .vt-ic{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:62px;height:62px;border-radius:999px;display:flex;align-items:center;justify-content:center;background:rgba(7,12,24,.62);border:1px solid rgba(34,211,238,.45);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);transition:background-color .5s var(--ez2),border-color .5s var(--ez2);z-index:1}
 .vt-card .vt-ic{width:50px;height:50px;backdrop-filter:none;-webkit-backdrop-filter:none;background:rgba(7,12,24,.78)}
 .vt-ic svg{width:20px;height:20px;margin-left:3px}
+/* literal, not var(--ink): the chip stays dark in both themes */
+.vt-ic svg path{fill:#EAF3F8}
 /* caption strip below the media, in our own type: no overlays fighting the frame */
 .vt-meta{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding:12px 16px 10px;margin:0}
 .vt-meta b{font-family:var(--disp);font-weight:600;font-size:.9rem;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
@@ -268,7 +280,8 @@ a.met:hover>span{color:var(--cy)}
 @media(max-width:960px){.vt-grid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:640px){.vt-grid{grid-template-columns:1fr}}
 @media(pointer:fine){
-  .vt-play:hover img{transform:scale(1.04)}
+  .vt-play:hover img{transform:scale(1.04);filter:none}
+  .vt-play:hover::after{opacity:0}
   .vt-play:hover .vt-ic{background:rgba(34,211,238,.2);border-color:var(--cy)}
 }
 .q-core blockquote{font-size:1.04rem;color:var(--ink);line-height:1.6}
@@ -407,7 +420,7 @@ footer{border-top:1px solid var(--line);padding:72px 0 40px;background:rgba(12,2
 .tilt{will-change:transform}
 /* 7. glow pulse on primary CTA */
 .pulse{animation:ctapulse 4s var(--ez2) infinite}
-@keyframes ctapulse{0%,100%{box-shadow:0 0 0 0 rgba(34,211,238,0),0 0 22px rgba(34,211,238,.18)}50%{box-shadow:0 0 0 1px rgba(34,211,238,.25),0 0 34px rgba(34,211,238,.4)}}
+@keyframes ctapulse{0%,100%{box-shadow:0 0 0 0 rgba(34,211,238,0),0 0 18px rgba(34,211,238,.10)}50%{box-shadow:0 0 0 0 rgba(34,211,238,0),0 0 24px rgba(34,211,238,.16)}}
 
 /* ============ REDUCED MOTION ============ */
 @media(prefers-reduced-motion:reduce){
@@ -434,7 +447,7 @@ footer{border-top:1px solid var(--line);padding:72px 0 40px;background:rgba(12,2
    ============================================================ */
 :root{
   --g0:#F7FAFC; --g1:#FFFFFF; --g2:#EAF1F6;
-  --ink:#0F172A; --mut:#42586D; --dim:#64798D;
+  --ink:#0F172A; --mut:#42586D; --dim:#5A6E82;
   --line:rgba(15,42,70,.12); --line2:rgba(15,42,70,.22);
 }
 ::selection{background:rgba(14,116,144,.22);color:#0F172A}
@@ -468,8 +481,9 @@ body::before{opacity:.03;background-image:linear-gradient(rgba(14,116,144,.9) 1p
 .hud::after{--hc:rgba(14,116,144,.45)}
 footer{background:rgba(15,42,70,.03)}
 
-/* dark islands: instrument screens keep the dark skin via scoped vars */
-.tooth-core,.chat-core,.scan-core{
+/* dark islands: instrument screens keep the dark skin via scoped vars.
+   .tbar stays black like the live site, so it needs the island vars too */
+.tbar,.tooth-core,.chat-core,.scan-core{
   --g0:#070C18; --g1:#0C1424; --g2:#101B31;
   --ink:#EAF3F8; --mut:#93A8BC; --dim:#6B8093;
   --line:rgba(148,184,210,.13); --line2:rgba(148,184,210,.22);
@@ -480,7 +494,6 @@ footer{background:rgba(15,42,70,.03)}
 .btn-s:hover{border-color:#0E7490}
 .btn-s .arr{background:rgba(14,116,144,.10)}
 .btn-s svg path{stroke:#0E7490}
-.replay:hover{color:#22D3EE}
 
 /* service cards: teal washes instead of deep-sea gradients */
 .m-grad .core{background:linear-gradient(150deg,rgba(14,116,144,.16),rgba(234,241,246,.9) 62%),var(--g1)}
@@ -503,6 +516,34 @@ footer{background:rgba(15,42,70,.03)}
 .acc,.svc a,.svc ol li::before{color:#0E7490}
 .svc ul li::before{background:#0E7490}
 .blog-card:hover{border-color:rgba(14,116,144,.45)}
+
+/* ---- color-system pass 08-21 (WCAG + accent lock on light) ---- */
+/* keyboard focus: cyan is 1.7:1 on the light ground; islands + black bar keep cyan */
+:focus-visible{outline-color:#0E7490}
+.tooth-core :focus-visible,.chat-core :focus-visible,.scan-core :focus-visible,.tbar :focus-visible{outline-color:#22D3EE}
+/* readouts inside the dark islands: global teal drops to 3.4:1 on the island ground */
+.tooth-core .ro,.chat-core .ro,.scan-core .ro{color:rgba(34,211,238,.75)}
+.tooth-core .ro b,.chat-core .ro b,.scan-core .ro b{color:#22D3EE}
+/* metric tiles: cyan hover vanishes on the white band */
+a.met:hover{background:rgba(14,116,144,.06)}
+a.met:hover>span{color:#0E7490}
+a.met:hover b{color:#0E7490}
+/* footer + socials: cyan hover vanishes on the near-white footer */
+.foot-col a:hover{color:#0E7490}
+.socials a:hover{border-color:rgba(14,116,144,.55)}
+/* accent lock: teal is THE accent on light, filled CTAs included */
+.btn-p{background:#0E7490;color:#F7FAFC}
+.btn-p:hover{background:#0C647E}
+.btn-p .arr{background:rgba(255,255,255,.18)}
+.nav-links a.nav-cta{background:#0E7490;color:#F7FAFC;box-shadow:none}
+.nav-links a.nav-cta:hover{background:#0C647E;color:#F7FAFC}
+/* progress bar: cyan end decays to 1.7:1 on light glass */
+.progress{background:linear-gradient(90deg,#0E7490,#1899BC)}
+/* founder photo: half-strength ink vignette + teal wash for the light bench */
+.f-photo .core::after{background:linear-gradient(200deg,rgba(15,23,42,0) 45%,rgba(15,23,42,.24)),radial-gradient(90% 70% at 30% 0%,rgba(14,116,144,.10),transparent 60%)}
+/* video thumbs: the teal grade wash is a dark-ground device; light lab keeps them raw */
+.vt-play img{filter:none}
+.vt-play::after{content:none}
 
 </style>
 </head>
