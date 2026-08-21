@@ -316,6 +316,19 @@ a.met:hover>span{color:var(--cy)}
 .svc ol{list-style:none;counter-reset:svc;margin:0 0 18px;padding:0}
 .svc ol li{position:relative;counter-increment:svc;padding-left:36px;margin:0 0 12px}
 .svc ol li::before{content:counter(svc);position:absolute;left:0;top:.05em;color:var(--cy);font-family:var(--disp);font-weight:800}
+.svc h4{margin:34px 0 12px}
+.svc a{color:var(--cy);text-decoration:underline;text-underline-offset:3px}
+.svc .tbl{overflow-x:auto;margin:0 0 18px}
+.svc table{border-collapse:collapse;min-width:560px;width:100%}
+.svc th,.svc td{border:1px solid var(--line2);padding:10px 14px;text-align:left;font-size:.95rem}
+.svc th{color:var(--ink);font-family:var(--disp)}
+.acc{color:var(--cy)}
+.post-hero{width:100%;max-width:880px;border-radius:18px;display:block;margin:0 auto}
+.blog-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:18px;margin-top:34px}
+.blog-card{display:block;border:1px solid var(--line2);border-radius:16px;overflow:hidden;background:var(--g1);transition:transform .5s var(--ez2),border-color .5s var(--ez2)}
+.blog-card:hover{transform:translateY(-4px);border-color:rgba(34,211,238,.4)}
+.blog-card img{width:100%;aspect-ratio:16/9;object-fit:cover;display:block}
+.blog-card p{padding:16px 18px 18px;font-family:var(--disp);font-weight:600;font-size:.98rem;color:var(--ink)}
 
 /* ============ FINAL CTA ============ */
 .final{text-align:center}
@@ -486,6 +499,11 @@ footer{background:rgba(15,42,70,.03)}
 .faq-q[aria-expanded="true"] .pl{border-color:rgba(14,116,144,.5)}
 .faq-q .pl::before,.faq-q .pl::after{background:#0E7490}
 
+/* service/blog article accents: teal on light surfaces (cyan is 1.9:1 on white) */
+.acc,.svc a,.svc ol li::before{color:#0E7490}
+.svc ul li::before{background:#0E7490}
+.blog-card:hover{border-color:rgba(14,116,144,.45)}
+
 </style>
 </head>
 <body>
@@ -511,6 +529,7 @@ footer{background:rgba(15,42,70,.03)}
         <a href="../services/">How We Can Help</a>
         <a href="../case-studies/">Results</a>
         <a href="../resources/">Resources</a>
+        <a href="../blog/">Blog</a>
         <a href="../referral/">Referral</a>
         <a class="nav-cta" href="../book-a-call/">Book a Call</a>
       </div>
@@ -524,8 +543,9 @@ footer{background:rgba(15,42,70,.03)}
     <a href="../services/" style="transition-delay:.16s">How We Can Help</a>
     <a href="../case-studies/" style="transition-delay:.21s">Results</a>
     <a href="../resources/" style="transition-delay:.26s">Resources</a>
-    <a href="../referral/" style="transition-delay:.31s">Referral</a>
-    <a class="m-cta" href="../book-a-call/" style="transition-delay:.36s">Book a Call</a>
+    <a href="../blog/" style="transition-delay:.31s">Blog</a>
+    <a href="../referral/" style="transition-delay:.36s">Referral</a>
+    <a class="m-cta" href="../book-a-call/" style="transition-delay:.41s">Book a Call</a>
   </div>
 </header>
 
@@ -648,7 +668,7 @@ footer{background:rgba(15,42,70,.03)}
   <div class="wrap">
     <h2 id="cs-list-h" class="rv" style="max-width:20ch">Read the full case studies</h2>
     <div class="mods">
-      <a class="mod m-2 rv" href="https://www.thedigitalsmile.com/blog-posts/case-study-your-kissimmee-dentist"><div class="shell" style="height:100%"><div class="core spot">
+      <a class="mod m-2 rv" href="../blog-posts/case-study-your-kissimmee-dentist/"><div class="shell" style="height:100%"><div class="core spot">
         <h3>Your Kissimmee Dentist</h3>
         <p style="margin-top:10px">$780K in treatment plans presented.</p>
         <p class="ro" style="margin-top:14px">Read case study</p>
@@ -714,7 +734,7 @@ footer{background:rgba(15,42,70,.03)}
         <a href="../services/">How We Can Help</a>
         <a href="../case-studies/">Results</a>
         <a href="../resources/">Resources</a>
-        <a href="https://www.thedigitalsmile.com/blog">Blog</a>
+        <a href="../blog/">Blog</a>
         <a href="../referral/">Referral</a>
         <a href="https://www.thedigitalsmile.com/ai-visibility-checker">Free AI Scan</a>
       </div>

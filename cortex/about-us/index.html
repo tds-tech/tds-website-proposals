@@ -316,6 +316,19 @@ a.met:hover>span{color:var(--cy)}
 .svc ol{list-style:none;counter-reset:svc;margin:0 0 18px;padding:0}
 .svc ol li{position:relative;counter-increment:svc;padding-left:36px;margin:0 0 12px}
 .svc ol li::before{content:counter(svc);position:absolute;left:0;top:.05em;color:var(--cy);font-family:var(--disp);font-weight:800}
+.svc h4{margin:34px 0 12px}
+.svc a{color:var(--cy);text-decoration:underline;text-underline-offset:3px}
+.svc .tbl{overflow-x:auto;margin:0 0 18px}
+.svc table{border-collapse:collapse;min-width:560px;width:100%}
+.svc th,.svc td{border:1px solid var(--line2);padding:10px 14px;text-align:left;font-size:.95rem}
+.svc th{color:var(--ink);font-family:var(--disp)}
+.acc{color:var(--cy)}
+.post-hero{width:100%;max-width:880px;border-radius:18px;display:block;margin:0 auto}
+.blog-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:18px;margin-top:34px}
+.blog-card{display:block;border:1px solid var(--line2);border-radius:16px;overflow:hidden;background:var(--g1);transition:transform .5s var(--ez2),border-color .5s var(--ez2)}
+.blog-card:hover{transform:translateY(-4px);border-color:rgba(34,211,238,.4)}
+.blog-card img{width:100%;aspect-ratio:16/9;object-fit:cover;display:block}
+.blog-card p{padding:16px 18px 18px;font-family:var(--disp);font-weight:600;font-size:.98rem;color:var(--ink)}
 
 /* ============ FINAL CTA ============ */
 .final{text-align:center}
@@ -436,6 +449,7 @@ footer{border-top:1px solid var(--line);padding:72px 0 40px;background:rgba(12,2
         <a href="../services/">How We Can Help</a>
         <a href="../case-studies/">Results</a>
         <a href="../resources/">Resources</a>
+        <a href="../blog/">Blog</a>
         <a href="../referral/">Referral</a>
         <a class="nav-cta" href="../book-a-call/">Book a Call</a>
       </div>
@@ -449,8 +463,9 @@ footer{border-top:1px solid var(--line);padding:72px 0 40px;background:rgba(12,2
     <a href="../services/" style="transition-delay:.16s">How We Can Help</a>
     <a href="../case-studies/" style="transition-delay:.21s">Results</a>
     <a href="../resources/" style="transition-delay:.26s">Resources</a>
-    <a href="../referral/" style="transition-delay:.31s">Referral</a>
-    <a class="m-cta" href="../book-a-call/" style="transition-delay:.36s">Book a Call</a>
+    <a href="../blog/" style="transition-delay:.31s">Blog</a>
+    <a href="../referral/" style="transition-delay:.36s">Referral</a>
+    <a class="m-cta" href="../book-a-call/" style="transition-delay:.41s">Book a Call</a>
   </div>
 </header>
 
@@ -576,7 +591,7 @@ footer{border-top:1px solid var(--line);padding:72px 0 40px;background:rgba(12,2
         <a href="../services/">How We Can Help</a>
         <a href="../case-studies/">Results</a>
         <a href="../resources/">Resources</a>
-        <a href="https://www.thedigitalsmile.com/blog">Blog</a>
+        <a href="../blog/">Blog</a>
         <a href="../referral/">Referral</a>
         <a href="https://www.thedigitalsmile.com/ai-visibility-checker">Free AI Scan</a>
       </div>
