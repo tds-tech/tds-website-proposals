@@ -331,11 +331,14 @@ footer{border-top:1px solid var(--line);padding:72px 0 40px;background:rgba(12,2
   .met-grid{grid-template-columns:repeat(2,1fr)}
   .foot-grid{grid-template-columns:1fr 1fr}
 }
+@media(max-width:960px){
+  /* 6 links + CTA desbordan entre 769 y 960: burger antes que el breakpoint general */
+  .nav-links{display:none}
+  .burger{display:block}
+}
 @media(max-width:768px){
   section{padding-block:72px}
   .wrap{padding-inline:22px}
-  .nav-links{display:none}
-  .burger{display:block}
   .hero{padding-top:calc(var(--tb) + 92px)}
   .tooth-shell{aspect-ratio:auto;height:372px;max-height:none}
   .mods{grid-template-columns:1fr}
@@ -486,13 +489,15 @@ footer{background:rgba(15,42,70,.03)}
         </svg>
         The Digital Smile
       </a>
-      <!-- Nav enfocado: la prueba primero. "Our Philosophy" vive solo en el footer.
+      <!-- Nav integrada fase 2: orden y labels del sitio live; "Results" cubre /case-studies.
            Variante para tráfico pagado (landing sin fugas): borrar este bloque .nav-links
            y su gemelo .mnav de abajo — quedan solo el brand y los CTAs de la página. -->
       <div class="nav-links">
-        <a href="../case-studies/">Results</a>
-        <a href="../services/">Services</a>
         <a href="../about-us/">Our Philosophy</a>
+        <a href="../services/">How We Can Help</a>
+        <a href="../case-studies/">Results</a>
+        <a href="../resources/">Resources</a>
+        <a href="../referral/">Referral</a>
         <a class="nav-cta" href="../book-a-call/">Book a Call</a>
       </div>
       <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="mnav"><span></span><span></span></button>
@@ -500,10 +505,13 @@ footer{background:rgba(15,42,70,.03)}
     <div class="progress" aria-hidden="true"></div>
   </nav>
   <div class="mnav" id="mnav" aria-hidden="true">
-    <a href="../case-studies/" style="transition-delay:.08s">Results</a>
-    <a href="../services/" style="transition-delay:.14s">Services</a>
-    <a href="../about-us/" style="transition-delay:.2s">Our Philosophy</a>
-    <a class="m-cta" href="../book-a-call/" style="transition-delay:.26s">Book a Call</a>
+    <a href="../" style="transition-delay:.06s">Home</a>
+    <a href="../about-us/" style="transition-delay:.11s">Our Philosophy</a>
+    <a href="../services/" style="transition-delay:.16s">How We Can Help</a>
+    <a href="../case-studies/" style="transition-delay:.21s">Results</a>
+    <a href="../resources/" style="transition-delay:.26s">Resources</a>
+    <a href="../referral/" style="transition-delay:.31s">Referral</a>
+    <a class="m-cta" href="../book-a-call/" style="transition-delay:.36s">Book a Call</a>
   </div>
 </header>
 
@@ -689,8 +697,10 @@ footer{background:rgba(15,42,70,.03)}
         <p class="foot-h">Navigate</p>
         <a href="../">Home</a>
         <a href="../about-us/">Our Philosophy</a>
-        <a href="../services/">Services</a>
+        <a href="../services/">How We Can Help</a>
+        <a href="../case-studies/">Results</a>
         <a href="../resources/">Resources</a>
+        <a href="https://www.thedigitalsmile.com/blog">Blog</a>
         <a href="../referral/">Referral</a>
         <a href="https://www.thedigitalsmile.com/ai-visibility-checker">Free AI Scan</a>
       </div>
@@ -727,16 +737,10 @@ footer{background:rgba(15,42,70,.03)}
         "https://instagram.com/thedigitalsmile",
         "https://facebook.com/thedigitalsmile"
       ],
-      "founder": { "@type": "Person", "name": "Gabriel Segall" }
-    },
-    {
-      "@type": "FAQPage",
-      "mainEntity": [
-        { "@type": "Question", "name": "Will I get to keep these patients if I cancel?", "acceptedAnswer": { "@type": "Answer", "text": "Absolutely. All patients generated are exclusively yours. You have full ownership of the list and it is never shared." } },
-        { "@type": "Question", "name": "Is your system exclusive?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Exclusivity within a 10-mile radius, or for practices serving a local population of up to 100,000 people." } },
-        { "@type": "Question", "name": "How many opportunities can I expect every month?", "acceptedAnswer": { "@type": "Answer", "text": "Depends on the tier: from 25+ opportunities a month to upward of 100+ per month." } },
-        { "@type": "Question", "name": "Do you guarantee results?", "acceptedAnswer": { "@type": "Answer", "text": "We control the quantity and quality of opportunities we generate. Conversion depends on your team's skill, and we train for that too." } }
-      ]
+      "founder": {
+        "@type": "Person",
+        "name": "Gabriel Segall"
+      }
     }
   ]
 }
