@@ -303,6 +303,20 @@ a.met:hover>span{color:var(--cy)}
 .faq-a p{padding:0 26px 24px;font-size:.96rem;max-width:60ch}
 .faq-item.open .faq-a{grid-template-rows:1fr}
 
+/* ============ SERVICE DETAIL (fase 3) ============ */
+.svc{max-width:760px}
+.svc h3{margin:54px 0 16px}
+.svc>h3:first-child{margin-top:0}
+.svc p,.svc li{color:var(--mut)}
+.svc strong{color:var(--ink);font-weight:600}
+.svc p{margin:0 0 16px}
+.svc ul{list-style:none;margin:0 0 18px;padding:0}
+.svc ul li{position:relative;padding-left:24px;margin:0 0 12px}
+.svc ul li::before{content:"";position:absolute;left:0;top:.62em;width:10px;height:2px;background:var(--cy)}
+.svc ol{list-style:none;counter-reset:svc;margin:0 0 18px;padding:0}
+.svc ol li{position:relative;counter-increment:svc;padding-left:36px;margin:0 0 12px}
+.svc ol li::before{content:counter(svc);position:absolute;left:0;top:.05em;color:var(--cy);font-family:var(--disp);font-weight:800}
+
 /* ============ FINAL CTA ============ */
 .final{text-align:center}
 .final .core{padding:88px 30px}
