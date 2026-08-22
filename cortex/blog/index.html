@@ -135,6 +135,14 @@ body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opa
 .nav-links a.nav-cta{background:rgba(34,211,238,.10);color:var(--cy);box-shadow:inset 0 0 0 1px rgba(34,211,238,.35);border-radius:999px;padding:10px 20px;font-family:var(--disp);font-weight:700;font-size:.85rem;transition:background-color .5s var(--ez2),color .5s var(--ez2),transform .5s var(--ez2)}
 .nav-links a.nav-cta:hover{background:var(--cy);color:#052430}
 .nav-links a.nav-cta:active{transform:scale(.98)}
+/* services dropdown (parity with the live nav): CSS-only, hover + focus-within */
+.nav-drop{position:relative}
+.nav-drop>a .car{display:inline-block;font-size:.62em;margin-left:5px;transform:translateY(-2px);opacity:.65}
+.nav-drop-menu{position:absolute;top:100%;left:50%;transform:translateX(-50%);padding-top:16px;opacity:0;visibility:hidden;transition:opacity .45s var(--ez2),visibility 0s .45s}
+.nav-drop:hover .nav-drop-menu,.nav-drop:focus-within .nav-drop-menu{opacity:1;visibility:visible;transition:opacity .45s var(--ez2)}
+.ndm-in{min-width:268px;background:var(--g1);border:1px solid var(--line2);border-radius:14px;padding:8px;box-shadow:0 18px 44px rgba(4,8,16,.5)}
+.nav-links .ndm-in a{display:block;padding:9px 12px;border-radius:9px;font-size:.86rem;white-space:nowrap}
+.nav-links .ndm-in a:hover{color:var(--ink);background:rgba(34,211,238,.08)}
 .burger{display:none;width:44px;height:44px;margin-left:auto;position:relative}
 .burger span{position:absolute;left:11px;width:22px;height:2px;background:var(--ink);border-radius:2px;transition:transform .6s var(--ez2),opacity .4s var(--ez2)}
 .burger span:nth-child(1){top:17px}
@@ -371,8 +379,8 @@ footer{border-top:1px solid var(--line);padding:72px 0 40px;background:rgba(12,2
   .met-grid{grid-template-columns:repeat(2,1fr)}
   .foot-grid{grid-template-columns:1fr 1fr}
 }
-@media(max-width:960px){
-  /* 6 links + CTA desbordan entre 769 y 960: burger antes que el breakpoint general */
+@media(max-width:1180px){
+  /* 8 links + CTA (paridad nav live) llenan el cap 1180 de .nav-in: burger debajo de eso */
   .nav-links{display:none}
   .burger{display:block}
 }
@@ -458,13 +466,26 @@ footer{border-top:1px solid var(--line);padding:72px 0 40px;background:rgba(12,2
            Variante para tráfico pagado (landing sin fugas): borrar este bloque .nav-links
            y su gemelo .mnav de abajo — quedan solo el brand y los CTAs de la página. -->
       <div class="nav-links">
+        <a href="../">Home</a>
         <a href="../about-us/">Our Philosophy</a>
-        <a href="../services/">How We Can Help</a>
-        <a href="../case-studies/">Results</a>
+        <div class="nav-drop">
+          <a href="../services/">Services<span class="car" aria-hidden="true">&#9662;</span></a>
+          <div class="nav-drop-menu"><div class="ndm-in">
+            <a href="../services/ai-seo-for-dentists/">🤖 AI SEO &amp; ChatGPT Optimization</a>
+            <a href="../services/google-seo/">🔍 Google SEO</a>
+            <a href="../services/facebook-ads-for-dentists/">📘 Facebook Ads</a>
+            <a href="../services/instagram-ads-for-dentists/">📸 Instagram Ads</a>
+            <a href="../services/ppc-for-dental-clinics/">🎯 Google PPC</a>
+            <a href="../services/sales-training-for-dental-teams/">🎓 Sales Training</a>
+            <a href="https://www.thedigitalsmile.com/get-hispanic-patients">🇪🇸 Get Hispanic Patients</a>
+          </div></div>
+        </div>
         <a href="../resources/">Resources</a>
+        <a href="https://www.thedigitalsmile.com/ai-visibility-checker">Free AI Scan</a>
         <a href="../blog/">Blog</a>
+        <a href="../case-studies/">Case Studies</a>
         <a href="../referral/">Referral</a>
-        <a class="nav-cta" href="../book-a-call/">Book a Call</a>
+        <a class="nav-cta" href="../book-a-call/">Book A Call</a>
       </div>
       <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="mnav"><span></span><span></span></button>
     </div>
@@ -472,13 +493,14 @@ footer{border-top:1px solid var(--line);padding:72px 0 40px;background:rgba(12,2
   </nav>
   <div class="mnav" id="mnav" aria-hidden="true">
     <a href="../" style="transition-delay:.06s">Home</a>
-    <a href="../about-us/" style="transition-delay:.11s">Our Philosophy</a>
-    <a href="../services/" style="transition-delay:.16s">How We Can Help</a>
-    <a href="../case-studies/" style="transition-delay:.21s">Results</a>
-    <a href="../resources/" style="transition-delay:.26s">Resources</a>
-    <a href="../blog/" style="transition-delay:.31s">Blog</a>
-    <a href="../referral/" style="transition-delay:.36s">Referral</a>
-    <a class="m-cta" href="../book-a-call/" style="transition-delay:.41s">Book a Call</a>
+    <a href="../about-us/" style="transition-delay:.1s">Our Philosophy</a>
+    <a href="../services/" style="transition-delay:.14s">Services</a>
+    <a href="../resources/" style="transition-delay:.18s">Resources</a>
+    <a href="https://www.thedigitalsmile.com/ai-visibility-checker" style="transition-delay:.22s">Free AI Scan</a>
+    <a href="../blog/" style="transition-delay:.26s">Blog</a>
+    <a href="../case-studies/" style="transition-delay:.3s">Case Studies</a>
+    <a href="../referral/" style="transition-delay:.34s">Referral</a>
+    <a class="m-cta" href="../book-a-call/" style="transition-delay:.38s">Book A Call</a>
   </div>
 </header>
 
@@ -496,13 +518,6 @@ footer{border-top:1px solid var(--line);padding:72px 0 40px;background:rgba(12,2
     <div class="blog-grid">
       <a class="blog-card" href="../blog-posts/ai-seo-chatgpt-optimization-for-dentists/"><img src="https://cdn.prod.website-files.com/698e0147703a7c1443f8a0b8/6a32e60c71e341b82fe91605_image.png" loading="lazy" alt="AI SEO & ChatGPT Optimization for Dentists"><p>AI SEO &amp; ChatGPT Optimization for Dentists</p></a>
       <a class="blog-card" href="../blog-posts/attracting-high-ticket-veneer-patients-guide/"><img src="https://cdn.prod.website-files.com/698e0147703a7c1443f8a0b8/6a049f8205f31b01c86f39b9_The%20Cosmetic%20Dentistry%20Marketing%20Playbook%20Attracting%20High-Ticket%20Veneer%20Patients.jpg" loading="lazy" alt="The Cosmetic Dentistry Marketing Playbook: Attracting High-Ticket Veneer Patients"><p>The Cosmetic Dentistry Marketing Playbook: Attracting High-Ticket Veneer Patients</p></a>
-      <a class="blog-card" href="../blog-posts/case-study-canyon-road-dental/"><p>Case Study: How Canyon Road Dental Won Google and AI Search in Provo</p></a>
-      <a class="blog-card" href="../blog-posts/case-study-lone-mountain-oral-surgery/"><img src="https://cdn.prod.website-files.com/698e0147703a7c1443f8a0b8/69c75b33535c5c544258ed79_69c75b1ab43505c272f7db28_lone-mountain.png" loading="lazy" alt="Case Study: Lone Mountain Oral Surgery's Digital Transformation"><p>Case Study: Lone Mountain Oral Surgery&#x27;s Digital Transformation</p></a>
-      <a class="blog-card" href="../blog-posts/case-study-quality-dentistry-coconut-creek/"><img src="https://cdn.prod.website-files.com/698e0147703a7c1443f8a0b8/69cdc3d44398138a215b3a36_69cdc38fd6e478025471362e_quality-dentistry-coconut-creek-case-study.png" loading="lazy" alt="Case Study: Quality Dentistry of Coconut Creek: From Local Practice to Local Powerhouse"><p>Case Study: Quality Dentistry of Coconut Creek: From Local Practice to Local Powerhouse</p></a>
-      <a class="blog-card" href="../blog-posts/case-study-siouxland-oral-surgery/"><img src="https://cdn.prod.website-files.com/698e0147703a7c1443f8a0b8/69c75b314bf6f9110714d2fe_69c75b1707a1eaa6203d7437_siouxland.png" loading="lazy" alt="Case Study: How Siouxland Oral Surgery Grew with AI-Powered Dental SEO"><p>Case Study: How Siouxland Oral Surgery Grew with AI-Powered Dental SEO</p></a>
-      <a class="blog-card" href="../blog-posts/case-study-south-seattle-dental/"><img src="https://cdn.prod.website-files.com/698e0147703a7c1443f8a0b8/69c75b39b5bb5805a22e2655_69c75b1fca1407ab0c890eac_south-seattle.png" loading="lazy" alt="Case Study: South Seattle Dental's Path to Online Growth"><p>Case Study: South Seattle Dental&#x27;s Path to Online Growth</p></a>
-      <a class="blog-card" href="../blog-posts/case-study-sparq-dental/"><img src="https://cdn.prod.website-files.com/698e0147703a7c1443f8a0b8/69c75b36b5bb5805a22e25fd_69c75b1c1ff77e0942f809de_sparq-dental.png" loading="lazy" alt="Case Study: How Sparq Dental Attracted More Patients with AI SEO"><p>Case Study: How Sparq Dental Attracted More Patients with AI SEO</p></a>
-      <a class="blog-card" href="../blog-posts/case-study-your-kissimmee-dentist/"><p>Case Study: How Your Kissimmee Dentist Grew from $120K/month to $220K/month in 9 Months</p></a>
       <a class="blog-card" href="../blog-posts/dental-blogging-seo-patient-questions-ranking/"><img src="https://cdn.prod.website-files.com/698e0147703a7c1443f8a0b8/6a3a5cfbf7d5b72a2a886d3d_ChatGPT%20Image%20Jun%2023%2C%202026%2C%2003_16_16%20PM.png" loading="lazy" alt="Blogging for SEO: How Dental Clinics Can Use Patient Questions to Achieve #1 Google Rankings"><p>Blogging for SEO: How Dental Clinics Can Use Patient Questions to Achieve #1 Google Rankings</p></a>
       <a class="blog-card" href="../blog-posts/dental-clinic-keyword-strategy-seo-guide/"><img src="https://cdn.prod.website-files.com/698e0147703a7c1443f8a0b8/6a3a58ab7d6555cb9642119f_qqqqq.png" loading="lazy" alt="How to Build a Keyword Strategy for Your Dental Clinic (Without Wasting Budget on the Wrong Terms)"><p>How to Build a Keyword Strategy for Your Dental Clinic (Without Wasting Budget on the Wrong Terms)</p></a>
       <a class="blog-card" href="../blog-posts/dental-clinic-seo-website-structure-rankings/"><img src="https://cdn.prod.website-files.com/698e0147703a7c1443f8a0b8/6a3a5af144c7df57c1f4cbf0_sdafds.png" loading="lazy" alt="SEO for Dental Clinics: Why Your Website's Structure Is Silently Killing Your Google Rankings"><p>SEO for Dental Clinics: Why Your Website&#x27;s Structure Is Silently Killing Your Google Rankings</p></a>
@@ -522,7 +537,6 @@ footer{border-top:1px solid var(--line);padding:72px 0 40px;background:rgba(12,2
       <a class="blog-card" href="../blog-posts/how-dental-seo-services-builds-backlinks-domain-authority-for-website/"><img src="https://cdn.prod.website-files.com/698e0147703a7c1443f8a0b8/69bdab8c1a1d70fdd8ccd240_How%20Do%20Dental%20SEO%20Services%20Build%20Backlinks%20and%20Domain%20Authority%20for%20a%20Practice%20Website.jpg" loading="lazy" alt="How Do Dental SEO Services Build Backlinks and Domain Authority for a Practice Website?"><p>How Do Dental SEO Services Build Backlinks and Domain Authority for a Practice Website?</p></a>
       <a class="blog-card" href="../blog-posts/how-dental-seo-services-optimize-google-business-profile/"><img src="https://cdn.prod.website-files.com/698e0147703a7c1443f8a0b8/69bda7288f148c46475b4ee3_How%20Do%20Dental%20SEO%20Services%20Optimize%20a%20Google%20Business%20Profile%20for%20Maximum%20Visibility.jpg" loading="lazy" alt="How Do Dental SEO Services Optimize a Google Business Profile for Maximum Visibility?"><p>How Do Dental SEO Services Optimize a Google Business Profile for Maximum Visibility?</p></a>
       <a class="blog-card" href="../blog-posts/how-dental-seo-uses-reviews-for-local-rankings/"><img src="https://cdn.prod.website-files.com/698e0147703a7c1443f8a0b8/69b2a7fcc150ff948a6ffe80_How%20Do%20Dental%20SEO%20Services%20Leverage%20Patient%20Reviews%20to%20Boost%20Local%20Rankings.jpg" loading="lazy" alt="How Do Dental SEO Services Leverage Patient Reviews to Boost Local Rankings?"><p>How Do Dental SEO Services Leverage Patient Reviews to Boost Local Rankings?</p></a>
-      <a class="blog-card" href="../blog-posts/how-dr-mun-increased-new-patient-volume-case-study/"><img src="https://cdn.prod.website-files.com/698e0147703a7c1443f8a0b8/69e7ad9a12776802528813b0_How%20Dr.%20Mun%20Increased%20New%20Patient%20Volume%20by%2030%25%20in%2090%20Days%20(Case%20Study).jpg" loading="lazy" alt="How Dr. Mun Increased New Patient Volume by 30% in 90 Days (Case Study)"><p>How Dr. Mun Increased New Patient Volume by 30% in 90 Days (Case Study)</p></a>
       <a class="blog-card" href="../blog-posts/how-long-dental-seo-takes-for-leads/"><img src="https://cdn.prod.website-files.com/698e0147703a7c1443f8a0b8/69b2993d4d1544ea183f950c_How%20Long%20Does%20It%20Take%20for%20Dental%20SEO%20Services%20to%20Generate%20New%20Patient%20Leads.jpg" loading="lazy" alt="How Long Does It Take for Dental SEO Services to Generate New Patient Leads?"><p>How Long Does It Take for Dental SEO Services to Generate New Patient Leads?</p></a>
       <a class="blog-card" href="../blog-posts/how-long-does-dental-marketing-agency-take-to-show-results/"><img src="https://cdn.prod.website-files.com/698e0147703a7c1443f8a0b8/6994595c7f8c3cdbfa37c7ce_How%20Long%20Does%20It%20Take%20to%20See%20Results%20from%20a%20Dental%20Marketing%20Agency.jpg" loading="lazy" alt="How Long Does It Take to See Results from a Dental Marketing Agency? Setting Realistic Expectations"><p>How Long Does It Take to See Results from a Dental Marketing Agency? Setting Realistic Expectations</p></a>
       <a class="blog-card" href="../blog-posts/how-to-choose-dental-marketing-agency/"><img src="https://cdn.prod.website-files.com/698e0147703a7c1443f8a0b8/69944c78455268ff122a1ab8_How%20to%20Choose%20the%20Right%20Dental%20Marketing%20Agency%2010%20Questions%20Every%20Dentist%20Should%20Ask.jpg" loading="lazy" alt="How to Choose the Right Dental Marketing Agency: 10 Questions Every Dentist Should Ask"><p>How to Choose the Right Dental Marketing Agency: 10 Questions Every Dentist Should Ask</p></a>
@@ -569,12 +583,12 @@ footer{border-top:1px solid var(--line);padding:72px 0 40px;background:rgba(12,2
         <p class="foot-h">Navigate</p>
         <a href="../">Home</a>
         <a href="../about-us/">Our Philosophy</a>
-        <a href="../services/">How We Can Help</a>
-        <a href="../case-studies/">Results</a>
+        <a href="../services/">Services</a>
         <a href="../resources/">Resources</a>
-        <a href="../blog/">Blog</a>
-        <a href="../referral/">Referral</a>
         <a href="https://www.thedigitalsmile.com/ai-visibility-checker">Free AI Scan</a>
+        <a href="../blog/">Blog</a>
+        <a href="../case-studies/">Case Studies</a>
+        <a href="../referral/">Referral</a>
       </div>
       <div class="foot-col">
         <p class="foot-h">Legal</p>

@@ -135,6 +135,14 @@ body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opa
 .nav-links a.nav-cta{background:rgba(34,211,238,.10);color:var(--cy);box-shadow:inset 0 0 0 1px rgba(34,211,238,.35);border-radius:999px;padding:10px 20px;font-family:var(--disp);font-weight:700;font-size:.85rem;transition:background-color .5s var(--ez2),color .5s var(--ez2),transform .5s var(--ez2)}
 .nav-links a.nav-cta:hover{background:var(--cy);color:#052430}
 .nav-links a.nav-cta:active{transform:scale(.98)}
+/* services dropdown (parity with the live nav): CSS-only, hover + focus-within */
+.nav-drop{position:relative}
+.nav-drop>a .car{display:inline-block;font-size:.62em;margin-left:5px;transform:translateY(-2px);opacity:.65}
+.nav-drop-menu{position:absolute;top:100%;left:50%;transform:translateX(-50%);padding-top:16px;opacity:0;visibility:hidden;transition:opacity .45s var(--ez2),visibility 0s .45s}
+.nav-drop:hover .nav-drop-menu,.nav-drop:focus-within .nav-drop-menu{opacity:1;visibility:visible;transition:opacity .45s var(--ez2)}
+.ndm-in{min-width:268px;background:var(--g1);border:1px solid var(--line2);border-radius:14px;padding:8px;box-shadow:0 18px 44px rgba(4,8,16,.5)}
+.nav-links .ndm-in a{display:block;padding:9px 12px;border-radius:9px;font-size:.86rem;white-space:nowrap}
+.nav-links .ndm-in a:hover{color:var(--ink);background:rgba(34,211,238,.08)}
 .burger{display:none;width:44px;height:44px;margin-left:auto;position:relative}
 .burger span{position:absolute;left:11px;width:22px;height:2px;background:var(--ink);border-radius:2px;transition:transform .6s var(--ez2),opacity .4s var(--ez2)}
 .burger span:nth-child(1){top:17px}
@@ -371,8 +379,8 @@ footer{border-top:1px solid var(--line);padding:72px 0 40px;background:rgba(12,2
   .met-grid{grid-template-columns:repeat(2,1fr)}
   .foot-grid{grid-template-columns:1fr 1fr}
 }
-@media(max-width:960px){
-  /* 6 links + CTA desbordan entre 769 y 960: burger antes que el breakpoint general */
+@media(max-width:1180px){
+  /* 8 links + CTA (paridad nav live) llenan el cap 1180 de .nav-in: burger debajo de eso */
   .nav-links{display:none}
   .burger{display:block}
 }
@@ -458,13 +466,26 @@ footer{border-top:1px solid var(--line);padding:72px 0 40px;background:rgba(12,2
            Variante para tráfico pagado (landing sin fugas): borrar este bloque .nav-links
            y su gemelo .mnav de abajo — quedan solo el brand y los CTAs de la página. -->
       <div class="nav-links">
+        <a href="../../">Home</a>
         <a href="../../about-us/">Our Philosophy</a>
-        <a href="../../services/">How We Can Help</a>
-        <a href="../../case-studies/">Results</a>
+        <div class="nav-drop">
+          <a href="../../services/">Services<span class="car" aria-hidden="true">&#9662;</span></a>
+          <div class="nav-drop-menu"><div class="ndm-in">
+            <a href="../../services/ai-seo-for-dentists/">🤖 AI SEO &amp; ChatGPT Optimization</a>
+            <a href="../../services/google-seo/">🔍 Google SEO</a>
+            <a href="../../services/facebook-ads-for-dentists/">📘 Facebook Ads</a>
+            <a href="../../services/instagram-ads-for-dentists/">📸 Instagram Ads</a>
+            <a href="../../services/ppc-for-dental-clinics/">🎯 Google PPC</a>
+            <a href="../../services/sales-training-for-dental-teams/">🎓 Sales Training</a>
+            <a href="https://www.thedigitalsmile.com/get-hispanic-patients">🇪🇸 Get Hispanic Patients</a>
+          </div></div>
+        </div>
         <a href="../../resources/">Resources</a>
+        <a href="https://www.thedigitalsmile.com/ai-visibility-checker">Free AI Scan</a>
         <a href="../../blog/">Blog</a>
+        <a href="../../case-studies/">Case Studies</a>
         <a href="../../referral/">Referral</a>
-        <a class="nav-cta" href="../../book-a-call/">Book a Call</a>
+        <a class="nav-cta" href="../../book-a-call/">Book A Call</a>
       </div>
       <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="mnav"><span></span><span></span></button>
     </div>
@@ -472,13 +493,14 @@ footer{border-top:1px solid var(--line);padding:72px 0 40px;background:rgba(12,2
   </nav>
   <div class="mnav" id="mnav" aria-hidden="true">
     <a href="../../" style="transition-delay:.06s">Home</a>
-    <a href="../../about-us/" style="transition-delay:.11s">Our Philosophy</a>
-    <a href="../../services/" style="transition-delay:.16s">How We Can Help</a>
-    <a href="../../case-studies/" style="transition-delay:.21s">Results</a>
-    <a href="../../resources/" style="transition-delay:.26s">Resources</a>
-    <a href="../../blog/" style="transition-delay:.31s">Blog</a>
-    <a href="../../referral/" style="transition-delay:.36s">Referral</a>
-    <a class="m-cta" href="../../book-a-call/" style="transition-delay:.41s">Book a Call</a>
+    <a href="../../about-us/" style="transition-delay:.1s">Our Philosophy</a>
+    <a href="../../services/" style="transition-delay:.14s">Services</a>
+    <a href="../../resources/" style="transition-delay:.18s">Resources</a>
+    <a href="https://www.thedigitalsmile.com/ai-visibility-checker" style="transition-delay:.22s">Free AI Scan</a>
+    <a href="../../blog/" style="transition-delay:.26s">Blog</a>
+    <a href="../../case-studies/" style="transition-delay:.3s">Case Studies</a>
+    <a href="../../referral/" style="transition-delay:.34s">Referral</a>
+    <a class="m-cta" href="../../book-a-call/" style="transition-delay:.38s">Book A Call</a>
   </div>
 </header>
 
@@ -791,12 +813,12 @@ footer{border-top:1px solid var(--line);padding:72px 0 40px;background:rgba(12,2
         <p class="foot-h">Navigate</p>
         <a href="../../">Home</a>
         <a href="../../about-us/">Our Philosophy</a>
-        <a href="../../services/">How We Can Help</a>
-        <a href="../../case-studies/">Results</a>
+        <a href="../../services/">Services</a>
         <a href="../../resources/">Resources</a>
-        <a href="../../blog/">Blog</a>
-        <a href="../../referral/">Referral</a>
         <a href="https://www.thedigitalsmile.com/ai-visibility-checker">Free AI Scan</a>
+        <a href="../../blog/">Blog</a>
+        <a href="../../case-studies/">Case Studies</a>
+        <a href="../../referral/">Referral</a>
       </div>
       <div class="foot-col">
         <p class="foot-h">Legal</p>
