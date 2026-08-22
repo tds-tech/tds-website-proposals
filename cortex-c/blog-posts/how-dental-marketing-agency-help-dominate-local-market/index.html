@@ -439,30 +439,44 @@ footer{border-top:1px solid var(--line);padding:72px 0 40px;background:rgba(12,2
 }
 
 /* ============================================================
-   VARIANT C: color-block story.
-   Same dark AI-lab Cortex, but the page reads as five planned
-   surfaces (banded sections, like the live site's blue/white/
-   lavender rhythm) instead of one continuous dark ground:
+   VARIANT C: color-block story (rev 2, feedback Ramiro 08-21).
+   Same dark AI-lab Cortex, read as six planned surfaces
+   (the live site's banded rhythm):
      1. dark #070C18 opening (hero + trust)          - base theme
-     2. light "paper" band (testimonials + metrics + founder):
+     2. light "paper" band (testimonials):
         the social proof reads like a printed report
-     3. dark instruments (services, ask AI, scanner, FAQ) - base
-     4. deep teal band (final CTA / "Book a call" on every page)
-     5. dark footer                                   - base theme
-   Bands are role-based classes/selectors, so subpages that reuse
+     3. CYAN SIGNAL STRIPE (metrics): the numbers band carries
+        brand cyan with ink numerals, like the live site's band
+     4. light "paper" again (founder, photo raw / ungraded)
+     5. dark instruments (services, ask AI, scanner, FAQ) - base
+     6. deep teal band (final CTA / "Book a call" everywhere),
+        then the dark footer                          - base theme
+   Bands are role-based selectors, so subpages that reuse
    .founder / .metrics / .final / [aria-label="Book a call"] get
    the same treatment automatically.
+   Also variant-wide: action buttons are SOLID (no ghost pills) -
+   .btn-s fills teal, the nav CTA fills cyan.
    Token trick: each band re-scopes --cy (the accent var), so every
    rule that uses var(--cy) re-resolves per band with zero overrides.
    Only literal-color rules need explicit swaps (map: theme-b.css).
-   WCAG pairs verified 08-21: teal #0E7490 on #F7FAFC 5.1:1; ink
-   17:1; mut 7:1; dim 5:1; band #0C6379 vs #F7FAFC 6.5:1, body
-   rgba(.92) 5.8:1, button text #052430 on white 15.4:1.
+   WCAG pairs verified 08-21 (python): paper: teal 5.1:1, ink 17:1,
+   mut 7:1. Cyan stripe #22D3EE: ink 9.9:1, labels #0B4A5C 5.4:1,
+   hover/focus #052430 8.9:1. Teal band #0C6379: white 6.5:1, body
+   5.8:1, button text 15.4:1. Solid .btn-s #0E7490: text 5.1:1,
+   shape 3.65:1 on dark / 5.1:1 on paper.
    Appended by build.py --variant c.
    ============================================================ */
 
-/* ---- band 2: light paper (social proof) ---- */
-:is(section[aria-labelledby="quo-h"],section.metrics,section.founder){
+/* ---- variant-wide: action buttons are solid ---- */
+.btn-s{background:#0E7490;border-color:#0E7490;color:#F7FAFC}
+.btn-s:hover{background:#0C647E;border-color:#0C647E}
+.btn-s .arr{background:rgba(255,255,255,.18)}
+.btn-s svg path{stroke:#F7FAFC}
+.nav-links a.nav-cta{background:#22D3EE;color:#052430;box-shadow:none}
+.nav-links a.nav-cta:hover{background:#4ADEF2;color:#052430}
+
+/* ---- bands 2 + 4: light paper (testimonials, founder) ---- */
+:is(section[aria-labelledby="quo-h"],section.founder){
   --g0:#F7FAFC; --g1:#FFFFFF; --g2:#EAF1F6;
   --ink:#0F172A; --mut:#42586D; --dim:#5A6E82;
   --line:rgba(15,42,70,.12); --line2:rgba(15,42,70,.22);
@@ -471,33 +485,35 @@ footer{border-top:1px solid var(--line);padding:72px 0 40px;background:rgba(12,2
   /* color inherits RESOLVED from the dark body; re-anchor at the band */
   color:var(--ink);
 }
-/* metrics reads as a white island inside the paper band (theme-b move) */
-section.metrics{background:#FFFFFF}
 
-/* literal-color rules inside the light band (map: theme-b.css) */
-:is(section[aria-labelledby="quo-h"],section.metrics,section.founder) .ro{color:#0E7490}
-:is(section[aria-labelledby="quo-h"],section.metrics,section.founder) .eyebrow{border-color:rgba(14,116,144,.35);background:rgba(14,116,144,.06)}
-:is(section[aria-labelledby="quo-h"],section.metrics,section.founder) ::selection{background:rgba(14,116,144,.22);color:#0F172A}
-:is(section[aria-labelledby="quo-h"],section.metrics,section.founder) .shell{background:rgba(15,42,70,.03)}
-:is(section[aria-labelledby="quo-h"],section.metrics,section.founder) .core{box-shadow:0 1px 2px rgba(15,42,70,.05)}
-:is(section[aria-labelledby="quo-h"],section.metrics,section.founder) .hud::after{--hc:rgba(14,116,144,.45)}
-:is(section[aria-labelledby="quo-h"],section.metrics,section.founder) .btn-s{border-color:rgba(14,116,144,.45)}
-:is(section[aria-labelledby="quo-h"],section.metrics,section.founder) .btn-s:hover{border-color:#0E7490}
-:is(section[aria-labelledby="quo-h"],section.metrics,section.founder) .btn-s .arr{background:rgba(14,116,144,.10)}
-:is(section[aria-labelledby="quo-h"],section.metrics,section.founder) .btn-s svg path{stroke:#0E7490}
-/* metric tile hover: cyan wash vanishes on white */
-:is(section[aria-labelledby="quo-h"],section.metrics,section.founder) a.met:hover{background:rgba(14,116,144,.06)}
-/* metric labels stay muted: the band .ro swap (0,2,1) would out-rank
-   .met>span (0,1,1) and flip the label/numeral hierarchy to accent teal */
-:is(section[aria-labelledby="quo-h"],section.metrics,section.founder) .met>span{color:var(--mut)}
-:is(section[aria-labelledby="quo-h"],section.metrics,section.founder) a.met:hover>span{color:#0E7490}
+/* literal-color rules inside the paper bands (map: theme-b.css) */
+:is(section[aria-labelledby="quo-h"],section.founder) .ro{color:#0E7490}
+:is(section[aria-labelledby="quo-h"],section.founder) .eyebrow{border-color:rgba(14,116,144,.35);background:rgba(14,116,144,.06)}
+:is(section[aria-labelledby="quo-h"],section.founder) ::selection{background:rgba(14,116,144,.22);color:#0F172A}
+:is(section[aria-labelledby="quo-h"],section.founder) .shell{background:rgba(15,42,70,.03)}
+:is(section[aria-labelledby="quo-h"],section.founder) .core{box-shadow:0 1px 2px rgba(15,42,70,.05)}
+:is(section[aria-labelledby="quo-h"],section.founder) .hud::after{--hc:rgba(14,116,144,.45)}
 /* video thumbs: the teal grade wash is a dark-ground device; paper keeps them raw */
-:is(section[aria-labelledby="quo-h"],section.metrics,section.founder) .vt-play img{filter:none}
-:is(section[aria-labelledby="quo-h"],section.metrics,section.founder) .vt-play::after{content:none}
-/* founder photo: half-strength ink vignette + teal wash for the light bench */
-:is(section[aria-labelledby="quo-h"],section.metrics,section.founder) .f-photo .core::after{background:linear-gradient(200deg,rgba(15,23,42,0) 45%,rgba(15,23,42,.24)),radial-gradient(90% 70% at 30% 0%,rgba(14,116,144,.10),transparent 60%)}
+:is(section[aria-labelledby="quo-h"],section.founder) .vt-play img{filter:none}
+:is(section[aria-labelledby="quo-h"],section.founder) .vt-play::after{content:none}
+/* founder photo: raw, no vignette or wash (Ramiro 08-21: natural colors) */
+:is(section[aria-labelledby="quo-h"],section.founder) .f-photo .core::after{content:none}
 
-/* ---- band 4: deep teal CTA (the live site's "blue band" move) ---- */
+/* ---- band 3: cyan signal stripe (metrics, the live site's band move) ---- */
+section.metrics{
+  --g0:#22D3EE; --g1:#22D3EE; --g2:#4ADEF2;
+  --ink:#0F172A; --mut:#0B4A5C; --dim:#0B4A5C;
+  --line:rgba(5,36,48,.25); --line2:rgba(5,36,48,.40);
+  /* --cy -> deep ink-teal: metric hovers and focus resolve dark on cyan */
+  --cy:#052430;
+  background:#22D3EE;
+  color:var(--ink);
+}
+section.metrics ::selection{background:rgba(5,36,48,.30);color:#F7FAFC}
+/* base hover wash is cyan-on-cyan here */
+section.metrics a.met:hover{background:rgba(5,36,48,.07)}
+
+/* ---- band 6: deep teal CTA (the live site's "blue band" close) ---- */
 :is(section.final,section[aria-label="Book a call"]){
   --ink:#F7FAFC; --mut:rgba(247,250,252,.92); --dim:rgba(247,250,252,.82);
   --line:rgba(247,250,252,.16); --line2:rgba(247,250,252,.30);
