@@ -213,6 +213,8 @@ body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opa
 
 
 /* ============ SERVICES (modules) ============ */
+.ig-emb{width:100%;height:720px;border:0;border-radius:var(--r-sm);background:#fff;display:block}
+.tm img{width:100%;height:auto;aspect-ratio:1/1;object-fit:cover;border-radius:var(--r-sm);display:block;margin-bottom:16px;filter:saturate(.92)}
 .mods{display:grid;grid-template-columns:repeat(6,1fr);grid-auto-rows:minmax(150px,auto);gap:14px;margin-top:14px}
 .mod{border-radius:var(--r-lg)}
 .mod .core{padding:26px;display:flex;flex-direction:column;justify-content:flex-end;gap:8px}
@@ -231,7 +233,7 @@ body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opa
 
 /* ============ METRICS ============ */
 .metrics{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding-block:78px}
-.met-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;text-align:center}
+.met-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;text-align:center}
 /* numerals in ink: saturated cyan stays the "act here" currency; the linked tiles light up on hover */
 .met b{display:block;font-family:var(--disp);font-weight:800;font-size:clamp(2.6rem,4.4vw,3.6rem);color:var(--ink);font-variant-numeric:tabular-nums;letter-spacing:-.03em;line-height:1;transition:color .5s var(--ez2)}
 /* direct child only: .cnt inside <b> must keep the display size */
@@ -535,7 +537,7 @@ footer{border-top:1px solid var(--line);padding:72px 0 40px;background:rgba(12,2
   <div class="wrap">
     <!-- Claim geográfico verificado 2026-07: clientes activos en US + Canadá (Markham ON). Sin evidencia de
          España/Latam en sitio ni registros: no afirmar países específicos hasta que Gabriel los confirme. -->
-    <h2 id="trust-h" class="ro" style="text-align:center;font-size:.8rem;font-weight:500;margin-bottom:30px">Trusted by 200+ dental practices worldwide</h2>
+    <h2 id="trust-h" class="ro" style="text-align:center;font-size:.8rem;font-weight:500;margin-bottom:30px">Trusted by 300+ dental practices</h2>
     <div class="logos rv">
       <img src="assets/img/logo-dominguez.webp" alt="Dominguez y Aparicio Clinica Dental" style="height:44px" width="167" height="96" loading="lazy" decoding="async">
       <img src="assets/img/logo-cukier.webp" alt="Glendale Family Dental, Robert P. Cukier DDS" width="582" height="96" loading="lazy" decoding="async">
@@ -637,22 +639,7 @@ footer{border-top:1px solid var(--line);padding:72px 0 40px;background:rgba(12,2
     </div>
     <!-- PENDIENTE: contexto de cada testimonio (cargo + clínica + ciudad). Verificado 2026-07: el sitio live
          tampoco lo publica (solo nombre + foto + quote), así que el dato hay que pedirlo a Gabriel/CSMs.
-         Los roles anteriores se removieron por inventados; solo nombres verificados hasta tener el contexto real.
-         PENDIENTE: texto completo del primer quote (hoy con elisiones "...") si existe la versión íntegra. -->
-    <div class="quotes">
-      <figure class="shell rv"><div class="core q-core">
-        <blockquote>"Working with Gabriel and his team has been one of the best decisions we have ever made. They were able to bring in new business every month in ways we couldn't before..."</blockquote>
-        <figcaption><b>Saulo Valderrábano</b></figcaption>
-      </div></figure>
-      <figure class="shell rv" style="--d:.1s"><div class="core q-core">
-        <blockquote>"...A great tool to obtain first-quality visits aimed at dental implant treatments, they've been able to fill up our calendar. 100% recommended."</blockquote>
-        <figcaption><b>Dr. Yaritza Dominguez</b></figcaption>
-      </div></figure>
-      <figure class="shell rv" style="--d:.16s"><div class="core q-core">
-        <blockquote>"I found The Digital Smile Team very professional. Always available, prepared in the field, and brings results."</blockquote>
-        <figcaption><b>Carolina Bertaggia</b></figcaption>
-      </div></figure>
-    </div>
+         Los roles anteriores se removieron por inventados; solo nombres verificados hasta tener el contexto real. -->
     <div class="rv" style="margin-top:38px;text-align:center">
       <a class="btn btn-s" href="case-studies/">Read the full case studies <span class="arr"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" fill="none" stroke="#22D3EE" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
     </div>
@@ -662,18 +649,17 @@ footer{border-top:1px solid var(--line);padding:72px 0 40px;background:rgba(12,2
 <section class="metrics" aria-labelledby="met-h">
   <div class="wrap">
     <h2 id="met-h" class="vh">Results in numbers</h2>
-    <!-- 200+ y 35,000+ = cifras del sitio live (voicenote Gabriel 08-12). $780K (case study Kissimmee,
-         sheets TDS) y 5.4X ROI (case study Plano, cifra corregida y aprobada) verificados, linkean a su case study. -->
+    <!-- 300+ practices = cifra CEO (Gabriel 08-23, corrige la cifra vieja del sitio live). 35,000+ = cifra del sitio live,
+         PLACEHOLDER hasta que Estefania pase el estimado de leads generados para todos los clientes (pedido Gabriel 08-23).
+         Los otros 2 tiles (case studies Kissimmee y Plano) los sacó Gabriel: "the other 2 data points take them out". -->
     <!-- PENDIENTE: producción total atribuida en $ y # de casos de alto valor. Verificado 2026-07: NO existe
          agregado en ningún sistema (los trackers no registran tipo de tratamiento); los únicos $ auditables
          por cliente son los de los case studies linkeados abajo. Armar el agregado requiere sumar los
          Lead Quality sheets por cliente o extender el sync de GHL a las ~30 subcuentas. -->
     <!-- Números del sitio live (voicenote Gabriel 08-12) + los 2 case-study stats verificados con link -->
     <div class="met-grid">
-      <div class="met rv"><b><span class="cnt" data-target="200" data-suffix="+">200+</span></b><span class="ro scr" data-text="Dental practices">Dental practices</span></div>
+      <div class="met rv"><b><span class="cnt" data-target="300" data-suffix="+">300+</span></b><span class="ro scr" data-text="Dental practices">Dental practices</span></div>
       <div class="met rv" style="--d:.08s"><b><span class="cnt" data-target="35000" data-comma data-suffix="+">35,000+</span></b><span class="ro scr" data-text="Patient inquiries">Patient inquiries</span></div>
-      <a class="met rv" style="--d:.16s" href="blog-posts/case-study-your-kissimmee-dentist/"><b><span class="cnt" data-target="780" data-prefix="$" data-suffix="K">$780K</span></b><span class="ro scr" data-text="Treatment plans presented, Kissimmee">Treatment plans presented, Kissimmee</span></a>
-      <a class="met rv" style="--d:.24s" href="https://www.thedigitalsmile.com/plano-smile-studio"><b><span class="cnt" data-target="5.4" data-dec="1" data-suffix="X">5.4X</span></b><span class="ro scr" data-text="ROI in 4 months, Plano Smile Studio">ROI in 4 months, Plano Smile Studio</span></a>
     </div>
   </div>
 </section>
@@ -711,17 +697,12 @@ footer{border-top:1px solid var(--line);padding:72px 0 40px;background:rgba(12,2
         <h3>ChatGPT Ranking</h3>
         <p>When patients ask ChatGPT for a dentist, your practice gets recommended.</p>
       </div></div></div>
-      <div class="mod m-2 rv" style="--d:.1s"><div class="shell" style="height:100%"><div class="core">
-        <div class="mod-ic brand" role="img" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M7.0301.084c-1.2768.0602-2.1487.264-2.911.5634-.7888.3075-1.4575.72-2.1228 1.3877-.6652.6677-1.075 1.3368-1.3802 2.127-.2954.7638-.4956 1.6365-.552 2.914-.0564 1.2775-.0689 1.6882-.0626 4.947.0062 3.2586.0206 3.6671.0825 4.9473.061 1.2765.264 2.1482.5635 2.9107.308.7889.72 1.4573 1.388 2.1228.6679.6655 1.3365 1.0743 2.1285 1.38.7632.295 1.6361.4961 2.9134.552 1.2773.056 1.6884.069 4.9462.0627 3.2578-.0062 3.668-.0207 4.9478-.0814 1.28-.0607 2.147-.2652 2.9098-.5633.7889-.3086 1.4578-.72 2.1228-1.3881.665-.6682 1.0745-1.3378 1.3795-2.1284.2957-.7632.4966-1.636.552-2.9124.056-1.2809.0692-1.6898.063-4.948-.0063-3.2583-.021-3.6668-.0817-4.9465-.0607-1.2797-.264-2.1487-.5633-2.9117-.3084-.7889-.72-1.4568-1.3876-2.1228C21.2982 1.33 20.628.9208 19.8378.6165 19.074.321 18.2017.1197 16.9244.0645 15.6471.0093 15.236-.005 11.977.0014 8.718.0076 8.31.0215 7.0301.0839m.1402 21.6932c-1.17-.0509-1.8053-.2453-2.2287-.408-.5606-.216-.96-.4771-1.3819-.895-.422-.4178-.6811-.8186-.9-1.378-.1644-.4234-.3624-1.058-.4171-2.228-.0595-1.2645-.072-1.6442-.079-4.848-.007-3.2037.0053-3.583.0607-4.848.05-1.169.2456-1.805.408-2.2282.216-.5613.4762-.96.895-1.3816.4188-.4217.8184-.6814 1.3783-.9003.423-.1651 1.0575-.3614 2.227-.4171 1.2655-.06 1.6447-.072 4.848-.079 3.2033-.007 3.5835.005 4.8495.0608 1.169.0508 1.8053.2445 2.228.408.5608.216.96.4754 1.3816.895.4217.4194.6816.8176.9005 1.3787.1653.4217.3617 1.056.4169 2.2263.0602 1.2655.0739 1.645.0796 4.848.0058 3.203-.0055 3.5834-.061 4.848-.051 1.17-.245 1.8055-.408 2.2294-.216.5604-.4763.96-.8954 1.3814-.419.4215-.8181.6811-1.3783.9-.4224.1649-1.0577.3617-2.2262.4174-1.2656.0595-1.6448.072-4.8493.079-3.2045.007-3.5825-.006-4.848-.0608M16.953 5.5864A1.44 1.44 0 1 0 18.39 4.144a1.44 1.44 0 0 0-1.437 1.4424M5.8385 12.012c.0067 3.4032 2.7706 6.1557 6.173 6.1493 3.4026-.0065 6.157-2.7701 6.1506-6.1733-.0065-3.4032-2.771-6.1565-6.174-6.1498-3.403.0067-6.156 2.771-6.1496 6.1738M8 12.0077a4 4 0 1 1 4.008 3.9921A3.9996 3.9996 0 0 1 8 12.0077"/></svg></div>
-        <h3>Instagram</h3>
-        <p>Visual storytelling that makes your practice the obvious local choice.</p>
-      </div></div></div>
-      <div class="mod m-2 m-dots rv" style="--d:.22s"><div class="shell" style="height:100%"><div class="core">
+      <div class="mod m-3 m-dots rv" style="--d:.22s"><div class="shell" style="height:100%"><div class="core">
         <div class="mod-ic brand" role="img" aria-label="Google Calendar"><svg viewBox="0 0 24 24"><path d="M18.316 5.684H24v12.632h-5.684V5.684zM5.684 24h12.632v-5.684H5.684V24zM18.316 5.684V0H1.895A1.894 1.894 0 0 0 0 1.895v16.421h5.684V5.684h12.632zm-7.207 6.25v-.065c.272-.144.5-.349.687-.617s.279-.595.279-.982c0-.379-.099-.72-.3-1.025a2.05 2.05 0 0 0-.832-.714 2.703 2.703 0 0 0-1.197-.257c-.6 0-1.094.156-1.481.467-.386.311-.65.671-.793 1.078l1.085.452c.086-.249.224-.461.413-.633.189-.172.445-.257.767-.257.33 0 .602.088.816.264a.86.86 0 0 1 .322.703c0 .33-.12.589-.36.778-.24.19-.535.284-.886.284h-.567v1.085h.633c.407 0 .748.109 1.02.327.272.218.407.499.407.843 0 .336-.129.614-.387.832s-.565.327-.924.327c-.351 0-.651-.103-.897-.311-.248-.208-.422-.502-.521-.881l-1.096.452c.178.616.505 1.082.977 1.401.472.319.984.478 1.538.477a2.84 2.84 0 0 0 1.293-.291c.382-.193.684-.458.902-.794.218-.336.327-.72.327-1.149 0-.429-.115-.797-.344-1.105a2.067 2.067 0 0 0-.881-.689zm2.093-1.931l.602.913L15 10.045v5.744h1.187V8.446h-.827l-2.158 1.557zM22.105 0h-3.289v5.184H24V1.895A1.894 1.894 0 0 0 22.105 0zm-3.289 23.5l4.684-4.684h-4.684V23.5zM0 22.105C0 23.152.848 24 1.895 24h3.289v-5.184H0v3.289z"/></svg></div>
         <h3>Appointment Setting</h3>
         <p>Every lead answered, qualified, and put on your calendar.</p>
       </div></div></div>
-      <div class="mod m-2 m-grad rv" style="--d:.28s"><div class="shell" style="height:100%"><div class="core">
+      <div class="mod m-3 m-grad rv" style="--d:.28s"><div class="shell" style="height:100%"><div class="core">
         <div class="mod-ic brand" role="img" aria-label="Meta"><svg viewBox="0 0 24 24"><path d="M6.915 4.03c-1.968 0-3.683 1.28-4.871 3.113C.704 9.208 0 11.883 0 14.449c0 .706.07 1.369.21 1.973a6.624 6.624 0 0 0 .265.86 5.297 5.297 0 0 0 .371.761c.696 1.159 1.818 1.927 3.593 1.927 1.497 0 2.633-.671 3.965-2.444.76-1.012 1.144-1.626 2.663-4.32l.756-1.339.186-.325c.061.1.121.196.183.3l2.152 3.595c.724 1.21 1.665 2.556 2.47 3.314 1.046.987 1.992 1.22 3.06 1.22 1.075 0 1.876-.355 2.455-.843a3.743 3.743 0 0 0 .81-.973c.542-.939.861-2.127.861-3.745 0-2.72-.681-5.357-2.084-7.45-1.282-1.912-2.957-2.93-4.716-2.93-1.047 0-2.088.467-3.053 1.308-.652.57-1.257 1.29-1.82 2.05-.69-.875-1.335-1.547-1.958-2.056-1.182-.966-2.315-1.303-3.454-1.303zm10.16 2.053c1.147 0 2.188.758 2.992 1.999 1.132 1.748 1.647 4.195 1.647 6.4 0 1.548-.368 2.9-1.839 2.9-.58 0-1.027-.23-1.664-1.004-.496-.601-1.343-1.878-2.832-4.358l-.617-1.028a44.908 44.908 0 0 0-1.255-1.98c.07-.109.141-.224.211-.327 1.12-1.667 2.118-2.602 3.358-2.602zm-10.201.553c1.265 0 2.058.791 2.675 1.446.307.327.737.871 1.234 1.579l-1.02 1.566c-.757 1.163-1.882 3.017-2.837 4.338-1.191 1.649-1.81 1.817-2.486 1.817-.524 0-1.038-.237-1.383-.794-.263-.426-.464-1.13-.464-2.046 0-2.221.63-4.535 1.66-6.088.454-.687.964-1.226 1.533-1.533a2.264 2.264 0 0 1 1.088-.285z"/></svg></div>
         <h3>Facebook Advertising</h3>
         <p>Reach an audience effectively with highly targeted Facebook ads that get more patients and engagement.</p>
@@ -828,7 +809,7 @@ footer{border-top:1px solid var(--line);padding:72px 0 40px;background:rgba(12,2
 <section class="final" aria-labelledby="cta-h">
   <div class="wrap">
     <div class="shell hud rv"><div class="core">
-      <h2 id="cta-h">Join our satisfied customers worldwide</h2>
+      <h2 id="cta-h">Join our satisfied customers</h2>
       <p style="margin-bottom:34px">Let's collaborate and grow your practice. Get in touch with us.</p>
       <a class="btn btn-p pulse" href="book-a-call/" data-evt="cta_book_final">Book an Expansion Call <span class="arr"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" fill="none" stroke="#052430" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
     </div></div>
@@ -889,7 +870,7 @@ footer{border-top:1px solid var(--line);padding:72px 0 40px;background:rgba(12,2
       "@type": "Organization",
       "name": "The Digital Smile",
       "url": "https://www.thedigitalsmile.com/",
-      "description": "Helping dentists create an ROI driven patient acquisition system: SEO, ChatGPT Ranking, Instagram, appointment setting, Facebook advertising, PPC, and sales training for dental practices.",
+      "description": "Helping dentists create an ROI driven patient acquisition system: SEO, ChatGPT Ranking, appointment setting, Facebook advertising, PPC, and sales training for dental practices.",
       "sameAs": [
         "https://instagram.com/thedigitalsmile",
         "https://facebook.com/thedigitalsmile"

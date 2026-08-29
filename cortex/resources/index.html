@@ -213,6 +213,8 @@ body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opa
 
 
 /* ============ SERVICES (modules) ============ */
+.ig-emb{width:100%;height:720px;border:0;border-radius:var(--r-sm);background:#fff;display:block}
+.tm img{width:100%;height:auto;aspect-ratio:1/1;object-fit:cover;border-radius:var(--r-sm);display:block;margin-bottom:16px;filter:saturate(.92)}
 .mods{display:grid;grid-template-columns:repeat(6,1fr);grid-auto-rows:minmax(150px,auto);gap:14px;margin-top:14px}
 .mod{border-radius:var(--r-lg)}
 .mod .core{padding:26px;display:flex;flex-direction:column;justify-content:flex-end;gap:8px}
@@ -231,7 +233,7 @@ body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opa
 
 /* ============ METRICS ============ */
 .metrics{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding-block:78px}
-.met-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;text-align:center}
+.met-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;text-align:center}
 /* numerals in ink: saturated cyan stays the "act here" currency; the linked tiles light up on hover */
 .met b{display:block;font-family:var(--disp);font-weight:800;font-size:clamp(2.6rem,4.4vw,3.6rem);color:var(--ink);font-variant-numeric:tabular-nums;letter-spacing:-.03em;line-height:1;transition:color .5s var(--ez2)}
 /* direct child only: .cnt inside <b> must keep the display size */
@@ -522,10 +524,10 @@ footer{border-top:1px solid var(--line);padding:72px 0 40px;background:rgba(12,2
         <p style="margin-top:10px">Guides and playbooks on patient acquisition, local SEO, and practice growth.</p>
         <p class="ro" style="margin-top:14px">Read the blog</p>
       </div></a>
-      <a class="shell rv" style="--d:.08s" href="https://www.thedigitalsmile.com/ai-visibility-checker"><div class="core q-core spot">
+      <a class="shell rv" style="--d:.08s" href="#rs-scan-h"><div class="core q-core spot">
         <h3>Free AI Visibility Scan</h3>
         <p style="margin-top:10px">A 16-point audit of how AI assistants see your practice, with a graded report in 90 seconds.</p>
-        <p class="ro" style="margin-top:14px">Scan your practice</p>
+        <p class="ro" style="margin-top:14px">Scan your practice below</p>
       </div></a>
       <a class="shell rv" style="--d:.16s" href="../case-studies/"><div class="core q-core spot">
         <h3>Client Success Stories</h3>
@@ -536,10 +538,46 @@ footer{border-top:1px solid var(--line);padding:72px 0 40px;background:rgba(12,2
   </div>
 </section>
 
+<section aria-labelledby="rs-scan-h">
+  <div class="wrap">
+    <span class="eyebrow rv">Free AI visibility scan</span>
+    <h2 id="rs-scan-h" class="rv" style="margin:18px 0 14px;max-width:22ch">Is your practice invisible to AI?</h2>
+    <p class="rv" style="--d:.1s;max-width:52ch">Run the scan right here: a 16-point audit of how AI assistants see your practice, with a graded report in 90 seconds.</p>
+    <!-- el scanner real del sitio live: mismo script hosteado, monta solo en #tds-ai-scanner -->
+    <div id="tds-ai-scanner" class="rv" style="--d:.16s;margin-top:28px"></div>
+    <script src="https://cdn.jsdelivr.net/gh/tds-tech/tds-cdn@main/webflow/tds-ai-scanner-1.1.1.js" defer></script>
+  </div>
+</section>
+
+<section aria-labelledby="rs-vid-h">
+  <div class="wrap">
+    <span class="eyebrow rv">Videos</span>
+    <h2 id="rs-vid-h" class="rv" style="margin:18px 0 14px;max-width:24ch">Practice growth, one short at a time</h2>
+    <p class="rv" style="--d:.1s;max-width:52ch">The same library we publish on Instagram: playbooks, breakdowns, and lessons from the practices we work with.</p>
+    <div class="mods" style="margin-top:28px">
+      <div class="mod m-2 rv"><iframe class="ig-emb" src="https://www.instagram.com/p/DLiE31nTrTQ/embed" loading="lazy" title="Instagram post 1 of 15 from The Digital Smile" allowfullscreen></iframe></div>
+      <div class="mod m-2 rv" style="--d:.08s"><iframe class="ig-emb" src="https://www.instagram.com/p/DIcX2AYTaaS/embed" loading="lazy" title="Instagram post 2 of 15 from The Digital Smile" allowfullscreen></iframe></div>
+      <div class="mod m-2 rv" style="--d:.16s"><iframe class="ig-emb" src="https://www.instagram.com/p/C0kITOasn-T/embed" loading="lazy" title="Instagram post 3 of 15 from The Digital Smile" allowfullscreen></iframe></div>
+      <div class="mod m-2 rv"><iframe class="ig-emb" src="https://www.instagram.com/p/DBzdvzHy3GO/embed" loading="lazy" title="Instagram post 4 of 15 from The Digital Smile" allowfullscreen></iframe></div>
+      <div class="mod m-2 rv" style="--d:.08s"><iframe class="ig-emb" src="https://www.instagram.com/p/C0SG3Z2saVL/embed" loading="lazy" title="Instagram post 5 of 15 from The Digital Smile" allowfullscreen></iframe></div>
+      <div class="mod m-2 rv" style="--d:.16s"><iframe class="ig-emb" src="https://www.instagram.com/p/C0hO7ivsjZ-/embed" loading="lazy" title="Instagram post 6 of 15 from The Digital Smile" allowfullscreen></iframe></div>
+      <div class="mod m-2 rv"><iframe class="ig-emb" src="https://www.instagram.com/p/C5q1dM-MHPS/embed" loading="lazy" title="Instagram post 7 of 15 from The Digital Smile" allowfullscreen></iframe></div>
+      <div class="mod m-2 rv" style="--d:.08s"><iframe class="ig-emb" src="https://www.instagram.com/p/CzEv9M8sLSK/embed" loading="lazy" title="Instagram post 8 of 15 from The Digital Smile" allowfullscreen></iframe></div>
+      <div class="mod m-2 rv" style="--d:.16s"><iframe class="ig-emb" src="https://www.instagram.com/p/C4i_FzdLHrM/embed" loading="lazy" title="Instagram post 9 of 15 from The Digital Smile" allowfullscreen></iframe></div>
+      <div class="mod m-2 rv"><iframe class="ig-emb" src="https://www.instagram.com/p/C4JB8ikMX49/embed" loading="lazy" title="Instagram post 10 of 15 from The Digital Smile" allowfullscreen></iframe></div>
+      <div class="mod m-2 rv" style="--d:.08s"><iframe class="ig-emb" src="https://www.instagram.com/p/C3ij_6lMGtf/embed" loading="lazy" title="Instagram post 11 of 15 from The Digital Smile" allowfullscreen></iframe></div>
+      <div class="mod m-2 rv" style="--d:.16s"><iframe class="ig-emb" src="https://www.instagram.com/p/C3TP--ys86e/embed" loading="lazy" title="Instagram post 12 of 15 from The Digital Smile" allowfullscreen></iframe></div>
+      <div class="mod m-2 rv"><iframe class="ig-emb" src="https://www.instagram.com/p/C3GWZkdsO8y/embed" loading="lazy" title="Instagram post 13 of 15 from The Digital Smile" allowfullscreen></iframe></div>
+      <div class="mod m-2 rv" style="--d:.08s"><iframe class="ig-emb" src="https://www.instagram.com/p/DK99LCQz7D9/embed" loading="lazy" title="Instagram post 14 of 15 from The Digital Smile" allowfullscreen></iframe></div>
+      <div class="mod m-2 rv" style="--d:.16s"><iframe class="ig-emb" src="https://www.instagram.com/p/C2Uv63nxG17/embed" loading="lazy" title="Instagram post 15 of 15 from The Digital Smile" allowfullscreen></iframe></div>
+    </div>
+  </div>
+</section>
+
 <section class="final" aria-labelledby="rs-cta-h" style="padding-top:40px">
   <div class="wrap">
     <div class="shell hud rv"><div class="core">
-      <h2 id="rs-cta-h">Join our satisfied customers worldwide</h2>
+      <h2 id="rs-cta-h">Join our satisfied customers</h2>
       <p style="margin-bottom:34px">Let's collaborate and grow your practice. Get in touch with us.</p>
       <a class="btn btn-p pulse" href="../book-a-call/">Book an Expansion Call <span class="arr"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" fill="none" stroke="#052430" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
     </div></div>
@@ -600,7 +638,7 @@ footer{border-top:1px solid var(--line);padding:72px 0 40px;background:rgba(12,2
       "@type": "Organization",
       "name": "The Digital Smile",
       "url": "https://www.thedigitalsmile.com/",
-      "description": "Helping dentists create an ROI driven patient acquisition system: SEO, ChatGPT Ranking, Instagram, appointment setting, Facebook advertising, PPC, and sales training for dental practices.",
+      "description": "Helping dentists create an ROI driven patient acquisition system: SEO, ChatGPT Ranking, appointment setting, Facebook advertising, PPC, and sales training for dental practices.",
       "sameAs": [
         "https://instagram.com/thedigitalsmile",
         "https://facebook.com/thedigitalsmile"

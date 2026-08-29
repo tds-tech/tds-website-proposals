@@ -213,6 +213,8 @@ body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opa
 
 
 /* ============ SERVICES (modules) ============ */
+.ig-emb{width:100%;height:720px;border:0;border-radius:var(--r-sm);background:#fff;display:block}
+.tm img{width:100%;height:auto;aspect-ratio:1/1;object-fit:cover;border-radius:var(--r-sm);display:block;margin-bottom:16px;filter:saturate(.92)}
 .mods{display:grid;grid-template-columns:repeat(6,1fr);grid-auto-rows:minmax(150px,auto);gap:14px;margin-top:14px}
 .mod{border-radius:var(--r-lg)}
 .mod .core{padding:26px;display:flex;flex-direction:column;justify-content:flex-end;gap:8px}
@@ -231,7 +233,7 @@ body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opa
 
 /* ============ METRICS ============ */
 .metrics{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding-block:78px}
-.met-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;text-align:center}
+.met-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;text-align:center}
 /* numerals in ink: saturated cyan stays the "act here" currency; the linked tiles light up on hover */
 .met b{display:block;font-family:var(--disp);font-weight:800;font-size:clamp(2.6rem,4.4vw,3.6rem);color:var(--ink);font-variant-numeric:tabular-nums;letter-spacing:-.03em;line-height:1;transition:color .5s var(--ez2)}
 /* direct child only: .cnt inside <b> must keep the display size */
@@ -571,14 +573,14 @@ footer{border-top:1px solid var(--line);padding:72px 0 40px;background:rgba(12,2
     <p class="ro rv">Team members</p>
     <h2 id="ab-team-h" class="rv" style="margin-top:14px;max-width:20ch">Meet our incredible team</h2>
     <div class="mods">
-      <div class="mod m-2 rv"><div class="shell" style="height:100%"><div class="core"><h3>Gabriel Segall</h3><p>Founder and CEO</p></div></div></div>
-      <div class="mod m-2 rv" style="--d:.06s"><div class="shell" style="height:100%"><div class="core"><h3>Valentina Millan</h3><p>Operations Assistant</p></div></div></div>
-      <div class="mod m-2 rv" style="--d:.12s"><div class="shell" style="height:100%"><div class="core"><h3>Ramiro Morales</h3><p>Tech and Operations Specialist</p></div></div></div>
-      <div class="mod m-2 rv" style="--d:.06s"><div class="shell" style="height:100%"><div class="core"><h3>Estefania Millan</h3><p>Media Buyer</p></div></div></div>
-      <div class="mod m-2 rv" style="--d:.12s"><div class="shell" style="height:100%"><div class="core"><h3>Meagan Gautreau</h3><p>Customer Success Manager</p></div></div></div>
-      <div class="mod m-2 rv" style="--d:.18s"><div class="shell" style="height:100%"><div class="core"><h3>Aiskel Fonseca</h3><p>Patient Coordinator</p></div></div></div>
-      <div class="mod m-3 rv" style="--d:.12s"><div class="shell" style="height:100%"><div class="core"><h3>Moises Pacheco</h3><p>Patient Coordinator</p></div></div></div>
-      <div class="mod m-3 rv" style="--d:.18s"><div class="shell" style="height:100%"><div class="core"><h3>Andres Angarita</h3><p>SEO Specialist</p></div></div></div>
+      <div class="mod m-2 rv"><div class="shell" style="height:100%"><div class="core tm"><img src="https://cdn.prod.website-files.com/644b615f168e3b22d5b6681a/6797e254851f8ccf3169839b_T016AP07E92-U016UCW6NDN-c1e976e16334-512-p-500.jpg" width="500" height="500" loading="lazy" decoding="async" alt="Gabriel Segall, Founder and CEO at The Digital Smile"><h3>Gabriel Segall</h3><p>Founder and CEO</p></div></div></div>
+      <div class="mod m-2 rv" style="--d:.06s"><div class="shell" style="height:100%"><div class="core tm"><img src="https://cdn.prod.website-files.com/644b615f168e3b22d5b6681a/694369f1b165b3561a2b1b95_ChatGPT%20Image%20Dec%2017%2C%202025%2C%2008_41_41%20PM-p-500.png" width="500" height="500" loading="lazy" decoding="async" alt="Valentina Millan, Operations Assistant at The Digital Smile"><h3>Valentina Millan</h3><p>Operations Assistant</p></div></div></div>
+      <div class="mod m-2 rv" style="--d:.12s"><div class="shell" style="height:100%"><div class="core tm"><img src="https://cdn.prod.website-files.com/644b615f168e3b22d5b6681a/68d54b2ba56fc29fc74eef5a_Ramiro%20(Mensajes%20directos)%20-%20GSR%20Media%20-%203%20elementos%20nuevos%20-%20Slack%202025-09-25%20at%208.00.33%20AM.jpg" width="500" height="500" loading="lazy" decoding="async" alt="Ramiro Morales, Tech and Operations Specialist at The Digital Smile"><h3>Ramiro Morales</h3><p>Tech and Operations Specialist</p></div></div></div>
+      <div class="mod m-2 rv"><div class="shell" style="height:100%"><div class="core tm"><img src="https://cdn.prod.website-files.com/644b615f168e3b22d5b6681a/69436b46cfc7fa4f758e0df3_ChatGPT%20Image%20Dec%2017%2C%202025%2C%2008_47_26%20PM-p-500.png" width="500" height="500" loading="lazy" decoding="async" alt="Estefania Millan, Media Buyer at The Digital Smile"><h3>Estefania Millan</h3><p>Media Buyer</p></div></div></div>
+      <div class="mod m-2 rv" style="--d:.06s"><div class="shell" style="height:100%"><div class="core tm"><img src="https://cdn.prod.website-files.com/644b615f168e3b22d5b6681a/6a6adfbf1761d2ddeb5236a3_meagan-gautreau-p-500.jpg" width="500" height="500" loading="lazy" decoding="async" alt="Meagan Gautreau, Customer Success Manager at The Digital Smile"><h3>Meagan Gautreau</h3><p>Customer Success Manager</p></div></div></div>
+      <div class="mod m-2 rv" style="--d:.12s"><div class="shell" style="height:100%"><div class="core tm"><img src="https://cdn.prod.website-files.com/644b615f168e3b22d5b6681a/694314c2d57daf0e15af571a_ChatGPT%20Image%20Dec%2017%2C%202025%2C%2002_22_36%20PM-p-500.png" width="500" height="500" loading="lazy" decoding="async" alt="Aiskel Fonseca, Patient Coordinator at The Digital Smile"><h3>Aiskel Fonseca</h3><p>Patient Coordinator</p></div></div></div>
+      <div class="mod m-2 rv"><div class="shell" style="height:100%"><div class="core tm"><img src="https://cdn.prod.website-files.com/644b615f168e3b22d5b6681a/694305c5431f111ab81ada5c_ChatGPT%20Image%20Dec%2017%2C%202025%2C%2001_34_06%20PM-p-500.png" width="500" height="500" loading="lazy" decoding="async" alt="Moises Pacheco, Patient Coordinator at The Digital Smile"><h3>Moises Pacheco</h3><p>Patient Coordinator</p></div></div></div>
+      <div class="mod m-2 rv" style="--d:.06s"><div class="shell" style="height:100%"><div class="core tm"><img src="https://cdn.prod.website-files.com/644b615f168e3b22d5b6681a/6a6adfbc7583793304d0e3ef_muhammad-zeeshan-p-500.jpg" width="500" height="500" loading="lazy" decoding="async" alt="Muhammed Zeeshan, SEO Specialist at The Digital Smile"><h3>Muhammed Zeeshan</h3><p>SEO Specialist</p></div></div></div>
     </div>
   </div>
 </section>
@@ -597,7 +599,7 @@ footer{border-top:1px solid var(--line);padding:72px 0 40px;background:rgba(12,2
 <section class="final" aria-labelledby="ab-cta-h" style="padding-top:0">
   <div class="wrap">
     <div class="shell hud rv"><div class="core">
-      <h2 id="ab-cta-h">Join our satisfied customers worldwide</h2>
+      <h2 id="ab-cta-h">Join our satisfied customers</h2>
       <p style="margin-bottom:34px">Let's collaborate and grow your practice. Get in touch with us.</p>
       <a class="btn btn-p pulse" href="../book-a-call/">Book an Expansion Call <span class="arr"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" fill="none" stroke="#052430" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
     </div></div>
@@ -658,7 +660,7 @@ footer{border-top:1px solid var(--line);padding:72px 0 40px;background:rgba(12,2
       "@type": "Organization",
       "name": "The Digital Smile",
       "url": "https://www.thedigitalsmile.com/",
-      "description": "Helping dentists create an ROI driven patient acquisition system: SEO, ChatGPT Ranking, Instagram, appointment setting, Facebook advertising, PPC, and sales training for dental practices.",
+      "description": "Helping dentists create an ROI driven patient acquisition system: SEO, ChatGPT Ranking, appointment setting, Facebook advertising, PPC, and sales training for dental practices.",
       "sameAs": [
         "https://instagram.com/thedigitalsmile",
         "https://facebook.com/thedigitalsmile"

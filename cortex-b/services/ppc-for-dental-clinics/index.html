@@ -213,6 +213,8 @@ body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opa
 
 
 /* ============ SERVICES (modules) ============ */
+.ig-emb{width:100%;height:720px;border:0;border-radius:var(--r-sm);background:#fff;display:block}
+.tm img{width:100%;height:auto;aspect-ratio:1/1;object-fit:cover;border-radius:var(--r-sm);display:block;margin-bottom:16px;filter:saturate(.92)}
 .mods{display:grid;grid-template-columns:repeat(6,1fr);grid-auto-rows:minmax(150px,auto);gap:14px;margin-top:14px}
 .mod{border-radius:var(--r-lg)}
 .mod .core{padding:26px;display:flex;flex-direction:column;justify-content:flex-end;gap:8px}
@@ -231,7 +233,7 @@ body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opa
 
 /* ============ METRICS ============ */
 .metrics{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding-block:78px}
-.met-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;text-align:center}
+.met-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;text-align:center}
 /* numerals in ink: saturated cyan stays the "act here" currency; the linked tiles light up on hover */
 .met b{display:block;font-family:var(--disp);font-weight:800;font-size:clamp(2.6rem,4.4vw,3.6rem);color:var(--ink);font-variant-numeric:tabular-nums;letter-spacing:-.03em;line-height:1;transition:color .5s var(--ez2)}
 /* direct child only: .cnt inside <b> must keep the display size */
@@ -786,7 +788,7 @@ a.met:hover b{color:#0E7490}
       "@type": "Organization",
       "name": "The Digital Smile",
       "url": "https://www.thedigitalsmile.com/",
-      "description": "Helping dentists create an ROI driven patient acquisition system: SEO, ChatGPT Ranking, Instagram, appointment setting, Facebook advertising, PPC, and sales training for dental practices.",
+      "description": "Helping dentists create an ROI driven patient acquisition system: SEO, ChatGPT Ranking, appointment setting, Facebook advertising, PPC, and sales training for dental practices.",
       "sameAs": [
         "https://instagram.com/thedigitalsmile",
         "https://facebook.com/thedigitalsmile"
