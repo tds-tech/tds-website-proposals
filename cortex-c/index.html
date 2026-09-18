@@ -191,25 +191,6 @@ body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opa
 .logos img{height:28px;width:auto;opacity:.55;transition:opacity .5s var(--ez2)}
 .logos img:hover{opacity:.9}
 
-/* ============ ASK AI DEMO ============ */
-.ask-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:56px;align-items:center}
-.chat-core{padding:26px;min-height:380px;display:flex;flex-direction:column}
-.chat-top{display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line);padding-bottom:14px;margin-bottom:20px}
-.chat-log{display:flex;flex-direction:column;gap:14px;flex:1}
-.bub-u:empty,.bub-a:empty{display:none}
-.bub-u{align-self:flex-end;max-width:82%;background:var(--g2);border:1px solid var(--line2);border-radius:var(--r-sm);border-bottom-right-radius:4px;padding:11px 15px;font-size:.93rem;color:var(--ink)}
-.bub-a{align-self:flex-start;max-width:92%;font-size:.95rem;color:var(--mut);line-height:1.65}
-.bub-a .caret{display:inline-block;width:8px;height:1.05em;background:var(--cy);vertical-align:text-bottom;margin-left:2px;animation:blink 1s steps(2) infinite}
-@keyframes blink{50%{opacity:0}}
-.ai-card{margin-top:4px;border:1px solid rgba(34,211,238,.32);border-radius:var(--r-sm);padding:15px 17px;background:rgba(34,211,238,.05);opacity:0;transform:translateY(14px);transition:opacity .7s var(--ez),transform .7s var(--ez)}
-.ai-card.show{opacity:1;transform:none}
-/* ghost pill: filled cyan is reserved for real buttons, this is a label */
-.ai-card .badge{display:inline-block;font-family:var(--mono);font-size:.64rem;letter-spacing:.14em;text-transform:uppercase;color:var(--cy);background:rgba(34,211,238,.12);box-shadow:inset 0 0 0 1px rgba(34,211,238,.35);border-radius:999px;padding:3px 10px;margin-bottom:8px}
-.ai-card strong{font-family:var(--disp);font-size:1.02rem;display:block}
-.ai-card span{font-size:.84rem;color:var(--mut)}
-.replay{display:inline-flex;align-items:center;gap:7px;min-height:44px;padding:0 8px;margin-right:-8px;font-family:var(--mono);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--mut);transition:color .5s var(--ez2)}
-.replay:hover{color:var(--cy)}
-.replay svg{width:13px;height:13px}
 
 
 /* ============ SERVICES (modules) ============ */
@@ -377,7 +358,7 @@ footer{border-top:1px solid var(--line);padding:72px 0 40px;background:rgba(12,2
 
 /* ============ RESPONSIVE ============ */
 @media(max-width:960px){
-  .hero-grid,.ask-grid,.scan-grid,.founder-grid{grid-template-columns:1fr}
+  .hero-grid,.scan-grid,.founder-grid{grid-template-columns:1fr}
   .met-grid{grid-template-columns:repeat(2,1fr)}
   .foot-grid{grid-template-columns:1fr 1fr}
 }
@@ -436,7 +417,7 @@ footer{border-top:1px solid var(--line);padding:72px 0 40px;background:rgba(12,2
 @media(prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
   .rv{opacity:1;transform:none;filter:none;transition:none}
-  .scan-core::before,.bub-a .caret,.pulse,.h1-line,.progress,body::after,.nav{animation:none}
+  .scan-core::before,.pulse,.h1-line,.progress,body::after,.nav{animation:none}
   .tbar{position:fixed}
   .hero-glow{display:none}
   .h1-line{transform:none}
@@ -444,7 +425,6 @@ footer{border-top:1px solid var(--line);padding:72px 0 40px;background:rgba(12,2
   .tilt{transition:none}
   .scan-core::before{display:none}
   .dial .ring-fg{transition:none;stroke-dashoffset:151}
-  .ai-card{transition:none}
   *{transition-duration:.01ms!important}
 }
 
@@ -619,9 +599,9 @@ section[aria-label="Book a call"]{padding-top:112px!important}
       <!-- H1 + sub + CTA: copy verbatim del sitio live (voicenote Gabriel 08-12) -->
       <h1 id="hero-h">
         <span class="h1-mask"><span class="h1-line">Helping Dentists Create An</span></span>
-        <span class="h1-mask"><span class="h1-line"><em>ROI Driven</em> Patient Acquisition System</span></span>
+        <span class="h1-mask"><span class="h1-line"><em>ROI Driven</em> Patient Acquisition System.</span></span>
       </h1>
-      <p class="hero-sub rv" style="--d:.2s">Looking for new patients who need dental implants or aligners? We can help you pack your schedule with the patients that you want.</p>
+      <p class="hero-sub rv" style="--d:.2s">Looking for new patients who need dental implants or aligners? We can help you fill your schedule. If you want to receive a custom market research plan &#128071;</p>
       <div class="hero-ctas rv" style="--d:.32s">
         <a class="btn btn-p pulse" href="book-a-call/" data-evt="cta_book_hero">Book an Expansion Call <span class="arr"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" fill="none" stroke="#052430" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
       </div>
@@ -647,6 +627,29 @@ section[aria-label="Book a call"]{padding-top:112px!important}
       <img src="assets/img/logo-jericho.webp" alt="Jericho Dental" width="605" height="96" loading="lazy" decoding="async">
       <img src="assets/img/logo-alphadental.webp" alt="Alpha Dental Excellence" style="height:40px" width="290" height="96" loading="lazy" decoding="async">
     </div>
+  </div>
+</section>
+
+<section aria-labelledby="mis-h">
+  <div class="wrap" style="max-width:880px">
+    <!-- Secciones "Pack their schedule" + "next level": copy verbatim del sitio live (voicenote Gabriel 09-17: faltaban) -->
+    <h2 id="mis-h" class="rv" style="max-width:26ch">Helping Dental Practices Pack their schedule with the patients that they want.</h2>
+    <p class="rv" style="margin-top:22px;font-size:1.05rem">Our sole goal is to help you increase the number of patients you see on a weekly basis.</p>
+    <p class="rv" style="margin-top:16px">Dentists are again and again disappointed and frustrated with poor results and are stuck. So we're on a mission to bring a viable solution to an industry that is littered with wasted hours and investments on ineffective solutions.</p>
+    <p class="rv" style="margin-top:16px">Our only goal is to get results and that is why we are committed to a proven system that brings tangible results. Our founder, Gabriel created the RTRS system to deliver consistent results to dental practices all over the country.</p>
+    <p class="rv" style="margin-top:16px">For this reason, we are completely transparent with our work and make sure you understand how we work. If you are interested in having a system that can bring you predictable and guaranteed results, click the button below and schedule a call with our team.</p>
+    <div class="rv" style="margin-top:28px">
+      <a class="btn btn-s" href="book-a-call/" data-evt="cta_mission">Contact us <span class="arr"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" fill="none" stroke="#22D3EE" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+    </div>
+  </div>
+</section>
+
+<section aria-labelledby="nxt-h">
+  <div class="wrap" style="max-width:880px">
+    <h2 id="nxt-h" class="rv" style="max-width:24ch">Take your dental practice to the next level</h2>
+    <h3 class="rv" style="margin-top:18px;font-size:1.15rem">Elevate Your Dental Practice with Our Cutting-Edge Digital Solutions</h3>
+    <p class="rv" style="margin-top:16px">Pioneering specialized dental marketing, we tap into the power of your market, propelling practices to unmatched success.</p>
+    <p class="rv" style="margin-top:16px">We're the exclusive agency unlocking untapped potential for dental practices. Our expertise and targeted campaigns ensure domination.</p>
   </div>
 </section>
 
@@ -750,7 +753,9 @@ section[aria-label="Book a call"]{padding-top:112px!important}
 
 <section class="metrics" aria-labelledby="met-h">
   <div class="wrap">
-    <h2 id="met-h" class="vh">Results in numbers</h2>
+    <p class="ro rv">Results that speaks</p>
+    <h2 id="met-h" class="rv" style="margin-top:14px">Maximized revenue through sales</h2>
+    <p class="rv" style="margin-top:10px;margin-bottom:34px">Tap into the goldmine of the untapped market</p>
     <!-- 300+ practices = cifra CEO (Gabriel 08-23, corrige la cifra vieja del sitio live). 35,000+ = cifra del sitio live,
          PLACEHOLDER hasta que Estefania pase el estimado de leads generados para todos los clientes (pedido Gabriel 08-23).
          Los otros 2 tiles (case studies Kissimmee y Plano) los sacó Gabriel: "the other 2 data points take them out". -->
@@ -770,9 +775,9 @@ section[aria-label="Book a call"]{padding-top:112px!important}
   <div class="wrap founder-grid">
     <div class="rv" style="--d:.12s">
       <h2 id="fnd-h">Built by someone who grew up in dentistry.</h2>
-      <blockquote>"I entered the dental sector at an early age since my father is a maxillofacial surgeon. That is why our system is built around what practices actually need."</blockquote>
-      <!-- "RTRS" reemplazado: el acrónimo aparecía sin definición y DATOS REALES no trajo el significado -->
-      <p class="f-bio">Creator of our growth system, committed to transparent, results-first partnerships with every practice we take on.</p>
+      <blockquote>"I entered the dental sector at an early age since my father is a maxillofacial surgeon.</blockquote>
+      <p class="f-bio">This has helped me to understand exactly the needs that practices require and all these years of experience have positioned me to be able to create this system that has helped transform so many clinics.</p>
+      <p class="f-bio" style="margin-top:14px">My mission is to ensure that our team provides the same level of dedication that all the clinics have received so far, helping them achieve their most ambitious goals."</p>
       <p class="f-name"><b>Gabriel Segall</b>Founder, The Digital Smile</p>
     </div>
     <div class="shell hud f-photo rv tilt">
@@ -788,16 +793,17 @@ section[aria-label="Book a call"]{padding-top:112px!important}
     <span class="eyebrow rv">Our services</span>
     <!-- 5 servicios: Instagram y Appointment Setting fuera porque no los damos (Gabriel 08-23, aunque el live los liste). Sin flagship: multi-servicio (voicenote 08-12) -->
     <h2 id="svc-h" class="rv" style="margin-top:18px;max-width:24ch">High-impact services to improve your dental practice business</h2>
+    <p class="rv" style="margin-top:16px;max-width:52ch">Targeted strategies for reaching and engaging the growing local demographic, boosting your dental practice's success and profitability.</p>
     <div class="mods">
       <div class="mod m-3 rv" style="--d:.08s"><div class="shell" style="height:100%"><div class="core spot">
         <div class="mod-ic brand" role="img" aria-label="Google"><svg viewBox="0 0 24 24"><path d="M12.48 10.92v3.28h7.84c-.24 1.84-.853 3.187-1.787 4.133-1.147 1.147-2.933 2.4-6.053 2.4-4.827 0-8.6-3.893-8.6-8.72s3.773-8.72 8.6-8.72c2.6 0 4.507 1.027 5.907 2.347l2.307-2.307C18.747 1.44 16.133 0 12.48 0 5.867 0 .307 5.387.307 12s5.56 12 12.173 12c3.573 0 6.267-1.173 8.373-3.36 2.16-2.16 2.84-5.213 2.84-7.667 0-.76-.053-1.467-.173-2.053H12.48z"/></svg></div>
         <h3>SEO Ranking</h3>
-        <p>Dominate local search results and attract high-intent patients.</p>
+        <p>Dominate local search results and attract high-intent patients. Google presence, boost organic traffic, and position your practice as the #1 choice in your area.</p>
       </div></div></div>
       <div class="mod m-3 m-grad rv" style="--d:.14s"><div class="shell" style="height:100%"><div class="core spot">
         <div class="mod-ic brand" role="img" aria-label="OpenAI"><svg viewBox="0 0 24 24"><path d="M22.2819 9.8211a5.9847 5.9847 0 0 0-.5157-4.9108 6.0462 6.0462 0 0 0-6.5098-2.9A6.0651 6.0651 0 0 0 4.9807 4.1818a5.9847 5.9847 0 0 0-3.9977 2.9 6.0462 6.0462 0 0 0 .7427 7.0966 5.98 5.98 0 0 0 .511 4.9107 6.051 6.051 0 0 0 6.5146 2.9001A5.9847 5.9847 0 0 0 13.2599 24a6.0557 6.0557 0 0 0 5.7718-4.2058 5.9894 5.9894 0 0 0 3.9977-2.9001 6.0557 6.0557 0 0 0-.7475-7.0729zm-9.022 12.6081a4.4755 4.4755 0 0 1-2.8764-1.0408l.1419-.0804 4.7783-2.7582a.7948.7948 0 0 0 .3927-.6813v-6.7369l2.02 1.1686a.071.071 0 0 1 .038.052v5.5826a4.504 4.504 0 0 1-4.4945 4.4944zm-9.6607-4.1254a4.4708 4.4708 0 0 1-.5346-3.0137l.142.0852 4.783 2.7582a.7712.7712 0 0 0 .7806 0l5.8428-3.3685v2.3324a.0804.0804 0 0 1-.0332.0615L9.74 19.9502a4.4992 4.4992 0 0 1-6.1408-1.6464zM2.3408 7.8956a4.485 4.485 0 0 1 2.3655-1.9728V11.6a.7664.7664 0 0 0 .3879.6765l5.8144 3.3543-2.0201 1.1685a.0757.0757 0 0 1-.071 0l-4.8303-2.7865A4.504 4.504 0 0 1 2.3408 7.872zm16.5963 3.8558L13.1038 8.364 15.1192 7.2a.0757.0757 0 0 1 .071 0l4.8303 2.7913a4.4944 4.4944 0 0 1-.6765 8.1042v-5.6772a.79.79 0 0 0-.407-.667zm2.0107-3.0231l-.142-.0852-4.7735-2.7818a.7759.7759 0 0 0-.7854 0L9.409 9.2297V6.8974a.0662.0662 0 0 1 .0284-.0615l4.8303-2.7866a4.4992 4.4992 0 0 1 6.6802 4.66zM8.3065 12.863l-2.02-1.1638a.0804.0804 0 0 1-.038-.0567V6.0742a4.4992 4.4992 0 0 1 7.3757-3.4537l-.142.0805L8.704 5.459a.7948.7948 0 0 0-.3927.6813zm1.0976-2.3654l2.602-1.4998 2.6069 1.4998v2.9994l-2.5974 1.4997-2.6067-1.4997Z"/></svg></div>
         <h3>ChatGPT Ranking</h3>
-        <p>When patients ask ChatGPT for a dentist, your practice gets recommended.</p>
+        <p>Get your dental practice recommended by AI assistants like ChatGPT. We ensure your practice appears in AI-generated answers and suggestions.</p>
       </div></div></div>
       <div class="mod m-2 m-grad rv" style="--d:.28s"><div class="shell" style="height:100%"><div class="core">
         <div class="mod-ic brand" role="img" aria-label="Meta"><svg viewBox="0 0 24 24"><path d="M6.915 4.03c-1.968 0-3.683 1.28-4.871 3.113C.704 9.208 0 11.883 0 14.449c0 .706.07 1.369.21 1.973a6.624 6.624 0 0 0 .265.86 5.297 5.297 0 0 0 .371.761c.696 1.159 1.818 1.927 3.593 1.927 1.497 0 2.633-.671 3.965-2.444.76-1.012 1.144-1.626 2.663-4.32l.756-1.339.186-.325c.061.1.121.196.183.3l2.152 3.595c.724 1.21 1.665 2.556 2.47 3.314 1.046.987 1.992 1.22 3.06 1.22 1.075 0 1.876-.355 2.455-.843a3.743 3.743 0 0 0 .81-.973c.542-.939.861-2.127.861-3.745 0-2.72-.681-5.357-2.084-7.45-1.282-1.912-2.957-2.93-4.716-2.93-1.047 0-2.088.467-3.053 1.308-.652.57-1.257 1.29-1.82 2.05-.69-.875-1.335-1.547-1.958-2.056-1.182-.966-2.315-1.303-3.454-1.303zm10.16 2.053c1.147 0 2.188.758 2.992 1.999 1.132 1.748 1.647 4.195 1.647 6.4 0 1.548-.368 2.9-1.839 2.9-.58 0-1.027-.23-1.664-1.004-.496-.601-1.343-1.878-2.832-4.358l-.617-1.028a44.908 44.908 0 0 0-1.255-1.98c.07-.109.141-.224.211-.327 1.12-1.667 2.118-2.602 3.358-2.602zm-10.201.553c1.265 0 2.058.791 2.675 1.446.307.327.737.871 1.234 1.579l-1.02 1.566c-.757 1.163-1.882 3.017-2.837 4.338-1.191 1.649-1.81 1.817-2.486 1.817-.524 0-1.038-.237-1.383-.794-.263-.426-.464-1.13-.464-2.046 0-2.221.63-4.535 1.66-6.088.454-.687.964-1.226 1.533-1.533a2.264 2.264 0 0 1 1.088-.285z"/></svg></div>
@@ -807,49 +813,18 @@ section[aria-label="Book a call"]{padding-top:112px!important}
       <div class="mod m-2 rv" style="--d:.34s"><div class="shell" style="height:100%"><div class="core">
         <div class="mod-ic brand" role="img" aria-label="Google Ads"><svg viewBox="0 0 24 24"><path d="M3.9998 22.9291C1.7908 22.9291 0 21.1383 0 18.9293s1.7908-3.9998 3.9998-3.9998 3.9998 1.7908 3.9998 3.9998-1.7908 3.9998-3.9998 3.9998zm19.4643-6.0004L15.4632 3.072C14.3586 1.1587 11.9121.5028 9.9988 1.6074S7.4295 5.1585 8.5341 7.0718l8.0009 13.8567c1.1046 1.9133 3.5511 2.5679 5.4644 1.4646 1.9134-1.1046 2.568-3.5511 1.4647-5.4644zM7.5137 4.8438L1.5645 15.1484A4.5 4.5 0 0 1 4 14.4297c2.5597-.0075 4.6248 2.1585 4.4941 4.7148l3.2168-5.5723-3.6094-6.25c-.4499-.7793-.6322-1.6394-.5878-2.4784z"/></svg></div>
         <h3>PPC Campaigns</h3>
-        <p>High-intent traffic, measured all the way to the booked appointment.</p>
+        <p>Maximize your online visibility and drive targeted traffic to your website through strategic Pay-Per-Click (PPC) campaigns.</p>
       </div></div></div>
       <div class="mod m-2 m-dots rv" style="--d:.4s"><div class="shell" style="height:100%"><div class="core">
         <div class="mod-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 21h8M12 17v4M5 4h14v6a7 7 0 0 1-14 0V4ZM5 6H3a2 2 0 0 0 2 4M19 6h2a2 2 0 0 1-2 4"/></svg></div>
         <h3>Sales Training</h3>
-        <p>Your front desk converts the opportunities the system generates.</p>
+        <p>Equip your team with the skills and strategies they need to excel in sales, enhance customer relationships, and drive revenue growth.</p>
       </div></div></div>
     </div>
   </div>
 </section>
 
 
-<section aria-labelledby="ask-h">
-  <div class="wrap ask-grid">
-    <div class="rv">
-      <h2 id="ask-h">ChatGPT Ranking in action.</h2>
-      <p style="margin-top:18px;max-width:40ch">When someone asks ChatGPT who to trust with their implants, our ChatGPT Ranking service works to make your practice the recommendation.</p>
-      <p class="ro" style="margin-top:26px">Demo replay: a typical implant query</p>
-    </div>
-    <div class="shell hud rv tilt" style="--d:.12s">
-      <div class="core chat-core spot" id="chatPanel">
-        <div class="chat-top">
-          <span class="ro">Ask AI</span>
-          <button class="replay" id="replayBtn" aria-label="Replay the demo conversation"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M13.5 8a5.5 5.5 0 1 1-1.6-3.9M13.5 1.5v3h-3" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Replay</button>
-        </div>
-        <div class="chat-log">
-          <div class="bub-u" id="bubU"></div>
-          <div class="bub-a" id="bubA"></div>
-          <p class="vh" id="chatLive" aria-live="polite"></p>
-          <!-- PENDIENTE: cliente real recomendado por ChatGPT/Google AI (nombre + ciudad + query) y grabación de
-               pantalla de la query real. Verificado 2026-07: ningún caso confirmado todavía; mejor candidato
-               real si se quiere nombre: Plano Smile Studio (su case study es del programa SEO & AI Search).
-               Mientras tanto el replay no nombra ninguna clínica (la ficticia anterior se eliminó). -->
-          <div class="ai-card" id="aiCard">
-            <span class="badge">Recommended by AI</span>
-            <strong>Your practice, recommended.</strong>
-            <span>AI recommends the practice with the strongest verified outcomes and reviews. Our work is making that practice yours.</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
 
 <section aria-labelledby="scan-h">
   <div class="wrap scan-grid">
@@ -885,19 +860,19 @@ section[aria-label="Book a call"]{padding-top:112px!important}
     <div class="faq-list">
       <div class="shell faq-item rv"><div class="core">
         <button class="faq-q" aria-expanded="false" aria-controls="fa1" id="fq1">Will I get to keep these patients if I cancel?<span class="pl" aria-hidden="true"></span></button>
-        <div class="faq-a" id="fa1" role="region" aria-labelledby="fq1"><div><p>Absolutely. All patients generated are exclusively yours. You have full ownership of the list and it is never shared.</p></div></div>
+        <div class="faq-a" id="fa1" role="region" aria-labelledby="fq1"><div><p>Absolutely, all patients generated are exclusively yours. You have full ownership of the list, and it is not shared with any other entity.</p></div></div>
       </div></div>
       <div class="shell faq-item rv" style="--d:.06s"><div class="core">
         <button class="faq-q" aria-expanded="false" aria-controls="fa2" id="fq2">Is your system exclusive?<span class="pl" aria-hidden="true"></span></button>
-        <div class="faq-a" id="fa2" role="region" aria-labelledby="fq2"><div><p>Yes. Exclusivity within a 10-mile radius, or for practices serving a local population of up to 100,000 people.</p></div></div>
+        <div class="faq-a" id="fa2" role="region" aria-labelledby="fq2"><div><p>Our system offers exclusivity within a 10-mile radius or for dental practices serving local population of up to 100,000 people.</p></div></div>
       </div></div>
       <div class="shell faq-item rv" style="--d:.12s"><div class="core">
         <button class="faq-q" aria-expanded="false" aria-controls="fa3" id="fq3">How many opportunities can I expect every month?<span class="pl" aria-hidden="true"></span></button>
-        <div class="faq-a" id="fa3" role="region" aria-labelledby="fq3"><div><p>Depends on the tier: from 25+ opportunities a month to upward of 100+ per month.</p></div></div>
+        <div class="faq-a" id="fa3" role="region" aria-labelledby="fq3"><div><p>It varies depending on the tier of package selected, we have solutions starting as small as 25+ opportunities a month to upward of 100+ opportunities per month.</p></div></div>
       </div></div>
       <div class="shell faq-item rv" style="--d:.18s"><div class="core">
         <button class="faq-q" aria-expanded="false" aria-controls="fa4" id="fq4">Do you guarantee results?<span class="pl" aria-hidden="true"></span></button>
-        <div class="faq-a" id="fa4" role="region" aria-labelledby="fq4"><div><p>We control the quantity and quality of opportunities we generate. Conversion depends on your team's skill, and we train for that too.</p></div></div>
+        <div class="faq-a" id="fa4" role="region" aria-labelledby="fq4"><div><p>We cannot control how many sales you will make, the ability of an agent to convert their patients is dependent on the skillset of the advisors as a result we can control the quantity of opportunities we generate but we cannot control your conversion rate.</p></div></div>
       </div></div>
     </div>
   </div>
@@ -977,10 +952,10 @@ section[aria-label="Book a call"]{padding-top:112px!important}
     {
       "@type": "FAQPage",
       "mainEntity": [
-        { "@type": "Question", "name": "Will I get to keep these patients if I cancel?", "acceptedAnswer": { "@type": "Answer", "text": "Absolutely. All patients generated are exclusively yours. You have full ownership of the list and it is never shared." } },
-        { "@type": "Question", "name": "Is your system exclusive?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Exclusivity within a 10-mile radius, or for practices serving a local population of up to 100,000 people." } },
-        { "@type": "Question", "name": "How many opportunities can I expect every month?", "acceptedAnswer": { "@type": "Answer", "text": "Depends on the tier: from 25+ opportunities a month to upward of 100+ per month." } },
-        { "@type": "Question", "name": "Do you guarantee results?", "acceptedAnswer": { "@type": "Answer", "text": "We control the quantity and quality of opportunities we generate. Conversion depends on your team's skill, and we train for that too." } }
+        { "@type": "Question", "name": "Will I get to keep these patients if I cancel?", "acceptedAnswer": { "@type": "Answer", "text": "Absolutely, all patients generated are exclusively yours. You have full ownership of the list, and it is not shared with any other entity." } },
+        { "@type": "Question", "name": "Is your system exclusive?", "acceptedAnswer": { "@type": "Answer", "text": "Our system offers exclusivity within a 10-mile radius or for dental practices serving local population of up to 100,000 people." } },
+        { "@type": "Question", "name": "How many opportunities can I expect every month?", "acceptedAnswer": { "@type": "Answer", "text": "It varies depending on the tier of package selected, we have solutions starting as small as 25+ opportunities a month to upward of 100+ opportunities per month." } },
+        { "@type": "Question", "name": "Do you guarantee results?", "acceptedAnswer": { "@type": "Answer", "text": "We cannot control how many sales you will make, the ability of an agent to convert their patients is dependent on the skillset of the advisors as a result we can control the quantity of opportunities we generate but we cannot control your conversion rate." } }
       ]
     }
   ]
@@ -1130,46 +1105,6 @@ $$(".faq-item").forEach(function(item){
   });
 });
 
-/* ---------- Ask AI demo (cancel-token typed replay) ---------- */
-(function(){
-  var panel=$("#chatPanel"), bU=$("#bubU"), bA=$("#bubA"), card=$("#aiCard"), btn=$("#replayBtn"), live=$("#chatLive");
-  if(!panel||!bU||!bA||!card) return;
-  var Q="Best dentist for dental implants near me?";
-  var A="Based on verified patient outcomes and consistent local reviews, one practice stands out for implant treatment in your area. Here is my recommendation.";
-  /* one clean SR announcement of the whole exchange, not per keystroke */
-  function announce(){ if(live) live.textContent="Question: "+Q+" Answer: "+A+" Recommended by AI: your practice, recommended."; }
-  var token=null;
-  function play(){
-    if(token) token.dead=true;
-    var tk={dead:false}; token=tk;
-    bU.textContent=""; bA.textContent=""; card.classList.remove("show");
-    if(RM){ bU.textContent=Q; bA.textContent=A; card.classList.add("show"); announce(); return; }
-    var caret=document.createElement("span"); caret.className="caret"; caret.setAttribute("aria-hidden","true");
-    var i=0,j=0;
-    function typeQ(){
-      if(tk.dead) return;
-      bU.textContent=Q.slice(0,++i);
-      if(i<Q.length) setTimeout(typeQ,24);
-      else setTimeout(startA,520);
-    }
-    function startA(){ if(tk.dead) return; bA.appendChild(caret); typeA(); }
-    function typeA(){
-      if(tk.dead) return;
-      bA.textContent=A.slice(0,++j);
-      bA.appendChild(caret);
-      if(j<A.length) setTimeout(typeA,14);
-      else{ caret.remove(); setTimeout(function(){ if(!tk.dead){ card.classList.add("show"); announce(); } },350); }
-    }
-    setTimeout(typeQ,300);
-  }
-  if(btn) btn.addEventListener("click",play);
-  if("IntersectionObserver" in window){
-    var chatIO=new IntersectionObserver(function(entries){
-      if(entries[0].isIntersecting){ play(); chatIO.disconnect(); }  /* autoplay once; Replay is the manual re-trigger */
-    },{threshold:.5});
-    chatIO.observe(panel);
-  }else{ play(); }
-})();
 
 /* ---------- spotlight cards + subtle tilt (desktop only) ---------- */
 if(FINE){

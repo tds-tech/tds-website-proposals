@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Services | The Digital Smile</title>
+<title>What we do | The Digital Smile</title>
 <meta name="description" content="Tailored dental marketing services: ChatGPT Ranking, SEO, PPC, sales training, and Facebook advertising.">
 <meta name="robots" content="noindex,nofollow">
-<meta property="og:title" content="Services | The Digital Smile">
+<meta property="og:title" content="What we do | The Digital Smile">
 <meta property="og:description" content="Tailored dental marketing services: ChatGPT Ranking, SEO, PPC, sales training, and Facebook advertising.">
 <meta property="og:type" content="website">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect x='18' y='60' width='15' height='30' rx='5' fill='%23FACC15'/%3E%3Cpath d='M 76 19 L 43 19 A 17 17 0 0 0 43 53 L 57 53 A 15.5 15.5 0 0 1 57 84 L 40 84' fill='none' stroke='%2322D3EE' stroke-width='13.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
@@ -191,25 +191,6 @@ body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opa
 .logos img{height:28px;width:auto;opacity:.55;transition:opacity .5s var(--ez2)}
 .logos img:hover{opacity:.9}
 
-/* ============ ASK AI DEMO ============ */
-.ask-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:56px;align-items:center}
-.chat-core{padding:26px;min-height:380px;display:flex;flex-direction:column}
-.chat-top{display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line);padding-bottom:14px;margin-bottom:20px}
-.chat-log{display:flex;flex-direction:column;gap:14px;flex:1}
-.bub-u:empty,.bub-a:empty{display:none}
-.bub-u{align-self:flex-end;max-width:82%;background:var(--g2);border:1px solid var(--line2);border-radius:var(--r-sm);border-bottom-right-radius:4px;padding:11px 15px;font-size:.93rem;color:var(--ink)}
-.bub-a{align-self:flex-start;max-width:92%;font-size:.95rem;color:var(--mut);line-height:1.65}
-.bub-a .caret{display:inline-block;width:8px;height:1.05em;background:var(--cy);vertical-align:text-bottom;margin-left:2px;animation:blink 1s steps(2) infinite}
-@keyframes blink{50%{opacity:0}}
-.ai-card{margin-top:4px;border:1px solid rgba(34,211,238,.32);border-radius:var(--r-sm);padding:15px 17px;background:rgba(34,211,238,.05);opacity:0;transform:translateY(14px);transition:opacity .7s var(--ez),transform .7s var(--ez)}
-.ai-card.show{opacity:1;transform:none}
-/* ghost pill: filled cyan is reserved for real buttons, this is a label */
-.ai-card .badge{display:inline-block;font-family:var(--mono);font-size:.64rem;letter-spacing:.14em;text-transform:uppercase;color:var(--cy);background:rgba(34,211,238,.12);box-shadow:inset 0 0 0 1px rgba(34,211,238,.35);border-radius:999px;padding:3px 10px;margin-bottom:8px}
-.ai-card strong{font-family:var(--disp);font-size:1.02rem;display:block}
-.ai-card span{font-size:.84rem;color:var(--mut)}
-.replay{display:inline-flex;align-items:center;gap:7px;min-height:44px;padding:0 8px;margin-right:-8px;font-family:var(--mono);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--mut);transition:color .5s var(--ez2)}
-.replay:hover{color:var(--cy)}
-.replay svg{width:13px;height:13px}
 
 
 /* ============ SERVICES (modules) ============ */
@@ -377,7 +358,7 @@ footer{border-top:1px solid var(--line);padding:72px 0 40px;background:rgba(12,2
 
 /* ============ RESPONSIVE ============ */
 @media(max-width:960px){
-  .hero-grid,.ask-grid,.scan-grid,.founder-grid{grid-template-columns:1fr}
+  .hero-grid,.scan-grid,.founder-grid{grid-template-columns:1fr}
   .met-grid{grid-template-columns:repeat(2,1fr)}
   .foot-grid{grid-template-columns:1fr 1fr}
 }
@@ -436,7 +417,7 @@ footer{border-top:1px solid var(--line);padding:72px 0 40px;background:rgba(12,2
 @media(prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
   .rv{opacity:1;transform:none;filter:none;transition:none}
-  .scan-core::before,.bub-a .caret,.pulse,.h1-line,.progress,body::after,.nav{animation:none}
+  .scan-core::before,.pulse,.h1-line,.progress,body::after,.nav{animation:none}
   .tbar{position:fixed}
   .hero-glow{display:none}
   .h1-line{transform:none}
@@ -444,7 +425,6 @@ footer{border-top:1px solid var(--line);padding:72px 0 40px;background:rgba(12,2
   .tilt{transition:none}
   .scan-core::before{display:none}
   .dial .ring-fg{transition:none;stroke-dashoffset:151}
-  .ai-card{transition:none}
   *{transition-duration:.01ms!important}
 }
 
@@ -452,7 +432,7 @@ footer{border-top:1px solid var(--line);padding:72px 0 40px;background:rgba(12,2
    VARIANT B: light lab.
    Same Cortex structure on the brand-manual light colorimetry
    (base #0F172A ink, #F9FAFB surface, teal #0E7490, cyan #22D3EE).
-   The instruments (tooth hologram, chat demo, scanner) stay dark:
+   The instruments (tooth hologram, scanner) stay dark:
    screens on a light lab bench. Appended by build.py --variant b.
    ============================================================ */
 :root{
@@ -493,7 +473,7 @@ footer{background:rgba(15,42,70,.03)}
 
 /* dark islands: instrument screens keep the dark skin via scoped vars.
    .tbar stays black like the live site, so it needs the island vars too */
-.tbar,.tooth-core,.chat-core,.scan-core{
+.tbar,.tooth-core,.scan-core{
   --g0:#070C18; --g1:#0C1424; --g2:#101B31;
   --ink:#EAF3F8; --mut:#93A8BC; --dim:#6B8093;
   --line:rgba(148,184,210,.13); --line2:rgba(148,184,210,.22);
@@ -511,10 +491,6 @@ footer{background:rgba(15,42,70,.03)}
 .mod-ic svg{stroke:#0E7490}
 .mod-ic.brand svg{fill:#0E7490;stroke:none}
 
-/* color is inherited as a resolved value: elements inside dark surfaces
-   that never declare color need explicit light ink */
-.ai-card strong{color:#EAF3F8}
-
 /* trust logos are white monochrome: invert to ink on light */
 .logos img{opacity:1;filter:invert(1) opacity(.6)}
 .logos img:hover{opacity:1;filter:invert(1) opacity(.92)}
@@ -530,10 +506,10 @@ footer{background:rgba(15,42,70,.03)}
 /* ---- color-system pass 08-21 (WCAG + accent lock on light) ---- */
 /* keyboard focus: cyan is 1.7:1 on the light ground; islands + black bar keep cyan */
 :focus-visible{outline-color:#0E7490}
-.tooth-core :focus-visible,.chat-core :focus-visible,.scan-core :focus-visible,.tbar :focus-visible{outline-color:#22D3EE}
+.tooth-core :focus-visible,.scan-core :focus-visible,.tbar :focus-visible{outline-color:#22D3EE}
 /* readouts inside the dark islands: global teal drops to 3.4:1 on the island ground */
-.tooth-core .ro,.chat-core .ro,.scan-core .ro{color:rgba(34,211,238,.75)}
-.tooth-core .ro b,.chat-core .ro b,.scan-core .ro b{color:#22D3EE}
+.tooth-core .ro,.scan-core .ro{color:rgba(34,211,238,.75)}
+.tooth-core .ro b,.scan-core .ro b{color:#22D3EE}
 /* metric tiles: cyan hover vanishes on the white band */
 a.met:hover{background:rgba(14,116,144,.06)}
 a.met:hover>span{color:#0E7490}
@@ -636,31 +612,31 @@ a.met:hover b{color:#0E7490}
       <div class="mod m-3 m-grad rv"><div class="shell" style="height:100%"><div class="core spot">
         <h3>ChatGPT Ranking</h3>
         <p style="margin-top:10px">Get your dental practice recommended by ChatGPT when potential patients ask for dentist recommendations. As more people turn to AI for healthcare advice, make sure your clinic is the one being suggested.</p>
-        <p>Our team implements proven optimization strategies to position your practice as a trusted authority that ChatGPT recognizes and recommends.</p>
+        <p>Our team implements proven optimization strategies to position your practice as a trusted authority that ChatGPT recognizes and recommends. Stay ahead of the competition by dominating the future of how patients find their dentist.</p>
         <a class="btn btn-s" style="margin-top:14px" href="../services/ai-seo-for-dentists/">Get started <span class="arr"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" fill="none" stroke="#22D3EE" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
       </div></div></div>
       <div class="mod m-3 rv" style="--d:.08s"><div class="shell" style="height:100%"><div class="core spot">
         <h3>SEO</h3>
         <p style="margin-top:10px">Position your dental practice at the top of Google search results and attract patients actively looking for your services. Increase your online visibility and become the go-to choice in your local community.</p>
-        <p>From Google Business Profile management to keyword-optimized content, generate a steady flow of organic patients without relying solely on paid advertising.</p>
+        <p>Our team will optimize your website with proven local SEO strategies, from Google Business Profile management to keyword-optimized content. Generate a steady flow of organic patients without relying solely on paid advertising.</p>
         <a class="btn btn-s" style="margin-top:14px" href="../services/google-seo/">Get started <span class="arr"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" fill="none" stroke="#22D3EE" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
       </div></div></div>
       <div class="mod m-2 m-dots rv" style="--d:.08s"><div class="shell" style="height:100%"><div class="core spot">
         <h3>PPC Campaigns</h3>
-        <p style="margin-top:10px">Unlock the potential of the local market with powerful PPC campaigns tailored specifically for dental practices. Reach and engage your growing local community, boosting your visibility, appointments, and revenue.</p>
-        <p>Our expert team will strategize, optimize, and deliver targeted ads that resonate with your local audience.</p>
+        <p style="margin-top:10px">Unlock the potential of the local market with our powerful PPC campaigns tailored specifically for dental practices. Reach and engage with your growing local community in your area, boosting your visibility, appointments, and revenue.</p>
+        <p>Our expert team will strategize, optimize, and deliver targeted ads that resonate with your local audience, maximizing your practice's growth. Expand your reach today with our result-driven PPC campaigns.</p>
         <a class="btn btn-s" style="margin-top:14px" href="../services/ppc-for-dental-clinics/">Get started <span class="arr"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" fill="none" stroke="#22D3EE" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
       </div></div></div>
       <div class="mod m-2 m-grad rv" style="--d:.08s"><div class="shell" style="height:100%"><div class="core spot">
         <h3>Sales Training</h3>
-        <p style="margin-top:10px">Our focus is on maximizing your closing rate and ensuring the highest retention from every new appointment. By equipping your team with effective sales techniques and strategies, we optimize your practice's growth potential.</p>
-        <p>Our tailored training program enables long-lasting relationships with your patients.</p>
+        <p style="margin-top:10px">Our focus is on maximizing your closing rate and ensuring the highest retention from every new appointment. By equipping your team with effective sales techniques and strategies, we aim to optimize your practice's growth potential and foster long-lasting relationships with your patients.</p>
+        <p>Our tailored training program ensures cultural sensitivity and communication excellence, enabling your practice to thrive in this untapped market.</p>
         <a class="btn btn-s" style="margin-top:14px" href="../services/sales-training-for-dental-teams/">Get started <span class="arr"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" fill="none" stroke="#22D3EE" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
       </div></div></div>
       <div class="mod m-2 rv"><div class="shell" style="height:100%"><div class="core spot">
         <h3>Facebook Advertising</h3>
-        <p style="margin-top:10px">Capture attention with targeted Facebook ads. Our expert team crafts compelling campaigns that resonate with your local audiences, boosting your brand awareness and attracting valuable patients.</p>
-        <p>Maximize your reach and grow your practice with our tailored Facebook ad solutions.</p>
+        <p style="margin-top:10px">Capture the attention of the vibrant untapped community with our targeted Facebook ads. Reach new heights in your dental practice by tapping into the untapped potential of this market.</p>
+        <p>Our expert team will craft compelling campaigns that resonate with your local audiences, boosting your brand awareness and attracting valuable patients. Maximize your reach and grow your practice with our tailored Facebook ad solutions.</p>
         <a class="btn btn-s" style="margin-top:14px" href="../services/facebook-ads-for-dentists/">Get started <span class="arr"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" fill="none" stroke="#22D3EE" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
       </div></div></div>
     </div>
@@ -671,7 +647,7 @@ a.met:hover b{color:#0E7490}
   <div class="wrap">
     <div class="shell hud rv"><div class="core">
       <h2 id="sv-cta-h">Let's work on the next big thing together</h2>
-      <p style="margin-bottom:34px">Unlock the power of the untapped market for your dental practice. Partner with us and let's collaborate on your success story.</p>
+      <p style="margin-bottom:34px">Unlock the power of the untapped market for your dental practice. Partner with us and tap into a world of untapped opportunities. Let's collaborate on your success story!</p>
       <a class="btn btn-p pulse" href="../book-a-call/">Get in touch with us <span class="arr"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" fill="none" stroke="#052430" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
     </div></div>
   </div>
@@ -888,46 +864,6 @@ $$(".faq-item").forEach(function(item){
   });
 });
 
-/* ---------- Ask AI demo (cancel-token typed replay) ---------- */
-(function(){
-  var panel=$("#chatPanel"), bU=$("#bubU"), bA=$("#bubA"), card=$("#aiCard"), btn=$("#replayBtn"), live=$("#chatLive");
-  if(!panel||!bU||!bA||!card) return;
-  var Q="Best dentist for dental implants near me?";
-  var A="Based on verified patient outcomes and consistent local reviews, one practice stands out for implant treatment in your area. Here is my recommendation.";
-  /* one clean SR announcement of the whole exchange, not per keystroke */
-  function announce(){ if(live) live.textContent="Question: "+Q+" Answer: "+A+" Recommended by AI: your practice, recommended."; }
-  var token=null;
-  function play(){
-    if(token) token.dead=true;
-    var tk={dead:false}; token=tk;
-    bU.textContent=""; bA.textContent=""; card.classList.remove("show");
-    if(RM){ bU.textContent=Q; bA.textContent=A; card.classList.add("show"); announce(); return; }
-    var caret=document.createElement("span"); caret.className="caret"; caret.setAttribute("aria-hidden","true");
-    var i=0,j=0;
-    function typeQ(){
-      if(tk.dead) return;
-      bU.textContent=Q.slice(0,++i);
-      if(i<Q.length) setTimeout(typeQ,24);
-      else setTimeout(startA,520);
-    }
-    function startA(){ if(tk.dead) return; bA.appendChild(caret); typeA(); }
-    function typeA(){
-      if(tk.dead) return;
-      bA.textContent=A.slice(0,++j);
-      bA.appendChild(caret);
-      if(j<A.length) setTimeout(typeA,14);
-      else{ caret.remove(); setTimeout(function(){ if(!tk.dead){ card.classList.add("show"); announce(); } },350); }
-    }
-    setTimeout(typeQ,300);
-  }
-  if(btn) btn.addEventListener("click",play);
-  if("IntersectionObserver" in window){
-    var chatIO=new IntersectionObserver(function(entries){
-      if(entries[0].isIntersecting){ play(); chatIO.disconnect(); }  /* autoplay once; Replay is the manual re-trigger */
-    },{threshold:.5});
-    chatIO.observe(panel);
-  }else{ play(); }
-})();
 
 /* ---------- spotlight cards + subtle tilt (desktop only) ---------- */
 if(FINE){

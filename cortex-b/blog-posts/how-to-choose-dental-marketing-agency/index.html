@@ -191,25 +191,6 @@ body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opa
 .logos img{height:28px;width:auto;opacity:.55;transition:opacity .5s var(--ez2)}
 .logos img:hover{opacity:.9}
 
-/* ============ ASK AI DEMO ============ */
-.ask-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:56px;align-items:center}
-.chat-core{padding:26px;min-height:380px;display:flex;flex-direction:column}
-.chat-top{display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line);padding-bottom:14px;margin-bottom:20px}
-.chat-log{display:flex;flex-direction:column;gap:14px;flex:1}
-.bub-u:empty,.bub-a:empty{display:none}
-.bub-u{align-self:flex-end;max-width:82%;background:var(--g2);border:1px solid var(--line2);border-radius:var(--r-sm);border-bottom-right-radius:4px;padding:11px 15px;font-size:.93rem;color:var(--ink)}
-.bub-a{align-self:flex-start;max-width:92%;font-size:.95rem;color:var(--mut);line-height:1.65}
-.bub-a .caret{display:inline-block;width:8px;height:1.05em;background:var(--cy);vertical-align:text-bottom;margin-left:2px;animation:blink 1s steps(2) infinite}
-@keyframes blink{50%{opacity:0}}
-.ai-card{margin-top:4px;border:1px solid rgba(34,211,238,.32);border-radius:var(--r-sm);padding:15px 17px;background:rgba(34,211,238,.05);opacity:0;transform:translateY(14px);transition:opacity .7s var(--ez),transform .7s var(--ez)}
-.ai-card.show{opacity:1;transform:none}
-/* ghost pill: filled cyan is reserved for real buttons, this is a label */
-.ai-card .badge{display:inline-block;font-family:var(--mono);font-size:.64rem;letter-spacing:.14em;text-transform:uppercase;color:var(--cy);background:rgba(34,211,238,.12);box-shadow:inset 0 0 0 1px rgba(34,211,238,.35);border-radius:999px;padding:3px 10px;margin-bottom:8px}
-.ai-card strong{font-family:var(--disp);font-size:1.02rem;display:block}
-.ai-card span{font-size:.84rem;color:var(--mut)}
-.replay{display:inline-flex;align-items:center;gap:7px;min-height:44px;padding:0 8px;margin-right:-8px;font-family:var(--mono);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--mut);transition:color .5s var(--ez2)}
-.replay:hover{color:var(--cy)}
-.replay svg{width:13px;height:13px}
 
 
 /* ============ SERVICES (modules) ============ */
@@ -377,7 +358,7 @@ footer{border-top:1px solid var(--line);padding:72px 0 40px;background:rgba(12,2
 
 /* ============ RESPONSIVE ============ */
 @media(max-width:960px){
-  .hero-grid,.ask-grid,.scan-grid,.founder-grid{grid-template-columns:1fr}
+  .hero-grid,.scan-grid,.founder-grid{grid-template-columns:1fr}
   .met-grid{grid-template-columns:repeat(2,1fr)}
   .foot-grid{grid-template-columns:1fr 1fr}
 }
@@ -436,7 +417,7 @@ footer{border-top:1px solid var(--line);padding:72px 0 40px;background:rgba(12,2
 @media(prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
   .rv{opacity:1;transform:none;filter:none;transition:none}
-  .scan-core::before,.bub-a .caret,.pulse,.h1-line,.progress,body::after,.nav{animation:none}
+  .scan-core::before,.pulse,.h1-line,.progress,body::after,.nav{animation:none}
   .tbar{position:fixed}
   .hero-glow{display:none}
   .h1-line{transform:none}
@@ -444,7 +425,6 @@ footer{border-top:1px solid var(--line);padding:72px 0 40px;background:rgba(12,2
   .tilt{transition:none}
   .scan-core::before{display:none}
   .dial .ring-fg{transition:none;stroke-dashoffset:151}
-  .ai-card{transition:none}
   *{transition-duration:.01ms!important}
 }
 
@@ -452,7 +432,7 @@ footer{border-top:1px solid var(--line);padding:72px 0 40px;background:rgba(12,2
    VARIANT B: light lab.
    Same Cortex structure on the brand-manual light colorimetry
    (base #0F172A ink, #F9FAFB surface, teal #0E7490, cyan #22D3EE).
-   The instruments (tooth hologram, chat demo, scanner) stay dark:
+   The instruments (tooth hologram, scanner) stay dark:
    screens on a light lab bench. Appended by build.py --variant b.
    ============================================================ */
 :root{
@@ -493,7 +473,7 @@ footer{background:rgba(15,42,70,.03)}
 
 /* dark islands: instrument screens keep the dark skin via scoped vars.
    .tbar stays black like the live site, so it needs the island vars too */
-.tbar,.tooth-core,.chat-core,.scan-core{
+.tbar,.tooth-core,.scan-core{
   --g0:#070C18; --g1:#0C1424; --g2:#101B31;
   --ink:#EAF3F8; --mut:#93A8BC; --dim:#6B8093;
   --line:rgba(148,184,210,.13); --line2:rgba(148,184,210,.22);
@@ -511,10 +491,6 @@ footer{background:rgba(15,42,70,.03)}
 .mod-ic svg{stroke:#0E7490}
 .mod-ic.brand svg{fill:#0E7490;stroke:none}
 
-/* color is inherited as a resolved value: elements inside dark surfaces
-   that never declare color need explicit light ink */
-.ai-card strong{color:#EAF3F8}
-
 /* trust logos are white monochrome: invert to ink on light */
 .logos img{opacity:1;filter:invert(1) opacity(.6)}
 .logos img:hover{opacity:1;filter:invert(1) opacity(.92)}
@@ -530,10 +506,10 @@ footer{background:rgba(15,42,70,.03)}
 /* ---- color-system pass 08-21 (WCAG + accent lock on light) ---- */
 /* keyboard focus: cyan is 1.7:1 on the light ground; islands + black bar keep cyan */
 :focus-visible{outline-color:#0E7490}
-.tooth-core :focus-visible,.chat-core :focus-visible,.scan-core :focus-visible,.tbar :focus-visible{outline-color:#22D3EE}
+.tooth-core :focus-visible,.scan-core :focus-visible,.tbar :focus-visible{outline-color:#22D3EE}
 /* readouts inside the dark islands: global teal drops to 3.4:1 on the island ground */
-.tooth-core .ro,.chat-core .ro,.scan-core .ro{color:rgba(34,211,238,.75)}
-.tooth-core .ro b,.chat-core .ro b,.scan-core .ro b{color:#22D3EE}
+.tooth-core .ro,.scan-core .ro{color:rgba(34,211,238,.75)}
+.tooth-core .ro b,.scan-core .ro b{color:#22D3EE}
 /* metric tiles: cyan hover vanishes on the white band */
 a.met:hover{background:rgba(14,116,144,.06)}
 a.met:hover>span{color:#0E7490}
@@ -986,46 +962,6 @@ $$(".faq-item").forEach(function(item){
   });
 });
 
-/* ---------- Ask AI demo (cancel-token typed replay) ---------- */
-(function(){
-  var panel=$("#chatPanel"), bU=$("#bubU"), bA=$("#bubA"), card=$("#aiCard"), btn=$("#replayBtn"), live=$("#chatLive");
-  if(!panel||!bU||!bA||!card) return;
-  var Q="Best dentist for dental implants near me?";
-  var A="Based on verified patient outcomes and consistent local reviews, one practice stands out for implant treatment in your area. Here is my recommendation.";
-  /* one clean SR announcement of the whole exchange, not per keystroke */
-  function announce(){ if(live) live.textContent="Question: "+Q+" Answer: "+A+" Recommended by AI: your practice, recommended."; }
-  var token=null;
-  function play(){
-    if(token) token.dead=true;
-    var tk={dead:false}; token=tk;
-    bU.textContent=""; bA.textContent=""; card.classList.remove("show");
-    if(RM){ bU.textContent=Q; bA.textContent=A; card.classList.add("show"); announce(); return; }
-    var caret=document.createElement("span"); caret.className="caret"; caret.setAttribute("aria-hidden","true");
-    var i=0,j=0;
-    function typeQ(){
-      if(tk.dead) return;
-      bU.textContent=Q.slice(0,++i);
-      if(i<Q.length) setTimeout(typeQ,24);
-      else setTimeout(startA,520);
-    }
-    function startA(){ if(tk.dead) return; bA.appendChild(caret); typeA(); }
-    function typeA(){
-      if(tk.dead) return;
-      bA.textContent=A.slice(0,++j);
-      bA.appendChild(caret);
-      if(j<A.length) setTimeout(typeA,14);
-      else{ caret.remove(); setTimeout(function(){ if(!tk.dead){ card.classList.add("show"); announce(); } },350); }
-    }
-    setTimeout(typeQ,300);
-  }
-  if(btn) btn.addEventListener("click",play);
-  if("IntersectionObserver" in window){
-    var chatIO=new IntersectionObserver(function(entries){
-      if(entries[0].isIntersecting){ play(); chatIO.disconnect(); }  /* autoplay once; Replay is the manual re-trigger */
-    },{threshold:.5});
-    chatIO.observe(panel);
-  }else{ play(); }
-})();
 
 /* ---------- spotlight cards + subtle tilt (desktop only) ---------- */
 if(FINE){

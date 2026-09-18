@@ -191,25 +191,6 @@ body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opa
 .logos img{height:28px;width:auto;opacity:.55;transition:opacity .5s var(--ez2)}
 .logos img:hover{opacity:.9}
 
-/* ============ ASK AI DEMO ============ */
-.ask-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:56px;align-items:center}
-.chat-core{padding:26px;min-height:380px;display:flex;flex-direction:column}
-.chat-top{display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line);padding-bottom:14px;margin-bottom:20px}
-.chat-log{display:flex;flex-direction:column;gap:14px;flex:1}
-.bub-u:empty,.bub-a:empty{display:none}
-.bub-u{align-self:flex-end;max-width:82%;background:var(--g2);border:1px solid var(--line2);border-radius:var(--r-sm);border-bottom-right-radius:4px;padding:11px 15px;font-size:.93rem;color:var(--ink)}
-.bub-a{align-self:flex-start;max-width:92%;font-size:.95rem;color:var(--mut);line-height:1.65}
-.bub-a .caret{display:inline-block;width:8px;height:1.05em;background:var(--cy);vertical-align:text-bottom;margin-left:2px;animation:blink 1s steps(2) infinite}
-@keyframes blink{50%{opacity:0}}
-.ai-card{margin-top:4px;border:1px solid rgba(34,211,238,.32);border-radius:var(--r-sm);padding:15px 17px;background:rgba(34,211,238,.05);opacity:0;transform:translateY(14px);transition:opacity .7s var(--ez),transform .7s var(--ez)}
-.ai-card.show{opacity:1;transform:none}
-/* ghost pill: filled cyan is reserved for real buttons, this is a label */
-.ai-card .badge{display:inline-block;font-family:var(--mono);font-size:.64rem;letter-spacing:.14em;text-transform:uppercase;color:var(--cy);background:rgba(34,211,238,.12);box-shadow:inset 0 0 0 1px rgba(34,211,238,.35);border-radius:999px;padding:3px 10px;margin-bottom:8px}
-.ai-card strong{font-family:var(--disp);font-size:1.02rem;display:block}
-.ai-card span{font-size:.84rem;color:var(--mut)}
-.replay{display:inline-flex;align-items:center;gap:7px;min-height:44px;padding:0 8px;margin-right:-8px;font-family:var(--mono);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--mut);transition:color .5s var(--ez2)}
-.replay:hover{color:var(--cy)}
-.replay svg{width:13px;height:13px}
 
 
 /* ============ SERVICES (modules) ============ */
@@ -377,7 +358,7 @@ footer{border-top:1px solid var(--line);padding:72px 0 40px;background:rgba(12,2
 
 /* ============ RESPONSIVE ============ */
 @media(max-width:960px){
-  .hero-grid,.ask-grid,.scan-grid,.founder-grid{grid-template-columns:1fr}
+  .hero-grid,.scan-grid,.founder-grid{grid-template-columns:1fr}
   .met-grid{grid-template-columns:repeat(2,1fr)}
   .foot-grid{grid-template-columns:1fr 1fr}
 }
@@ -436,7 +417,7 @@ footer{border-top:1px solid var(--line);padding:72px 0 40px;background:rgba(12,2
 @media(prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
   .rv{opacity:1;transform:none;filter:none;transition:none}
-  .scan-core::before,.bub-a .caret,.pulse,.h1-line,.progress,body::after,.nav{animation:none}
+  .scan-core::before,.pulse,.h1-line,.progress,body::after,.nav{animation:none}
   .tbar{position:fixed}
   .hero-glow{display:none}
   .h1-line{transform:none}
@@ -444,7 +425,6 @@ footer{border-top:1px solid var(--line);padding:72px 0 40px;background:rgba(12,2
   .tilt{transition:none}
   .scan-core::before{display:none}
   .dial .ring-fg{transition:none;stroke-dashoffset:151}
-  .ai-card{transition:none}
   *{transition-duration:.01ms!important}
 }
 
@@ -623,7 +603,7 @@ section[aria-label="Book a call"]{padding-top:112px!important}
 <section aria-labelledby="rf-intro-h" style="padding-top:0">
   <div class="wrap" style="max-width:780px;text-align:center">
     <h2 id="rf-intro-h" class="vh">About the program</h2>
-    <p class="rv" style="font-size:1.05rem">At The Digital Smile, we're passionate about helping dental practices thrive. With our Value Referral Program, you can make a difference by referring practices to us and enjoy exclusive rewards for every successful referral. It's our way of saying "thank you" for supporting the growth of dental professionals.</p>
+    <p class="rv" style="font-size:1.05rem">At The Digital Smile, we're passionate about helping dental practices thrive. With our Value Referral Program, you can make a difference by referring practices to us and enjoy exclusive rewards for every successful referral. It's our way of saying "thank you" for supporting the growth of dental professionals across the country!</p>
   </div>
 </section>
 
@@ -663,6 +643,105 @@ section[aria-label="Book a call"]{padding-top:112px!important}
         <h3>Exclusive Rewards for You</h3>
         <p style="margin-top:10px">Every referral means more rewards, so the more you refer, the more you earn.</p>
       </div></div></div>
+    </div>
+  </div>
+</section>
+
+
+<section aria-labelledby="rf-vt-h" style="padding-top:60px">
+  <div class="wrap">
+    <!-- Copy + videos verbatim del sitio live /referral (voicenote Gabriel 09-17: no perder copy) -->
+    <p class="ro rv">Get results and stand out from the crowd.</p>
+    <h2 id="rf-vt-h" class="rv" style="margin-top:14px;max-width:30ch">Client Success Stories: How Our Solutions Helped Them Achieve Remarkable Results</h2>
+    <div class="vt-grid" role="list" aria-label="Video testimonials from referred practices">
+      <div class="shell vt-card rv" role="listitem"><div class="core">
+        <a class="vt-play" href="https://fast.wistia.net/embed/iframe/43rssgwtyy" target="_blank" rel="noopener" data-vid="43rssgwtyy" data-vtitle="Video testimonial: Dr. Justin Bral" aria-label="Play video testimonial from Dr. Justin Bral">
+          <img src="../assets/img/vt-43rssgwtyy.webp" width="640" height="360" loading="lazy" decoding="async" alt="Video testimonial from Dr. Justin Bral, a referral partner practice of The Digital Smile">
+          <span class="vt-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z" fill="#E6F6FB"/></svg></span>
+        </a>
+        <p class="vt-meta"><b>Dr. Justin Bral</b></p>
+        <p class="ro" style="margin:2px 0 0;padding:0 16px 12px;white-space:normal;line-height:1.6">"I used other companies in the past, they actually live up to it"</p>
+      </div></div>
+      <div class="shell vt-card rv" style="--d:.1s" role="listitem"><div class="core">
+        <a class="vt-play" href="https://fast.wistia.net/embed/iframe/aoyzyw5zcm" target="_blank" rel="noopener" data-vid="aoyzyw5zcm" data-vtitle="Video testimonial: David Gonzales" aria-label="Play video testimonial from David Gonzales">
+          <img src="../assets/img/vt-aoyzyw5zcm.webp" width="640" height="360" loading="lazy" decoding="async" alt="Video testimonial from David Gonzales, a referral partner practice of The Digital Smile">
+          <span class="vt-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z" fill="#E6F6FB"/></svg></span>
+        </a>
+        <p class="vt-meta"><b>David Gonzales</b></p>
+        <p class="ro" style="margin:2px 0 0;padding:0 16px 12px;white-space:normal;line-height:1.6">"It's been very positive... We started with one practice, now we're doing multiple"</p>
+      </div></div>
+      <div class="shell vt-card rv" style="--d:.2s" role="listitem"><div class="core">
+        <a class="vt-play" href="https://fast.wistia.net/embed/iframe/rm8yqdov2i" target="_blank" rel="noopener" data-vid="rm8yqdov2i" data-vtitle="Video testimonial: Dr. Humphreys" aria-label="Play video testimonial from Dr. Humphreys">
+          <img src="../assets/img/vt-rm8yqdov2i.webp" width="640" height="360" loading="lazy" decoding="async" alt="Video testimonial from Dr. Humphreys, a referral partner practice of The Digital Smile">
+          <span class="vt-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z" fill="#E6F6FB"/></svg></span>
+        </a>
+        <p class="vt-meta"><b>Dr. Humphreys</b></p>
+        <p class="ro" style="margin:2px 0 0;padding:0 16px 12px;white-space:normal;line-height:1.6">"We closed a $19,000 case in the first 30 days"</p>
+      </div></div>
+      <div class="shell vt-card rv" role="listitem"><div class="core">
+        <a class="vt-play" href="https://fast.wistia.net/embed/iframe/xw8g5yxjlw" target="_blank" rel="noopener" data-vid="xw8g5yxjlw" data-vtitle="Video testimonial: Dr. Lydia David" aria-label="Play video testimonial from Dr. Lydia David">
+          <img src="../assets/img/vt-xw8g5yxjlw.webp" width="640" height="360" loading="lazy" decoding="async" alt="Video testimonial from Dr. Lydia David, a referral partner practice of The Digital Smile">
+          <span class="vt-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z" fill="#E6F6FB"/></svg></span>
+        </a>
+        <p class="vt-meta"><b>Dr. Lydia David</b></p>
+        <p class="ro" style="margin:2px 0 0;padding:0 16px 12px;white-space:normal;line-height:1.6">"I never expected to see that many patients"</p>
+      </div></div>
+      <div class="shell vt-card rv" style="--d:.1s" role="listitem"><div class="core">
+        <a class="vt-play" href="https://fast.wistia.net/embed/iframe/xi2iwe0pay" target="_blank" rel="noopener" data-vid="xi2iwe0pay" data-vtitle="Video testimonial: Dr. Angole" aria-label="Play video testimonial from Dr. Angole">
+          <img src="../assets/img/vt-xi2iwe0pay.webp" width="640" height="1137" loading="lazy" decoding="async" alt="Video testimonial from Dr. Angole, a referral partner practice of The Digital Smile">
+          <span class="vt-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z" fill="#E6F6FB"/></svg></span>
+        </a>
+        <p class="vt-meta"><b>Dr. Angole</b></p>
+        <p class="ro" style="margin:2px 0 0;padding:0 16px 12px;white-space:normal;line-height:1.6">"They've lived up to their guarantee, I am very impressed"</p>
+      </div></div>
+      <div class="shell vt-card rv" style="--d:.2s" role="listitem"><div class="core">
+        <a class="vt-play" href="https://fast.wistia.net/embed/iframe/m9cpd6i2p0" target="_blank" rel="noopener" data-vid="m9cpd6i2p0" data-vtitle="Video testimonial: Dr. Mun" aria-label="Play video testimonial from Dr. Mun">
+          <img src="../assets/img/vt-m9cpd6i2p0.webp" width="640" height="360" loading="lazy" decoding="async" alt="Video testimonial from Dr. Mun, a referral partner practice of The Digital Smile">
+          <span class="vt-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z" fill="#E6F6FB"/></svg></span>
+        </a>
+        <p class="vt-meta"><b>Dr. Mun</b></p>
+        <p class="ro" style="margin:2px 0 0;padding:0 16px 12px;white-space:normal;line-height:1.6">"Our presence increase and are getting lot more spanish speaking patients"</p>
+      </div></div>
+      <div class="shell vt-card rv" role="listitem"><div class="core">
+        <a class="vt-play" href="https://fast.wistia.net/embed/iframe/skonzogc6a" target="_blank" rel="noopener" data-vid="skonzogc6a" data-vtitle="Video testimonial: Dr. Salem" aria-label="Play video testimonial from Dr. Salem">
+          <img src="../assets/img/vt-skonzogc6a.webp" width="640" height="360" loading="lazy" decoding="async" alt="Video testimonial from Dr. Salem, a referral partner practice of The Digital Smile">
+          <span class="vt-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z" fill="#E6F6FB"/></svg></span>
+        </a>
+        <p class="vt-meta"><b>Dr. Salem</b></p>
+        <p class="ro" style="margin:2px 0 0;padding:0 16px 12px;white-space:normal;line-height:1.6">"It's easier when you take the payment of the appointment"</p>
+      </div></div>
+      <div class="shell vt-card rv" style="--d:.1s" role="listitem"><div class="core">
+        <a class="vt-play" href="https://fast.wistia.net/embed/iframe/lgank9fstg" target="_blank" rel="noopener" data-vid="lgank9fstg" data-vtitle="Video testimonial: Dr. Khoshvaghti" aria-label="Play video testimonial from Dr. Khoshvaghti">
+          <img src="../assets/img/vt-lgank9fstg.webp" width="640" height="360" loading="lazy" decoding="async" alt="Video testimonial from Dr. Khoshvaghti, a referral partner practice of The Digital Smile">
+          <span class="vt-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z" fill="#E6F6FB"/></svg></span>
+        </a>
+        <p class="vt-meta"><b>Dr. Khoshvaghti</b></p>
+        <p class="ro" style="margin:2px 0 0;padding:0 16px 12px;white-space:normal;line-height:1.6">"They are very good patients... they are really interested in starting their treatments"</p>
+      </div></div>
+      <div class="shell vt-card rv" style="--d:.2s" role="listitem"><div class="core">
+        <a class="vt-play" href="https://fast.wistia.net/embed/iframe/kp4pa57yio" target="_blank" rel="noopener" data-vid="kp4pa57yio" data-vtitle="Video testimonial: Dr. Bisztriz" aria-label="Play video testimonial from Dr. Bisztriz">
+          <img src="../assets/img/vt-kp4pa57yio.webp" width="640" height="360" loading="lazy" decoding="async" alt="Video testimonial from Dr. Bisztriz, a referral partner practice of The Digital Smile">
+          <span class="vt-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z" fill="#E6F6FB"/></svg></span>
+        </a>
+        <p class="vt-meta"><b>Dr. Bisztriz</b></p>
+        <p class="ro" style="margin:2px 0 0;padding:0 16px 12px;white-space:normal;line-height:1.6">"Weekly and monthly calls have been great"</p>
+      </div></div>
+      <div class="shell vt-card rv" role="listitem"><div class="core">
+        <a class="vt-play" href="https://fast.wistia.net/embed/iframe/8w3e2lj8bb" target="_blank" rel="noopener" data-vid="8w3e2lj8bb" data-vtitle="Video testimonial: Dr. Petersen" aria-label="Play video testimonial from Dr. Petersen">
+          <img src="../assets/img/vt-8w3e2lj8bb.webp" width="640" height="360" loading="lazy" decoding="async" alt="Video testimonial from Dr. Petersen, a referral partner practice of The Digital Smile">
+          <span class="vt-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z" fill="#E6F6FB"/></svg></span>
+        </a>
+        <p class="vt-meta"><b>Dr. Petersen</b></p>
+        <p class="ro" style="margin:2px 0 0;padding:0 16px 12px;white-space:normal;line-height:1.6">"11 patients in the practice in the first 30 days working with us"</p>
+      </div></div>
+      <div class="shell vt-card rv" style="--d:.1s" role="listitem"><div class="core">
+        <a class="vt-play" href="https://fast.wistia.net/embed/iframe/iehon9dwys" target="_blank" rel="noopener" data-vid="iehon9dwys" data-vtitle="Video testimonial: Wiser Smiles" aria-label="Play video testimonial from Wiser Smiles">
+          <img src="../assets/img/vt-iehon9dwys.webp" width="640" height="360" loading="lazy" decoding="async" alt="Video testimonial from Wiser Smiles, a referral partner practice of The Digital Smile">
+          <span class="vt-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z" fill="#E6F6FB"/></svg></span>
+        </a>
+        <p class="vt-meta"><b>Wiser Smiles</b></p>
+        <p class="ro" style="margin:2px 0 0;padding:0 16px 12px;white-space:normal;line-height:1.6">"We sold the complete treatment for $17,000"</p>
+      </div></div>
     </div>
   </div>
 </section>
@@ -888,46 +967,6 @@ $$(".faq-item").forEach(function(item){
   });
 });
 
-/* ---------- Ask AI demo (cancel-token typed replay) ---------- */
-(function(){
-  var panel=$("#chatPanel"), bU=$("#bubU"), bA=$("#bubA"), card=$("#aiCard"), btn=$("#replayBtn"), live=$("#chatLive");
-  if(!panel||!bU||!bA||!card) return;
-  var Q="Best dentist for dental implants near me?";
-  var A="Based on verified patient outcomes and consistent local reviews, one practice stands out for implant treatment in your area. Here is my recommendation.";
-  /* one clean SR announcement of the whole exchange, not per keystroke */
-  function announce(){ if(live) live.textContent="Question: "+Q+" Answer: "+A+" Recommended by AI: your practice, recommended."; }
-  var token=null;
-  function play(){
-    if(token) token.dead=true;
-    var tk={dead:false}; token=tk;
-    bU.textContent=""; bA.textContent=""; card.classList.remove("show");
-    if(RM){ bU.textContent=Q; bA.textContent=A; card.classList.add("show"); announce(); return; }
-    var caret=document.createElement("span"); caret.className="caret"; caret.setAttribute("aria-hidden","true");
-    var i=0,j=0;
-    function typeQ(){
-      if(tk.dead) return;
-      bU.textContent=Q.slice(0,++i);
-      if(i<Q.length) setTimeout(typeQ,24);
-      else setTimeout(startA,520);
-    }
-    function startA(){ if(tk.dead) return; bA.appendChild(caret); typeA(); }
-    function typeA(){
-      if(tk.dead) return;
-      bA.textContent=A.slice(0,++j);
-      bA.appendChild(caret);
-      if(j<A.length) setTimeout(typeA,14);
-      else{ caret.remove(); setTimeout(function(){ if(!tk.dead){ card.classList.add("show"); announce(); } },350); }
-    }
-    setTimeout(typeQ,300);
-  }
-  if(btn) btn.addEventListener("click",play);
-  if("IntersectionObserver" in window){
-    var chatIO=new IntersectionObserver(function(entries){
-      if(entries[0].isIntersecting){ play(); chatIO.disconnect(); }  /* autoplay once; Replay is the manual re-trigger */
-    },{threshold:.5});
-    chatIO.observe(panel);
-  }else{ play(); }
-})();
 
 /* ---------- spotlight cards + subtle tilt (desktop only) ---------- */
 if(FINE){
