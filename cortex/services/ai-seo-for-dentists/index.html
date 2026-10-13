@@ -103,6 +103,11 @@ body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opa
 .btn-s{border:1px solid rgba(34,211,238,.38);color:var(--cy)}
 .btn-s .arr{background:rgba(34,211,238,.12)}
 .btn-s:hover{border-color:rgba(34,211,238,.7)}
+/* amarillo logo (Ramiro 10-12: "Read the full case studies" en amarillo como el logo TDS) */
+.btn-y{background:var(--ye);color:#231A02}
+.btn-y .arr{background:rgba(35,26,2,.14)}
+.btn-y:hover{background:#FDD94A}
+.btn-y svg path{stroke:#231A02}
 .btn .arr svg{width:16px;height:16px}
 /* arrow strokes centralized: CSS wins over the per-instance SVG attrs */
 .btn-p svg path{stroke:#052430}
@@ -122,11 +127,8 @@ body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opa
 .tbar a:hover{color:#4ADEF2}
 @media(max-width:760px){:root{--tb:58px}.tbar p{font-size:.74rem}}
 @media(max-width:430px){:root{--tb:74px}}
-@supports (animation-timeline: scroll()){
-  .tbar{position:absolute}
-  .nav{animation:navdock linear both;animation-timeline:scroll();animation-range:0 var(--tb)}
-  @keyframes navdock{to{transform:translateY(calc(-1*var(--tb)))}}
-}
+/* Ramiro 10-12: el dock scroll-driven de la nav se desfasaba al scrollear (gap entre tbar
+   y nav mostrando el fondo en todas las subpáginas) — la barra queda SIEMPRE fija y negra */
 
 /* ============ NAV ============ */
 .nav{position:fixed;top:var(--tb);left:0;right:0;z-index:60;height:64px;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);background:rgba(7,12,24,.72);border-bottom:1px solid var(--line)}
@@ -232,6 +234,8 @@ a.met:hover b{color:var(--cy)}
 
 
 /* ============ SCANNER ============ */
+/* widget live embebido: la lupa azul del header confunde (Ramiro 10-12) — fuera */
+#tds-ai-scanner .tds-hero-icon{display:none!important}
 .scan-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center}
 .scan-core{position:relative;overflow:hidden;padding:44px;display:flex;flex-direction:column;align-items:center;gap:20px;background:radial-gradient(70% 65% at 50% 30%,rgba(14,116,144,.16),transparent 72%),var(--g1)}
 /* THE one scanline sweep on the page */
@@ -255,10 +259,8 @@ a.met:hover b{color:var(--cy)}
 /* video testimonials: local thumbnails; Wistia iframe injected only on play */
 .vt-play{position:relative;display:block;border-radius:var(--r-md);overflow:hidden;background:var(--g2)}
 .vt-card .vt-play,.vt-card .vt-embed{aspect-ratio:4/5}
-/* grade wash: same integration the founder photo gets — partial desat + teal multiply
-   pulls the white/red client thumbs into the palette; hover restores the raw footage */
-.vt-play img{display:block;width:100%;height:100%;object-fit:cover;filter:saturate(.55) brightness(.85) contrast(.97);transition:transform .8s var(--ez2),filter .6s var(--ez2)}
-.vt-play::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,rgba(14,116,144,.22),rgba(7,12,24,.30));mix-blend-mode:multiply;transition:opacity .6s var(--ez2)}
+/* thumbs al natural (Ramiro 10-12: el wash desaturado se veía "café") */
+.vt-play img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .8s var(--ez2)}
 .vt-play:focus-visible{outline:2px solid var(--cy);outline-offset:-6px;box-shadow:inset 0 0 0 8px rgba(7,12,24,.85)}
 .vt-ic{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:62px;height:62px;border-radius:999px;display:flex;align-items:center;justify-content:center;background:rgba(7,12,24,.62);border:1px solid rgba(34,211,238,.45);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);transition:background-color .5s var(--ez2),border-color .5s var(--ez2);z-index:1}
 .vt-card .vt-ic{width:50px;height:50px;backdrop-filter:none;-webkit-backdrop-filter:none;background:rgba(7,12,24,.78)}
@@ -276,8 +278,7 @@ a.met:hover b{color:var(--cy)}
 @media(max-width:960px){.vt-grid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:640px){.vt-grid{grid-template-columns:1fr}}
 @media(pointer:fine){
-  .vt-play:hover img{transform:scale(1.04);filter:none}
-  .vt-play:hover::after{opacity:0}
+  .vt-play:hover img{transform:scale(1.04)}
   .vt-play:hover .vt-ic{background:rgba(34,211,238,.2);border-color:var(--cy)}
 }
 .q-core blockquote{font-size:1.04rem;color:var(--ink);line-height:1.6}
@@ -287,11 +288,10 @@ a.met:hover b{color:var(--cy)}
 /* ============ FOUNDER ============ */
 .founder-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:56px;align-items:center}
 @media(max-width:960px){.f-photo{order:-1}}
-.f-photo{aspect-ratio:4/5}
+/* foto oficial del live a todo color, sin wash (Ramiro 10-12: "está como opaca") */
+.f-photo{aspect-ratio:1004/958}
 .f-photo .core{position:relative;overflow:hidden;background:var(--g1)}
 .f-photo img{width:100%;height:100%;object-fit:cover;object-position:50% 30%}
-/* cyan grade wash ties the warm photo into the dark AI-lab ground */
-.f-photo .core::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(200deg,rgba(7,12,24,0) 40%,rgba(7,12,24,.55)),radial-gradient(90% 70% at 30% 0%,rgba(34,211,238,.14),transparent 60%)}
 .founder blockquote{font-family:var(--disp);font-weight:600;font-size:clamp(1.25rem,2vw,1.6rem);line-height:1.45;color:var(--ink);margin:22px 0}
 .f-bio{font-size:.95rem;max-width:46ch}
 .f-name{margin-top:22px;font-size:.86rem;color:var(--dim)}
@@ -327,6 +327,25 @@ a.met:hover b{color:var(--cy)}
 .svc ol li::before{content:counter(svc);position:absolute;left:0;top:.05em;color:var(--cy);font-family:var(--disp);font-weight:800}
 .svc h4{margin:34px 0 12px}
 .svc a{color:var(--cy);text-decoration:underline;text-underline-offset:3px}
+/* ---- capa de diseño de las service detail pages (Ramiro 10-12: "too plain... too boring").
+   La prosa no cambia (copy live verbatim); cambia la estructura visual:
+   h3 = section headers con regla cyan · ol = el proceso real en step-cards numeradas ·
+   ul = filas con hairline a 2 columnas (los <strong> pasan a línea de título). ---- */
+.svc-d{max-width:980px}
+.svc-d h3{font-size:clamp(1.45rem,2.4vw,1.95rem);margin:84px 0 18px;text-wrap:balance}
+.svc-d>h3:first-child{margin-top:0}
+.svc-d h3::after{content:"";display:block;width:46px;height:3px;border-radius:2px;background:var(--cy);margin-top:14px}
+.svc-d p{max-width:68ch}
+.svc-d ul{display:grid;grid-template-columns:repeat(2,1fr);gap:0 48px;margin:10px 0 18px}
+.svc-d ul li{margin:0;padding:16px 0 16px 26px;border-bottom:1px solid var(--line)}
+.svc-d ul li::before{top:1.55em}
+.svc-d ul li strong{display:block;font-family:var(--disp);font-size:1.04rem;margin-bottom:4px}
+.svc-d ol{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;margin:26px 0 18px}
+.svc-d ol li{background:var(--g1);border:1px solid var(--line);border-radius:var(--r-md);box-shadow:inset 0 1px 0 rgba(255,255,255,.055);padding:24px;margin:0;transition:border-color .5s var(--ez2)}
+.svc-d ol li:hover{border-color:rgba(34,211,238,.4)}
+.svc-d ol li::before{content:"0" counter(svc);position:static;display:block;font-family:var(--mono);font-size:.74rem;letter-spacing:.16em;color:var(--cy);margin-bottom:12px}
+.svc-d ol li strong{display:block;font-family:var(--disp);font-size:1.06rem;margin-bottom:6px}
+@media(max-width:760px){.svc-d ul{grid-template-columns:1fr}.svc-d h3{margin-top:60px}}
 .svc .tbl{overflow-x:auto;margin:0 0 18px}
 .svc table{border-collapse:collapse;min-width:560px;width:100%}
 .svc th,.svc td{border:1px solid var(--line2);padding:10px 14px;text-align:left;font-size:.95rem}
@@ -535,21 +554,21 @@ footer{border-top:1px solid var(--line);padding:72px 0 40px;background:rgba(12,2
 </section>
 
 <section aria-label="Service details" style="padding-top:0">
-  <div class="wrap svc">
+  <div class="wrap svc svc-d">
 <h3>The Shift from Traditional Search to AI Recommendations</h3>
 <p>For years, growing your dental practice meant fighting for the top blue link on Google using traditional SEO. Today, the landscape has completely shifted. Patients are increasingly turning to generative AI platforms like ChatGPT, Perplexity, and Google's AI Overviews to find healthcare providers. Instead of typing &quot;dentist near me&quot; into a search bar, they are having natural conversations with AI, asking complex, specific questions like, &quot;Which dentist in my area specializes in pain-free veneers and has the best patient reviews?&quot;</p>
 <p>If your website is only optimized for old-school search algorithms, your practice will be completely invisible to these Large Language Models (LLMs). AI SEO for dentists bridges this gap. By evolving your marketing strategy to focus on conversational content, digital entity building, and advanced schema architecture, we train these AI engines to recognize your clinic as the most authoritative, trustworthy choice. When a patient asks an AI for the best local dentist, we make sure your practice is the definitive answer.</p>
 <h3>Why Your Dental Practice is Invisible to AI Search Engines</h3>
-<ul><li><strong>Lack of Conversational Content</strong>: AI engines process natural language. If your site lacks deep, conversational Q&amp;A content, AI won't recommend you for patient inquiries.</li>
-<li><strong>Weak Entity Recognition</strong>: AI platforms need to recognize your clinic as a trusted &quot;entity.&quot; Without strong digital PR and brand signals, AI ignores your practice.</li>
-<li><strong>Poor Technical Foundation</strong>: Missing advanced schema markup and slow site speeds prevent AI bots from properly crawling and understanding your dental services.</li>
-<li><strong>Low Brand Authority</strong>: ChatGPT relies on consensus. A lack of authoritative backlinks, citations, and verified reviews hurts your credibility in AI algorithms.</li></ul>
+<ul><li><strong>Lack of Conversational Content</strong>AI engines process natural language. If your site lacks deep, conversational Q&amp;A content, AI won't recommend you for patient inquiries.</li>
+<li><strong>Weak Entity Recognition</strong>AI platforms need to recognize your clinic as a trusted &quot;entity.&quot; Without strong digital PR and brand signals, AI ignores your practice.</li>
+<li><strong>Poor Technical Foundation</strong>Missing advanced schema markup and slow site speeds prevent AI bots from properly crawling and understanding your dental services.</li>
+<li><strong>Low Brand Authority</strong>ChatGPT relies on consensus. A lack of authoritative backlinks, citations, and verified reviews hurts your credibility in AI algorithms.</li></ul>
 <h3>Our Proven AI SEO Process for Dental Practices</h3>
-<ol><li><strong>AI Audit &amp; Gap Analysis</strong>: We run advanced tests to see how ChatGPT and Perplexity currently view your practice and identify gaps against your top local competitors.</li>
-<li><strong>Conversational Content Strategy</strong>: We revamp your website copy with long-form, natural-language content that directly answers the complex prompts patients feed into AI.</li>
-<li><strong>Brand Authority Building</strong>: We secure high-quality backlinks and digital PR mentions to establish your clinic as the undeniable dental authority in your city.</li>
-<li><strong>Technical &amp; Schema Optimization</strong>: We implement advanced local and medical schema markup so AI crawlers instantly understand your location, expertise, and specific treatments.</li>
-<li><strong>Continuous AI Monitoring</strong>: AI models update constantly. We continuously track your brand mentions across AI platforms to ensure sustained visibility and lead generation.</li></ol>
+<ol><li><strong>AI Audit &amp; Gap Analysis</strong>We run advanced tests to see how ChatGPT and Perplexity currently view your practice and identify gaps against your top local competitors.</li>
+<li><strong>Conversational Content Strategy</strong>We revamp your website copy with long-form, natural-language content that directly answers the complex prompts patients feed into AI.</li>
+<li><strong>Brand Authority Building</strong>We secure high-quality backlinks and digital PR mentions to establish your clinic as the undeniable dental authority in your city.</li>
+<li><strong>Technical &amp; Schema Optimization</strong>We implement advanced local and medical schema markup so AI crawlers instantly understand your location, expertise, and specific treatments.</li>
+<li><strong>Continuous AI Monitoring</strong>AI models update constantly. We continuously track your brand mentions across AI platforms to ensure sustained visibility and lead generation.</li></ol>
 <h3>Everything You Get With Our AI SEO Service</h3>
 <ul><li>Comprehensive AI Visibility Audit</li>
 <li>Conversational Keyword &amp; Prompt Targeting</li>
@@ -558,10 +577,10 @@ footer{border-top:1px solid var(--line);padding:72px 0 40px;background:rgba(12,2
 <li>Monthly AI Ranking &amp; Traffic Reports</li>
 <li>Dedicated Dental Marketing Manager</li></ul>
 <h3>Why Top Dental Clinics Choose The Digital Smile</h3>
-<ul><li><strong>Dental-Specific Expertise</strong>: We exclusively help dentists. We understand your patients, high-ticket procedures, and compliance requirements inside out.</li>
-<li><strong>Pioneering AI Strategies</strong>: Stop relying on outdated SEO. We stay ahead of the curve, optimizing your practice for tomorrow’s search engines today.</li>
-<li><strong>Measurable ROI</strong>: We don't just chase vanity metrics. Our AI optimization strategies are laser-focused on driving actual booked appointments.</li>
-<li><strong>Transparent Reporting</strong>: No guesswork. You'll know exactly how your AI search visibility and patient volume are improving every single month.</li></ul>
+<ul><li><strong>Dental-Specific Expertise</strong>We exclusively help dentists. We understand your patients, high-ticket procedures, and compliance requirements inside out.</li>
+<li><strong>Pioneering AI Strategies</strong>Stop relying on outdated SEO. We stay ahead of the curve, optimizing your practice for tomorrow’s search engines today.</li>
+<li><strong>Measurable ROI</strong>We don't just chase vanity metrics. Our AI optimization strategies are laser-focused on driving actual booked appointments.</li>
+<li><strong>Transparent Reporting</strong>No guesswork. You'll know exactly how your AI search visibility and patient volume are improving every single month.</li></ul>
 <h3>Future-Proofing Your Dental Practice Growth</h3>
 <p>The transition to AI-driven search is happening faster than most local businesses realize. Relying solely on outdated marketing tactics means leaving your digital footprint vulnerable to competitors who are adapting to this new technology. Our ChatGPT and AI search engine optimization services do more than just generate traffic; they build an impenetrable digital reputation for your brand.</p>
 <p>By proactively feeding AI engines the exact trust signals they crave, such as verified medical citations, comprehensive Q&amp;A content, and high-authority backlinks, we secure your position at the forefront of digital healthcare marketing. Partnering with The Digital Smile means future-proofing your patient acquisition strategy, ensuring your appointment book stays full no matter how search technology evolves.</p>

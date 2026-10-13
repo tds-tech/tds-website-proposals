@@ -103,6 +103,11 @@ body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opa
 .btn-s{border:1px solid rgba(34,211,238,.38);color:var(--cy)}
 .btn-s .arr{background:rgba(34,211,238,.12)}
 .btn-s:hover{border-color:rgba(34,211,238,.7)}
+/* amarillo logo (Ramiro 10-12: "Read the full case studies" en amarillo como el logo TDS) */
+.btn-y{background:var(--ye);color:#231A02}
+.btn-y .arr{background:rgba(35,26,2,.14)}
+.btn-y:hover{background:#FDD94A}
+.btn-y svg path{stroke:#231A02}
 .btn .arr svg{width:16px;height:16px}
 /* arrow strokes centralized: CSS wins over the per-instance SVG attrs */
 .btn-p svg path{stroke:#052430}
@@ -122,11 +127,8 @@ body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opa
 .tbar a:hover{color:#4ADEF2}
 @media(max-width:760px){:root{--tb:58px}.tbar p{font-size:.74rem}}
 @media(max-width:430px){:root{--tb:74px}}
-@supports (animation-timeline: scroll()){
-  .tbar{position:absolute}
-  .nav{animation:navdock linear both;animation-timeline:scroll();animation-range:0 var(--tb)}
-  @keyframes navdock{to{transform:translateY(calc(-1*var(--tb)))}}
-}
+/* Ramiro 10-12: el dock scroll-driven de la nav se desfasaba al scrollear (gap entre tbar
+   y nav mostrando el fondo en todas las subpáginas) — la barra queda SIEMPRE fija y negra */
 
 /* ============ NAV ============ */
 .nav{position:fixed;top:var(--tb);left:0;right:0;z-index:60;height:64px;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);background:rgba(7,12,24,.72);border-bottom:1px solid var(--line)}
@@ -232,6 +234,8 @@ a.met:hover b{color:var(--cy)}
 
 
 /* ============ SCANNER ============ */
+/* widget live embebido: la lupa azul del header confunde (Ramiro 10-12) — fuera */
+#tds-ai-scanner .tds-hero-icon{display:none!important}
 .scan-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center}
 .scan-core{position:relative;overflow:hidden;padding:44px;display:flex;flex-direction:column;align-items:center;gap:20px;background:radial-gradient(70% 65% at 50% 30%,rgba(14,116,144,.16),transparent 72%),var(--g1)}
 /* THE one scanline sweep on the page */
@@ -255,10 +259,8 @@ a.met:hover b{color:var(--cy)}
 /* video testimonials: local thumbnails; Wistia iframe injected only on play */
 .vt-play{position:relative;display:block;border-radius:var(--r-md);overflow:hidden;background:var(--g2)}
 .vt-card .vt-play,.vt-card .vt-embed{aspect-ratio:4/5}
-/* grade wash: same integration the founder photo gets — partial desat + teal multiply
-   pulls the white/red client thumbs into the palette; hover restores the raw footage */
-.vt-play img{display:block;width:100%;height:100%;object-fit:cover;filter:saturate(.55) brightness(.85) contrast(.97);transition:transform .8s var(--ez2),filter .6s var(--ez2)}
-.vt-play::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,rgba(14,116,144,.22),rgba(7,12,24,.30));mix-blend-mode:multiply;transition:opacity .6s var(--ez2)}
+/* thumbs al natural (Ramiro 10-12: el wash desaturado se veía "café") */
+.vt-play img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .8s var(--ez2)}
 .vt-play:focus-visible{outline:2px solid var(--cy);outline-offset:-6px;box-shadow:inset 0 0 0 8px rgba(7,12,24,.85)}
 .vt-ic{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:62px;height:62px;border-radius:999px;display:flex;align-items:center;justify-content:center;background:rgba(7,12,24,.62);border:1px solid rgba(34,211,238,.45);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);transition:background-color .5s var(--ez2),border-color .5s var(--ez2);z-index:1}
 .vt-card .vt-ic{width:50px;height:50px;backdrop-filter:none;-webkit-backdrop-filter:none;background:rgba(7,12,24,.78)}
@@ -276,8 +278,7 @@ a.met:hover b{color:var(--cy)}
 @media(max-width:960px){.vt-grid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:640px){.vt-grid{grid-template-columns:1fr}}
 @media(pointer:fine){
-  .vt-play:hover img{transform:scale(1.04);filter:none}
-  .vt-play:hover::after{opacity:0}
+  .vt-play:hover img{transform:scale(1.04)}
   .vt-play:hover .vt-ic{background:rgba(34,211,238,.2);border-color:var(--cy)}
 }
 .q-core blockquote{font-size:1.04rem;color:var(--ink);line-height:1.6}
@@ -287,11 +288,10 @@ a.met:hover b{color:var(--cy)}
 /* ============ FOUNDER ============ */
 .founder-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:56px;align-items:center}
 @media(max-width:960px){.f-photo{order:-1}}
-.f-photo{aspect-ratio:4/5}
+/* foto oficial del live a todo color, sin wash (Ramiro 10-12: "está como opaca") */
+.f-photo{aspect-ratio:1004/958}
 .f-photo .core{position:relative;overflow:hidden;background:var(--g1)}
 .f-photo img{width:100%;height:100%;object-fit:cover;object-position:50% 30%}
-/* cyan grade wash ties the warm photo into the dark AI-lab ground */
-.f-photo .core::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(200deg,rgba(7,12,24,0) 40%,rgba(7,12,24,.55)),radial-gradient(90% 70% at 30% 0%,rgba(34,211,238,.14),transparent 60%)}
 .founder blockquote{font-family:var(--disp);font-weight:600;font-size:clamp(1.25rem,2vw,1.6rem);line-height:1.45;color:var(--ink);margin:22px 0}
 .f-bio{font-size:.95rem;max-width:46ch}
 .f-name{margin-top:22px;font-size:.86rem;color:var(--dim)}
@@ -327,6 +327,25 @@ a.met:hover b{color:var(--cy)}
 .svc ol li::before{content:counter(svc);position:absolute;left:0;top:.05em;color:var(--cy);font-family:var(--disp);font-weight:800}
 .svc h4{margin:34px 0 12px}
 .svc a{color:var(--cy);text-decoration:underline;text-underline-offset:3px}
+/* ---- capa de diseño de las service detail pages (Ramiro 10-12: "too plain... too boring").
+   La prosa no cambia (copy live verbatim); cambia la estructura visual:
+   h3 = section headers con regla cyan · ol = el proceso real en step-cards numeradas ·
+   ul = filas con hairline a 2 columnas (los <strong> pasan a línea de título). ---- */
+.svc-d{max-width:980px}
+.svc-d h3{font-size:clamp(1.45rem,2.4vw,1.95rem);margin:84px 0 18px;text-wrap:balance}
+.svc-d>h3:first-child{margin-top:0}
+.svc-d h3::after{content:"";display:block;width:46px;height:3px;border-radius:2px;background:var(--cy);margin-top:14px}
+.svc-d p{max-width:68ch}
+.svc-d ul{display:grid;grid-template-columns:repeat(2,1fr);gap:0 48px;margin:10px 0 18px}
+.svc-d ul li{margin:0;padding:16px 0 16px 26px;border-bottom:1px solid var(--line)}
+.svc-d ul li::before{top:1.55em}
+.svc-d ul li strong{display:block;font-family:var(--disp);font-size:1.04rem;margin-bottom:4px}
+.svc-d ol{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;margin:26px 0 18px}
+.svc-d ol li{background:var(--g1);border:1px solid var(--line);border-radius:var(--r-md);box-shadow:inset 0 1px 0 rgba(255,255,255,.055);padding:24px;margin:0;transition:border-color .5s var(--ez2)}
+.svc-d ol li:hover{border-color:rgba(34,211,238,.4)}
+.svc-d ol li::before{content:"0" counter(svc);position:static;display:block;font-family:var(--mono);font-size:.74rem;letter-spacing:.16em;color:var(--cy);margin-bottom:12px}
+.svc-d ol li strong{display:block;font-family:var(--disp);font-size:1.06rem;margin-bottom:6px}
+@media(max-width:760px){.svc-d ul{grid-template-columns:1fr}.svc-d h3{margin-top:60px}}
 .svc .tbl{overflow-x:auto;margin:0 0 18px}
 .svc table{border-collapse:collapse;min-width:560px;width:100%}
 .svc th,.svc td{border:1px solid var(--line2);padding:10px 14px;text-align:left;font-size:.95rem}
@@ -811,7 +830,7 @@ a.met:hover b{color:#0E7490}
          tampoco lo publica (solo nombre + foto + quote), así que el dato hay que pedirlo a Gabriel/CSMs.
          Los roles anteriores se removieron por inventados; solo nombres verificados hasta tener el contexto real. -->
     <div class="rv" style="margin-top:38px;text-align:center">
-      <a class="btn btn-s" href="case-studies/">Read the full case studies <span class="arr"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" fill="none" stroke="#22D3EE" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+      <a class="btn btn-y" href="case-studies/">Read the full case studies <span class="arr"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" fill="none" stroke="#231A02" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
     </div>
   </div>
 </section>
@@ -848,7 +867,7 @@ a.met:hover b{color:#0E7490}
     </div>
     <div class="shell hud f-photo rv tilt">
       <div class="core">
-        <img src="assets/img/founder-gabriel.webp" width="720" height="900" loading="lazy" decoding="async" alt="Gabriel Segall, founder of The Digital Smile, seated during a recorded conversation.">
+        <img src="assets/img/founder-gabriel.webp" width="1004" height="958" loading="lazy" decoding="async" alt="Gabriel Segall, founder of The Digital Smile, seated during a recorded conversation.">
       </div>
     </div>
   </div>
