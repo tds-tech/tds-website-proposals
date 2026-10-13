@@ -25,7 +25,8 @@
    ============================================================ */
 :root{
   --g0:#070C18; --g1:#0C1424; --g2:#101B31;
-  --ink:#EAF3F8; --mut:#93A8BC; --dim:#6B8093;
+  /* Gabriel 09-23: "use a very bright white... there needs to be some contrast" */
+  --ink:#F6FBFE; --mut:#B9CCDC; --dim:#8CA2B5;
   --cy:#22D3EE; --te:#0E7490; --ye:#FACC15;
   --line:rgba(148,184,210,.13); --line2:rgba(148,184,210,.22);
   --r-lg:24px; --r-md:18px; --r-sm:12px;
@@ -38,13 +39,16 @@
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-body{background:var(--g0);color:var(--ink);font-family:var(--body);font-size:16.5px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+/* Gabriel 09-23: "maybe even put the text a little bit thicker" — Inter variable, 450 */
+body{background:var(--g0);color:var(--ink);font-family:var(--body);font-size:16.5px;font-weight:450;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 ::selection{background:rgba(34,211,238,.28);color:#fff}
 a{color:inherit;text-decoration:none}
 img,svg,canvas{max-width:100%;display:block}
 button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 :focus-visible{outline:2px solid var(--cy);outline-offset:3px;border-radius:4px}
 h1,h2,h3{font-family:var(--disp);line-height:1.12;letter-spacing:-.015em;font-weight:700}
+/* paridad live: .heading-style-h2{text-transform:capitalize} en el Webflow CSS (Gabriel 09-23, caps) */
+h1,h2{text-transform:capitalize}
 h1{font-size:clamp(2.3rem,3.9vw,3.05rem);font-weight:800}
 h2{font-size:clamp(1.9rem,3.4vw,2.85rem)}
 h3{font-size:1.16rem}
@@ -156,7 +160,8 @@ body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opa
 .mnav .m-cta{color:var(--cy)}
 
 /* ============ HERO ============ */
-.hero{min-height:100dvh;display:flex;align-items:center;padding-block:150px 80px;overflow:hidden}
+/* sin 100dvh: en desktop alto dejaba un vacío enorme arriba y abajo (Gabriel 09-23) */
+.hero{display:flex;align-items:center;padding-block:140px 64px;overflow:hidden}
 .hero-bg{position:absolute;inset:0;pointer-events:none;background:radial-gradient(60% 55% at 72% 42%,rgba(14,116,144,.22),transparent 70%),radial-gradient(40% 40% at 12% 85%,rgba(34,211,238,.07),transparent 70%)}
 .hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center;width:100%}
 .hero h1{margin:22px 0 18px;text-wrap:balance}
@@ -356,6 +361,38 @@ footer{border-top:1px solid var(--line);padding:72px 0 40px;background:rgba(12,2
 .socials svg{width:16px;height:16px;fill:var(--mut)}
 .foot-base{margin-top:56px;padding-top:24px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:.8rem;color:var(--dim)}
 
+/* ============ FEEDBACK 09-23 (Gabriel) ============ */
+/* mission: texto + visual al lado ("some sort of a sign next to the text, not just text") */
+.mis-grid{display:grid;grid-template-columns:1.08fr .92fr;gap:52px;align-items:center}
+.sched{padding:30px;display:flex;flex-direction:column;gap:16px}
+.sched-days{display:grid;grid-template-columns:repeat(7,1fr);gap:8px}
+.sched-days i{aspect-ratio:1;border-radius:7px;background:rgba(148,184,210,.06);border:1px solid var(--line)}
+.sched-days i.on{background:rgba(34,211,238,.16);border-color:rgba(34,211,238,.5);box-shadow:inset 0 0 0 1px rgba(34,211,238,.12)}
+.sched-days i.on::after{content:"";display:block;width:38%;height:38%;margin:31%;border-radius:999px;background:var(--cy);opacity:.9}
+.sched-foot{display:flex;justify-content:space-between;align-items:center;gap:12px}
+/* why choose us: checklist + panel grafico (el layout del live lee mejor que bloques de texto) */
+.why-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:52px;align-items:center}
+.wc-list{list-style:none;margin:26px 0 0;padding:0}
+.wc-list li{display:flex;gap:16px;align-items:flex-start;padding:17px 0;border-bottom:1px solid var(--line);color:var(--ink);font-size:1.02rem;line-height:1.55}
+.wc-list li:last-child{border-bottom:0}
+.wc-ic{flex:none;width:26px;height:26px;margin-top:2px;border-radius:999px;background:rgba(34,211,238,.14);border:1px solid rgba(34,211,238,.5);display:flex;align-items:center;justify-content:center}
+.wc-ic svg{width:12px;height:12px;stroke:var(--cy);fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.why-tiles{display:grid;grid-template-columns:1fr 1fr;gap:14px;padding:6px}
+.why-tiles .wt{background:var(--g1);border-radius:var(--r-md);box-shadow:inset 0 1px 0 rgba(255,255,255,.055);padding:20px;display:flex;flex-direction:column;gap:14px;min-height:150px}
+.wt b{font-family:var(--disp);font-weight:700;font-size:.9rem;color:var(--ink);line-height:1.3}
+.wt svg{width:100%;height:56px;margin-top:auto}
+/* referral: pasos en zigzag con imagen, como el live (bloques de texto solos no se leen) */
+.step-row{display:grid;grid-template-columns:1.05fr .95fr;gap:44px;align-items:center;margin-top:48px}
+.step-row:first-of-type{margin-top:34px}
+.step-row .step-img{width:100%;max-width:440px;height:auto;margin-inline:auto;display:block}
+.step-row.flip .step-img{order:-1}
+/* services hub: cards escaneables con emoji + short copy + boton (grid live de service pages) */
+.dir-ic{font-size:32px;line-height:1;margin-bottom:auto}
+@media(max-width:960px){
+  .mis-grid,.why-grid,.step-row{grid-template-columns:1fr}
+  .step-row.flip .step-img{order:0}
+}
+
 /* ============ RESPONSIVE ============ */
 @media(max-width:960px){
   .hero-grid,.scan-grid,.founder-grid{grid-template-columns:1fr}
@@ -427,113 +464,6 @@ footer{border-top:1px solid var(--line);padding:72px 0 40px;background:rgba(12,2
   .dial .ring-fg{transition:none;stroke-dashoffset:151}
   *{transition-duration:.01ms!important}
 }
-
-/* ============================================================
-   VARIANT B: light lab.
-   Same Cortex structure on the brand-manual light colorimetry
-   (base #0F172A ink, #F9FAFB surface, teal #0E7490, cyan #22D3EE).
-   The instruments (tooth hologram, scanner) stay dark:
-   screens on a light lab bench. Appended by build.py --variant b.
-   ============================================================ */
-:root{
-  --g0:#F7FAFC; --g1:#FFFFFF; --g2:#EAF1F6;
-  --ink:#0F172A; --mut:#42586D; --dim:#5A6E82;
-  --line:rgba(15,42,70,.12); --line2:rgba(15,42,70,.22);
-}
-::selection{background:rgba(14,116,144,.22);color:#0F172A}
-
-/* readout voice + accents: teal carries the accent on light surfaces */
-.ro{color:#0E7490}
-.ro b{color:#0E7490}
-.eyebrow{color:#0E7490;border-color:rgba(14,116,144,.35);background:rgba(14,116,144,.06)}
-.hero h1 em{color:#0E7490}
-.mnav .m-cta{color:#0E7490}
-.q-core figcaption b{color:#0E7490}
-/* stats on the light canvas: teal numbers, white band */
-.metrics{background:#FFFFFF}
-.met b{color:#0E7490}
-.met>span{color:#4A6076}
-
-/* background systems */
-body::before{opacity:.03;background-image:linear-gradient(rgba(14,116,144,.9) 1px,transparent 1px),linear-gradient(90deg,rgba(14,116,144,.9) 1px,transparent 1px)}
-@supports (animation-timeline: scroll()){
-  body::after{opacity:.05;background-image:radial-gradient(rgba(14,116,144,1) 1px,transparent 1px)}
-}
-.hero-bg{background:radial-gradient(60% 55% at 72% 42%,rgba(14,116,144,.10),transparent 70%),radial-gradient(40% 40% at 12% 85%,rgba(34,211,238,.07),transparent 70%)}
-.hero-glow{background:radial-gradient(620px at var(--hx,62%) var(--hy,38%),rgba(14,116,144,.09),rgba(34,211,238,.04) 46%,transparent 70%)}
-.spot::before{background:radial-gradient(240px at var(--mx,50%) var(--my,50%),rgba(14,116,144,.07),transparent 60%)}
-
-/* chrome: nav goes light glass; announcement bar stays black like the live site */
-.nav{background:rgba(249,250,252,.82)}
-.mnav{background:rgba(249,250,252,.94)}
-.shell{background:rgba(15,42,70,.03)}
-.core{box-shadow:0 1px 2px rgba(15,42,70,.05)}
-.hud::after{--hc:rgba(14,116,144,.45)}
-footer{background:rgba(15,42,70,.03)}
-
-/* dark islands: instrument screens keep the dark skin via scoped vars.
-   .tbar stays black like the live site, so it needs the island vars too */
-.tbar,.tooth-core,.scan-core{
-  --g0:#070C18; --g1:#0C1424; --g2:#101B31;
-  --ink:#EAF3F8; --mut:#93A8BC; --dim:#6B8093;
-  --line:rgba(148,184,210,.13); --line2:rgba(148,184,210,.22);
-}
-
-/* secondary button + inline chevrons: cyan is too weak on white */
-.btn-s{color:#0E7490;border-color:rgba(14,116,144,.45)}
-.btn-s:hover{border-color:#0E7490}
-.btn-s .arr{background:rgba(14,116,144,.10)}
-.btn-s svg path{stroke:#0E7490}
-
-/* service cards: teal washes instead of deep-sea gradients */
-.m-grad .core{background:linear-gradient(150deg,rgba(14,116,144,.16),rgba(234,241,246,.9) 62%),var(--g1)}
-.m-dots .core{background-image:radial-gradient(rgba(14,116,144,.18) 1px,transparent 1px)}
-.mod-ic svg{stroke:#0E7490}
-.mod-ic.brand svg{fill:#0E7490;stroke:none}
-
-/* trust logos are white monochrome: invert to ink on light */
-.logos img{opacity:1;filter:invert(1) opacity(.6)}
-.logos img:hover{opacity:1;filter:invert(1) opacity(.92)}
-
-.faq-q[aria-expanded="true"] .pl{border-color:rgba(14,116,144,.5)}
-.faq-q .pl::before,.faq-q .pl::after{background:#0E7490}
-
-/* service/blog article accents: teal on light surfaces (cyan is 1.9:1 on white) */
-.acc,.svc a,.svc ol li::before{color:#0E7490}
-.svc ul li::before{background:#0E7490}
-.blog-card:hover{border-color:rgba(14,116,144,.45)}
-
-/* ---- color-system pass 08-21 (WCAG + accent lock on light) ---- */
-/* keyboard focus: cyan is 1.7:1 on the light ground; islands + black bar keep cyan */
-:focus-visible{outline-color:#0E7490}
-.tooth-core :focus-visible,.scan-core :focus-visible,.tbar :focus-visible{outline-color:#22D3EE}
-/* readouts inside the dark islands: global teal drops to 3.4:1 on the island ground */
-.tooth-core .ro,.scan-core .ro{color:rgba(34,211,238,.75)}
-.tooth-core .ro b,.scan-core .ro b{color:#22D3EE}
-/* metric tiles: cyan hover vanishes on the white band */
-a.met:hover{background:rgba(14,116,144,.06)}
-a.met:hover>span{color:#0E7490}
-a.met:hover b{color:#0E7490}
-/* footer + socials: cyan hover vanishes on the near-white footer */
-.foot-col a:hover{color:#0E7490}
-.socials a:hover{border-color:rgba(14,116,144,.55)}
-/* accent lock: teal is THE accent on light, filled CTAs included */
-.btn-p{background:#0E7490;color:#F7FAFC}
-.btn-p:hover{background:#0C647E}
-.btn-p .arr{background:rgba(255,255,255,.18)}
-.nav-links a.nav-cta{background:#0E7490;color:#F7FAFC;box-shadow:none}
-.nav-links a.nav-cta:hover{background:#0C647E;color:#F7FAFC}
-/* progress bar: cyan end decays to 1.7:1 on light glass */
-.progress{background:linear-gradient(90deg,#0E7490,#1899BC)}
-/* founder photo: half-strength ink vignette + teal wash for the light bench */
-.f-photo .core::after{background:linear-gradient(200deg,rgba(15,23,42,0) 45%,rgba(15,23,42,.24)),radial-gradient(90% 70% at 30% 0%,rgba(14,116,144,.10),transparent 60%)}
-/* video thumbs: the teal grade wash is a dark-ground device; light lab keeps them raw */
-.vt-play img{filter:none}
-.vt-play::after{content:none}
-
-/* dropdown Services: sombra liviana sobre superficie light */
-.ndm-in{box-shadow:0 18px 44px rgba(15,23,42,.16)}
-
 </style>
 </head>
 <body>
@@ -569,7 +499,7 @@ a.met:hover b{color:#0E7490}
           </div></div>
         </div>
         <a href="../../resources/">Resources</a>
-        <a href="https://www.thedigitalsmile.com/ai-visibility-checker">Free AI Scan</a>
+        <a href="../../ai-visibility-checker/">Free AI Scan</a>
         <a href="../../blog/">Blog</a>
         <a href="../../case-studies/">Case Studies</a>
         <a href="../../referral/">Referral</a>
@@ -584,7 +514,7 @@ a.met:hover b{color:#0E7490}
     <a href="../../about-us/" style="transition-delay:.1s">Our Philosophy</a>
     <a href="../../services/" style="transition-delay:.14s">Services</a>
     <a href="../../resources/" style="transition-delay:.18s">Resources</a>
-    <a href="https://www.thedigitalsmile.com/ai-visibility-checker" style="transition-delay:.22s">Free AI Scan</a>
+    <a href="../../ai-visibility-checker/" style="transition-delay:.22s">Free AI Scan</a>
     <a href="../../blog/" style="transition-delay:.26s">Blog</a>
     <a href="../../case-studies/" style="transition-delay:.3s">Case Studies</a>
     <a href="../../referral/" style="transition-delay:.34s">Referral</a>
@@ -719,7 +649,7 @@ a.met:hover b{color:#0E7490}
         <a href="../../about-us/">Our Philosophy</a>
         <a href="../../services/">Services</a>
         <a href="../../resources/">Resources</a>
-        <a href="https://www.thedigitalsmile.com/ai-visibility-checker">Free AI Scan</a>
+        <a href="../../ai-visibility-checker/">Free AI Scan</a>
         <a href="../../blog/">Blog</a>
         <a href="../../case-studies/">Case Studies</a>
         <a href="../../referral/">Referral</a>
