@@ -483,6 +483,109 @@ footer{border-top:1px solid var(--line);padding:72px 0 40px;background:rgba(12,2
   .dial .ring-fg{transition:none;stroke-dashoffset:151}
   *{transition-duration:.01ms!important}
 }
+
+/* ============================================================
+   VARIANT C: color-block story (rev 2, feedback Ramiro 08-21).
+   Same dark AI-lab Cortex, read as six planned surfaces
+   (the live site's banded rhythm):
+     1. dark #070C18 opening (hero + trust)          - base theme
+     2. light "paper" band (testimonials):
+        the social proof reads like a printed report
+     3. CYAN SIGNAL STRIPE (metrics): the numbers band carries
+        brand cyan with ink numerals, like the live site's band
+     4. light "paper" again (founder, photo raw / ungraded)
+     5. dark instruments (services, ask AI, scanner, FAQ) - base
+     6. deep teal band (final CTA / "Book a call" everywhere),
+        then the dark footer                          - base theme
+   Bands are role-based selectors, so subpages that reuse
+   .founder / .metrics / .final / [aria-label="Book a call"] get
+   the same treatment automatically.
+   Also variant-wide: action buttons are SOLID (no ghost pills) -
+   .btn-s fills teal, the nav CTA fills cyan.
+   Token trick: each band re-scopes --cy (the accent var), so every
+   rule that uses var(--cy) re-resolves per band with zero overrides.
+   Only literal-color rules need explicit swaps (map: theme-b.css).
+   WCAG pairs verified 08-21 (python): paper: teal 5.1:1, ink 17:1,
+   mut 7:1. Cyan stripe #22D3EE: ink 9.9:1, labels #0B4A5C 5.4:1,
+   hover/focus #052430 8.9:1. Teal band #0C6379: white 6.5:1, body
+   5.8:1, button text 15.4:1. Solid .btn-s #0E7490: text 5.1:1,
+   shape 3.65:1 on dark / 5.1:1 on paper.
+   Appended by build.py --variant c.
+   ============================================================ */
+
+/* ---- variant-wide: action buttons are solid ---- */
+.btn-s{background:#0E7490;border-color:#0E7490;color:#F7FAFC}
+.btn-s:hover{background:#0C647E;border-color:#0C647E}
+.btn-s .arr{background:rgba(255,255,255,.18)}
+.btn-s svg path{stroke:#F7FAFC}
+.nav-links a.nav-cta{background:#22D3EE;color:#052430;box-shadow:none}
+.nav-links a.nav-cta:hover{background:#4ADEF2;color:#052430}
+
+/* ---- bands 2 + 4: light paper (testimonials, founder) ---- */
+:is(section[aria-labelledby="quo-h"],section.founder){
+  --g0:#F7FAFC; --g1:#FFFFFF; --g2:#EAF1F6;
+  --ink:#0F172A; --mut:#42586D; --dim:#5A6E82;
+  --line:rgba(15,42,70,.12); --line2:rgba(15,42,70,.22);
+  --cy:#0E7490; /* accent lock: teal carries the accent on light */
+  background:var(--g0);
+  /* color inherits RESOLVED from the dark body; re-anchor at the band */
+  color:var(--ink);
+}
+
+/* literal-color rules inside the paper bands (map: theme-b.css) */
+:is(section[aria-labelledby="quo-h"],section.founder) .ro{color:#0E7490}
+:is(section[aria-labelledby="quo-h"],section.founder) .eyebrow{border-color:rgba(14,116,144,.35);background:rgba(14,116,144,.06)}
+:is(section[aria-labelledby="quo-h"],section.founder) ::selection{background:rgba(14,116,144,.22);color:#0F172A}
+:is(section[aria-labelledby="quo-h"],section.founder) .shell{background:rgba(15,42,70,.03)}
+:is(section[aria-labelledby="quo-h"],section.founder) .core{box-shadow:0 1px 2px rgba(15,42,70,.05)}
+:is(section[aria-labelledby="quo-h"],section.founder) .hud::after{--hc:rgba(14,116,144,.45)}
+/* video thumbs: the teal grade wash is a dark-ground device; paper keeps them raw */
+:is(section[aria-labelledby="quo-h"],section.founder) .vt-play img{filter:none}
+:is(section[aria-labelledby="quo-h"],section.founder) .vt-play::after{content:none}
+/* founder photo: raw, no vignette or wash (Ramiro 08-21: natural colors) */
+:is(section[aria-labelledby="quo-h"],section.founder) .f-photo .core::after{content:none}
+
+/* ---- band 3: cyan signal stripe (metrics, the live site's band move) ---- */
+section.metrics{
+  --g0:#22D3EE; --g1:#22D3EE; --g2:#4ADEF2;
+  --ink:#0F172A; --mut:#0B4A5C; --dim:#0B4A5C;
+  --line:rgba(5,36,48,.25); --line2:rgba(5,36,48,.40);
+  /* --cy -> deep ink-teal: metric hovers and focus resolve dark on cyan */
+  --cy:#052430;
+  background:#22D3EE;
+  color:var(--ink);
+}
+section.metrics ::selection{background:rgba(5,36,48,.30);color:#F7FAFC}
+/* base hover wash is cyan-on-cyan here */
+section.metrics a.met:hover{background:rgba(5,36,48,.07)}
+
+/* ---- band 6: deep teal CTA (the live site's "blue band" close) ---- */
+:is(section.final,section[aria-label="Book a call"]){
+  --ink:#F7FAFC; --mut:rgba(247,250,252,.92); --dim:rgba(247,250,252,.82);
+  --line:rgba(247,250,252,.16); --line2:rgba(247,250,252,.30);
+  --g1:#0A5468; --g2:#0B5B70;
+  /* --cy -> near-white: btn-p bg, focus outlines and hovers re-resolve to
+     white on the teal ground (cyan is 3.8:1 here, white is 6.5:1) */
+  --cy:#F7FAFC;
+  background:radial-gradient(56% 70% at 50% 0%,rgba(34,211,238,.10),transparent 62%),#0C6379;
+  color:var(--ink);
+}
+/* blog/service CTA sections ship inline padding-top:0 (fine when the section
+   is transparent; lopsided once it becomes a painted band) - !important is the
+   only way past the inline style without touching 58 fragments */
+section[aria-label="Book a call"]{padding-top:112px!important}
+:is(section.final,section[aria-label="Book a call"]) .btn-p{color:#052430}
+:is(section.final,section[aria-label="Book a call"]) .btn-p:hover{background:#FFFFFF}
+:is(section.final,section[aria-label="Book a call"]) .btn-p .arr{background:rgba(12,99,121,.14)}
+:is(section.final,section[aria-label="Book a call"]) ::selection{background:rgba(5,36,48,.45);color:#F7FAFC}
+/* the CTA glow was cyan-on-dark; on teal it becomes a soft white breath */
+:is(section.final,section[aria-label="Book a call"]) .pulse{animation-name:ctapulsec}
+@keyframes ctapulsec{0%,100%{box-shadow:0 0 0 0 rgba(247,250,252,0),0 0 18px rgba(247,250,252,.10)}50%{box-shadow:0 0 0 0 rgba(247,250,252,0),0 0 24px rgba(247,250,252,.16)}}
+/* the band IS the statement: drop the card chrome, keep its padding */
+.final .shell{background:transparent;border-color:transparent}
+.final .core{background:transparent;box-shadow:none}
+.final .hud::after{content:none}
+
 </style>
 </head>
 <body>
@@ -640,39 +743,6 @@ footer{border-top:1px solid var(--line);padding:72px 0 40px;background:rgba(12,2
       <!-- Card del patient coordinator anterior removida (Gabriel 09-23: "does not work here anymore...
            what we should have here is Fernando's picture"). PENDIENTE: card de Fernando cuando Ramiro pase la foto. -->
       <div class="mod m-2 rv"><div class="shell" style="height:100%"><div class="core tm"><img src="https://cdn.prod.website-files.com/644b615f168e3b22d5b6681a/6a6adfbc7583793304d0e3ef_muhammad-zeeshan-p-500.jpg" width="500" height="500" loading="lazy" decoding="async" alt="Muhammed Zeeshan, SEO Specialist at The Digital Smile"><h3>Muhammed Zeeshan</h3><p>SEO Specialist</p></div></div></div>
-    </div>
-  </div>
-</section>
-
-<!-- Checklist + panel grafico como el live (Gabriel 09-23: "the design that we have on the right looks
-     a little better. We just put the points in a graphic... nobody's going to read the text like this") -->
-<section aria-labelledby="ab-why-h" style="padding-block:0 100px">
-  <div class="wrap why-grid">
-    <div>
-      <h2 id="ab-why-h" class="rv" style="max-width:16ch">Why Choose Us</h2>
-      <ul class="wc-list">
-        <li class="rv"><span class="wc-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5 10 17.5 19 7"/></svg></span>Unlock access to a vast pool of 62.1 Million+ patients for your dental practice.</li>
-        <li class="rv" style="--d:.06s"><span class="wc-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5 10 17.5 19 7"/></svg></span>Secure pre-paid appointments, ensuring a steady stream of qualified patients.</li>
-        <li class="rv" style="--d:.12s"><span class="wc-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5 10 17.5 19 7"/></svg></span>Receive exclusive support tailored to your dental practice's unique needs.</li>
-        <li class="rv" style="--d:.18s"><span class="wc-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5 10 17.5 19 7"/></svg></span>Your results are our #1 priority, driving your practice towards success.</li>
-        <li class="rv" style="--d:.24s"><span class="wc-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5 10 17.5 19 7"/></svg></span>We go the extra mile with follow-up after appointments are made.</li>
-      </ul>
-    </div>
-    <div class="shell hud rv" style="--d:.12s">
-      <div class="why-tiles" aria-hidden="true">
-        <div class="wt"><b>Access to patients</b>
-          <svg viewBox="0 0 120 56"><g fill="rgba(34,211,238,.85)"><rect x="6" y="30" width="10" height="26" rx="2"/><rect x="22" y="18" width="10" height="38" rx="2" fill="rgba(14,116,144,.8)"/><rect x="38" y="36" width="10" height="20" rx="2"/><rect x="54" y="10" width="10" height="46" rx="2" fill="rgba(14,116,144,.8)"/><rect x="70" y="24" width="10" height="32" rx="2"/><rect x="86" y="4" width="10" height="52" rx="2" fill="rgba(14,116,144,.8)"/><rect x="102" y="16" width="10" height="40" rx="2"/></g></svg>
-        </div>
-        <div class="wt"><b>Our #1 priority is your results</b>
-          <svg viewBox="0 0 120 56"><g fill="rgba(34,211,238,.8)"><circle cx="14" cy="14" r="6"/><circle cx="34" cy="10" r="4" fill="rgba(14,116,144,.8)"/><circle cx="52" cy="20" r="8"/><circle cx="76" cy="12" r="5" fill="rgba(14,116,144,.8)"/><circle cx="96" cy="18" r="7"/><circle cx="22" cy="38" r="7" fill="rgba(14,116,144,.8)"/><circle cx="46" cy="44" r="5"/><circle cx="68" cy="38" r="9" fill="rgba(14,116,144,.8)"/><circle cx="94" cy="42" r="6"/><circle cx="110" cy="34" r="4" fill="rgba(14,116,144,.8)"/></g></svg>
-        </div>
-        <div class="wt"><b>Advance follow-up</b>
-          <svg viewBox="0 0 120 56" stroke="rgba(34,211,238,.8)" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M8 20 20 8M20 8h-8M20 8v8M36 20 48 8M48 8h-8M48 8v8M64 20 76 8M76 8h-8M76 8v8M92 20 104 8M104 8h-8M104 8v8"/><g stroke="rgba(14,116,144,.85)"><path d="M8 48 20 36M20 36h-8M20 36v8M36 48 48 36M48 36h-8M48 36v8M64 48 76 36M76 36h-8M76 36v8M92 48 104 36M104 36h-8M104 36v8"/></g></svg>
-        </div>
-        <div class="wt"><b>Exclusive support</b>
-          <svg viewBox="0 0 120 56"><rect x="10" y="8" width="64" height="40" rx="6" fill="rgba(14,116,144,.5)"/><rect x="30" y="16" width="64" height="40" rx="6" fill="rgba(34,211,238,.35)"/><rect x="50" y="4" width="48" height="34" rx="6" fill="rgba(34,211,238,.75)"/></svg>
-        </div>
-      </div>
     </div>
   </div>
 </section>

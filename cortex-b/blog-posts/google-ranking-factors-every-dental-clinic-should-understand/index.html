@@ -483,6 +483,113 @@ footer{border-top:1px solid var(--line);padding:72px 0 40px;background:rgba(12,2
   .dial .ring-fg{transition:none;stroke-dashoffset:151}
   *{transition-duration:.01ms!important}
 }
+
+/* ============================================================
+   VARIANT B: light lab.
+   Same Cortex structure on the brand-manual light colorimetry
+   (base #0F172A ink, #F9FAFB surface, teal #0E7490, cyan #22D3EE).
+   The instruments (tooth hologram, scanner) stay dark:
+   screens on a light lab bench. Appended by build.py --variant b.
+   ============================================================ */
+:root{
+  --g0:#F7FAFC; --g1:#FFFFFF; --g2:#EAF1F6;
+  --ink:#0F172A; --mut:#42586D; --dim:#5A6E82;
+  --line:rgba(15,42,70,.12); --line2:rgba(15,42,70,.22);
+}
+::selection{background:rgba(14,116,144,.22);color:#0F172A}
+
+/* readout voice + accents: teal carries the accent on light surfaces */
+.ro{color:#0E7490}
+.ro b{color:#0E7490}
+.eyebrow{color:#0E7490;border-color:rgba(14,116,144,.35);background:rgba(14,116,144,.06)}
+.hero h1 em{color:#0E7490}
+.mnav .m-cta{color:#0E7490}
+.q-core figcaption b{color:#0E7490}
+/* stats on the light canvas: teal numbers, white band */
+.metrics{background:#FFFFFF}
+.met b{color:#0E7490}
+.met>span{color:#4A6076}
+
+/* background systems */
+body::before{opacity:.03;background-image:linear-gradient(rgba(14,116,144,.9) 1px,transparent 1px),linear-gradient(90deg,rgba(14,116,144,.9) 1px,transparent 1px)}
+@supports (animation-timeline: scroll()){
+  body::after{opacity:.05;background-image:radial-gradient(rgba(14,116,144,1) 1px,transparent 1px)}
+}
+.hero-bg{background:radial-gradient(60% 55% at 72% 42%,rgba(14,116,144,.10),transparent 70%),radial-gradient(40% 40% at 12% 85%,rgba(34,211,238,.07),transparent 70%)}
+.hero-glow{background:radial-gradient(620px at var(--hx,62%) var(--hy,38%),rgba(14,116,144,.09),rgba(34,211,238,.04) 46%,transparent 70%)}
+.spot::before{background:radial-gradient(240px at var(--mx,50%) var(--my,50%),rgba(14,116,144,.07),transparent 60%)}
+
+/* chrome: nav goes light glass; announcement bar stays black like the live site */
+.nav{background:rgba(249,250,252,.82)}
+.mnav{background:rgba(249,250,252,.94)}
+.shell{background:rgba(15,42,70,.03)}
+.core{box-shadow:0 1px 2px rgba(15,42,70,.05)}
+.hud::after{--hc:rgba(14,116,144,.45)}
+footer{background:rgba(15,42,70,.03)}
+
+/* dark islands: instrument screens keep the dark skin via scoped vars.
+   .tbar stays black like the live site, so it needs the island vars too */
+.tbar,.tooth-core,.scan-core{
+  --g0:#070C18; --g1:#0C1424; --g2:#101B31;
+  --ink:#EAF3F8; --mut:#93A8BC; --dim:#6B8093;
+  --line:rgba(148,184,210,.13); --line2:rgba(148,184,210,.22);
+}
+
+/* secondary button + inline chevrons: cyan is too weak on white */
+.btn-s{color:#0E7490;border-color:rgba(14,116,144,.45)}
+.btn-s:hover{border-color:#0E7490}
+.btn-s .arr{background:rgba(14,116,144,.10)}
+.btn-s svg path{stroke:#0E7490}
+
+/* service cards: teal washes instead of deep-sea gradients */
+.m-grad .core{background:linear-gradient(150deg,rgba(14,116,144,.16),rgba(234,241,246,.9) 62%),var(--g1)}
+.m-dots .core{background-image:radial-gradient(rgba(14,116,144,.18) 1px,transparent 1px)}
+.mod-ic svg{stroke:#0E7490}
+.mod-ic.brand svg{fill:#0E7490;stroke:none}
+
+/* trust logos are white monochrome: invert to ink on light */
+.logos img{opacity:1;filter:invert(1) opacity(.6)}
+.logos img:hover{opacity:1;filter:invert(1) opacity(.92)}
+
+.faq-q[aria-expanded="true"] .pl{border-color:rgba(14,116,144,.5)}
+.faq-q .pl::before,.faq-q .pl::after{background:#0E7490}
+
+/* service/blog article accents: teal on light surfaces (cyan is 1.9:1 on white) */
+.acc,.svc a,.svc ol li::before{color:#0E7490}
+.svc ul li::before{background:#0E7490}
+.blog-card:hover{border-color:rgba(14,116,144,.45)}
+
+/* ---- color-system pass 08-21 (WCAG + accent lock on light) ---- */
+/* keyboard focus: cyan is 1.7:1 on the light ground; islands + black bar keep cyan */
+:focus-visible{outline-color:#0E7490}
+.tooth-core :focus-visible,.scan-core :focus-visible,.tbar :focus-visible{outline-color:#22D3EE}
+/* readouts inside the dark islands: global teal drops to 3.4:1 on the island ground */
+.tooth-core .ro,.scan-core .ro{color:rgba(34,211,238,.75)}
+.tooth-core .ro b,.scan-core .ro b{color:#22D3EE}
+/* metric tiles: cyan hover vanishes on the white band */
+a.met:hover{background:rgba(14,116,144,.06)}
+a.met:hover>span{color:#0E7490}
+a.met:hover b{color:#0E7490}
+/* footer + socials: cyan hover vanishes on the near-white footer */
+.foot-col a:hover{color:#0E7490}
+.socials a:hover{border-color:rgba(14,116,144,.55)}
+/* accent lock: teal is THE accent on light, filled CTAs included */
+.btn-p{background:#0E7490;color:#F7FAFC}
+.btn-p:hover{background:#0C647E}
+.btn-p .arr{background:rgba(255,255,255,.18)}
+.nav-links a.nav-cta{background:#0E7490;color:#F7FAFC;box-shadow:none}
+.nav-links a.nav-cta:hover{background:#0C647E;color:#F7FAFC}
+/* progress bar: cyan end decays to 1.7:1 on light glass */
+.progress{background:linear-gradient(90deg,#0E7490,#1899BC)}
+/* founder photo: half-strength ink vignette + teal wash for the light bench */
+.f-photo .core::after{background:linear-gradient(200deg,rgba(15,23,42,0) 45%,rgba(15,23,42,.24)),radial-gradient(90% 70% at 30% 0%,rgba(14,116,144,.10),transparent 60%)}
+/* video thumbs: the teal grade wash is a dark-ground device; light lab keeps them raw */
+.vt-play img{filter:none}
+.vt-play::after{content:none}
+
+/* dropdown Services: sombra liviana sobre superficie light */
+.ndm-in{box-shadow:0 18px 44px rgba(15,23,42,.16)}
+
 </style>
 </head>
 <body>

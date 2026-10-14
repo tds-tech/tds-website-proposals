@@ -483,6 +483,113 @@ footer{border-top:1px solid var(--line);padding:72px 0 40px;background:rgba(12,2
   .dial .ring-fg{transition:none;stroke-dashoffset:151}
   *{transition-duration:.01ms!important}
 }
+
+/* ============================================================
+   VARIANT B: light lab.
+   Same Cortex structure on the brand-manual light colorimetry
+   (base #0F172A ink, #F9FAFB surface, teal #0E7490, cyan #22D3EE).
+   The instruments (tooth hologram, scanner) stay dark:
+   screens on a light lab bench. Appended by build.py --variant b.
+   ============================================================ */
+:root{
+  --g0:#F7FAFC; --g1:#FFFFFF; --g2:#EAF1F6;
+  --ink:#0F172A; --mut:#42586D; --dim:#5A6E82;
+  --line:rgba(15,42,70,.12); --line2:rgba(15,42,70,.22);
+}
+::selection{background:rgba(14,116,144,.22);color:#0F172A}
+
+/* readout voice + accents: teal carries the accent on light surfaces */
+.ro{color:#0E7490}
+.ro b{color:#0E7490}
+.eyebrow{color:#0E7490;border-color:rgba(14,116,144,.35);background:rgba(14,116,144,.06)}
+.hero h1 em{color:#0E7490}
+.mnav .m-cta{color:#0E7490}
+.q-core figcaption b{color:#0E7490}
+/* stats on the light canvas: teal numbers, white band */
+.metrics{background:#FFFFFF}
+.met b{color:#0E7490}
+.met>span{color:#4A6076}
+
+/* background systems */
+body::before{opacity:.03;background-image:linear-gradient(rgba(14,116,144,.9) 1px,transparent 1px),linear-gradient(90deg,rgba(14,116,144,.9) 1px,transparent 1px)}
+@supports (animation-timeline: scroll()){
+  body::after{opacity:.05;background-image:radial-gradient(rgba(14,116,144,1) 1px,transparent 1px)}
+}
+.hero-bg{background:radial-gradient(60% 55% at 72% 42%,rgba(14,116,144,.10),transparent 70%),radial-gradient(40% 40% at 12% 85%,rgba(34,211,238,.07),transparent 70%)}
+.hero-glow{background:radial-gradient(620px at var(--hx,62%) var(--hy,38%),rgba(14,116,144,.09),rgba(34,211,238,.04) 46%,transparent 70%)}
+.spot::before{background:radial-gradient(240px at var(--mx,50%) var(--my,50%),rgba(14,116,144,.07),transparent 60%)}
+
+/* chrome: nav goes light glass; announcement bar stays black like the live site */
+.nav{background:rgba(249,250,252,.82)}
+.mnav{background:rgba(249,250,252,.94)}
+.shell{background:rgba(15,42,70,.03)}
+.core{box-shadow:0 1px 2px rgba(15,42,70,.05)}
+.hud::after{--hc:rgba(14,116,144,.45)}
+footer{background:rgba(15,42,70,.03)}
+
+/* dark islands: instrument screens keep the dark skin via scoped vars.
+   .tbar stays black like the live site, so it needs the island vars too */
+.tbar,.tooth-core,.scan-core{
+  --g0:#070C18; --g1:#0C1424; --g2:#101B31;
+  --ink:#EAF3F8; --mut:#93A8BC; --dim:#6B8093;
+  --line:rgba(148,184,210,.13); --line2:rgba(148,184,210,.22);
+}
+
+/* secondary button + inline chevrons: cyan is too weak on white */
+.btn-s{color:#0E7490;border-color:rgba(14,116,144,.45)}
+.btn-s:hover{border-color:#0E7490}
+.btn-s .arr{background:rgba(14,116,144,.10)}
+.btn-s svg path{stroke:#0E7490}
+
+/* service cards: teal washes instead of deep-sea gradients */
+.m-grad .core{background:linear-gradient(150deg,rgba(14,116,144,.16),rgba(234,241,246,.9) 62%),var(--g1)}
+.m-dots .core{background-image:radial-gradient(rgba(14,116,144,.18) 1px,transparent 1px)}
+.mod-ic svg{stroke:#0E7490}
+.mod-ic.brand svg{fill:#0E7490;stroke:none}
+
+/* trust logos are white monochrome: invert to ink on light */
+.logos img{opacity:1;filter:invert(1) opacity(.6)}
+.logos img:hover{opacity:1;filter:invert(1) opacity(.92)}
+
+.faq-q[aria-expanded="true"] .pl{border-color:rgba(14,116,144,.5)}
+.faq-q .pl::before,.faq-q .pl::after{background:#0E7490}
+
+/* service/blog article accents: teal on light surfaces (cyan is 1.9:1 on white) */
+.acc,.svc a,.svc ol li::before{color:#0E7490}
+.svc ul li::before{background:#0E7490}
+.blog-card:hover{border-color:rgba(14,116,144,.45)}
+
+/* ---- color-system pass 08-21 (WCAG + accent lock on light) ---- */
+/* keyboard focus: cyan is 1.7:1 on the light ground; islands + black bar keep cyan */
+:focus-visible{outline-color:#0E7490}
+.tooth-core :focus-visible,.scan-core :focus-visible,.tbar :focus-visible{outline-color:#22D3EE}
+/* readouts inside the dark islands: global teal drops to 3.4:1 on the island ground */
+.tooth-core .ro,.scan-core .ro{color:rgba(34,211,238,.75)}
+.tooth-core .ro b,.scan-core .ro b{color:#22D3EE}
+/* metric tiles: cyan hover vanishes on the white band */
+a.met:hover{background:rgba(14,116,144,.06)}
+a.met:hover>span{color:#0E7490}
+a.met:hover b{color:#0E7490}
+/* footer + socials: cyan hover vanishes on the near-white footer */
+.foot-col a:hover{color:#0E7490}
+.socials a:hover{border-color:rgba(14,116,144,.55)}
+/* accent lock: teal is THE accent on light, filled CTAs included */
+.btn-p{background:#0E7490;color:#F7FAFC}
+.btn-p:hover{background:#0C647E}
+.btn-p .arr{background:rgba(255,255,255,.18)}
+.nav-links a.nav-cta{background:#0E7490;color:#F7FAFC;box-shadow:none}
+.nav-links a.nav-cta:hover{background:#0C647E;color:#F7FAFC}
+/* progress bar: cyan end decays to 1.7:1 on light glass */
+.progress{background:linear-gradient(90deg,#0E7490,#1899BC)}
+/* founder photo: half-strength ink vignette + teal wash for the light bench */
+.f-photo .core::after{background:linear-gradient(200deg,rgba(15,23,42,0) 45%,rgba(15,23,42,.24)),radial-gradient(90% 70% at 30% 0%,rgba(14,116,144,.10),transparent 60%)}
+/* video thumbs: the teal grade wash is a dark-ground device; light lab keeps them raw */
+.vt-play img{filter:none}
+.vt-play::after{content:none}
+
+/* dropdown Services: sombra liviana sobre superficie light */
+.ndm-in{box-shadow:0 18px 44px rgba(15,23,42,.16)}
+
 </style>
 </head>
 <body>
@@ -640,39 +747,6 @@ footer{border-top:1px solid var(--line);padding:72px 0 40px;background:rgba(12,2
       <!-- Card del patient coordinator anterior removida (Gabriel 09-23: "does not work here anymore...
            what we should have here is Fernando's picture"). PENDIENTE: card de Fernando cuando Ramiro pase la foto. -->
       <div class="mod m-2 rv"><div class="shell" style="height:100%"><div class="core tm"><img src="https://cdn.prod.website-files.com/644b615f168e3b22d5b6681a/6a6adfbc7583793304d0e3ef_muhammad-zeeshan-p-500.jpg" width="500" height="500" loading="lazy" decoding="async" alt="Muhammed Zeeshan, SEO Specialist at The Digital Smile"><h3>Muhammed Zeeshan</h3><p>SEO Specialist</p></div></div></div>
-    </div>
-  </div>
-</section>
-
-<!-- Checklist + panel grafico como el live (Gabriel 09-23: "the design that we have on the right looks
-     a little better. We just put the points in a graphic... nobody's going to read the text like this") -->
-<section aria-labelledby="ab-why-h" style="padding-block:0 100px">
-  <div class="wrap why-grid">
-    <div>
-      <h2 id="ab-why-h" class="rv" style="max-width:16ch">Why Choose Us</h2>
-      <ul class="wc-list">
-        <li class="rv"><span class="wc-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5 10 17.5 19 7"/></svg></span>Unlock access to a vast pool of 62.1 Million+ patients for your dental practice.</li>
-        <li class="rv" style="--d:.06s"><span class="wc-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5 10 17.5 19 7"/></svg></span>Secure pre-paid appointments, ensuring a steady stream of qualified patients.</li>
-        <li class="rv" style="--d:.12s"><span class="wc-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5 10 17.5 19 7"/></svg></span>Receive exclusive support tailored to your dental practice's unique needs.</li>
-        <li class="rv" style="--d:.18s"><span class="wc-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5 10 17.5 19 7"/></svg></span>Your results are our #1 priority, driving your practice towards success.</li>
-        <li class="rv" style="--d:.24s"><span class="wc-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5 10 17.5 19 7"/></svg></span>We go the extra mile with follow-up after appointments are made.</li>
-      </ul>
-    </div>
-    <div class="shell hud rv" style="--d:.12s">
-      <div class="why-tiles" aria-hidden="true">
-        <div class="wt"><b>Access to patients</b>
-          <svg viewBox="0 0 120 56"><g fill="rgba(34,211,238,.85)"><rect x="6" y="30" width="10" height="26" rx="2"/><rect x="22" y="18" width="10" height="38" rx="2" fill="rgba(14,116,144,.8)"/><rect x="38" y="36" width="10" height="20" rx="2"/><rect x="54" y="10" width="10" height="46" rx="2" fill="rgba(14,116,144,.8)"/><rect x="70" y="24" width="10" height="32" rx="2"/><rect x="86" y="4" width="10" height="52" rx="2" fill="rgba(14,116,144,.8)"/><rect x="102" y="16" width="10" height="40" rx="2"/></g></svg>
-        </div>
-        <div class="wt"><b>Our #1 priority is your results</b>
-          <svg viewBox="0 0 120 56"><g fill="rgba(34,211,238,.8)"><circle cx="14" cy="14" r="6"/><circle cx="34" cy="10" r="4" fill="rgba(14,116,144,.8)"/><circle cx="52" cy="20" r="8"/><circle cx="76" cy="12" r="5" fill="rgba(14,116,144,.8)"/><circle cx="96" cy="18" r="7"/><circle cx="22" cy="38" r="7" fill="rgba(14,116,144,.8)"/><circle cx="46" cy="44" r="5"/><circle cx="68" cy="38" r="9" fill="rgba(14,116,144,.8)"/><circle cx="94" cy="42" r="6"/><circle cx="110" cy="34" r="4" fill="rgba(14,116,144,.8)"/></g></svg>
-        </div>
-        <div class="wt"><b>Advance follow-up</b>
-          <svg viewBox="0 0 120 56" stroke="rgba(34,211,238,.8)" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M8 20 20 8M20 8h-8M20 8v8M36 20 48 8M48 8h-8M48 8v8M64 20 76 8M76 8h-8M76 8v8M92 20 104 8M104 8h-8M104 8v8"/><g stroke="rgba(14,116,144,.85)"><path d="M8 48 20 36M20 36h-8M20 36v8M36 48 48 36M48 36h-8M48 36v8M64 48 76 36M76 36h-8M76 36v8M92 48 104 36M104 36h-8M104 36v8"/></g></svg>
-        </div>
-        <div class="wt"><b>Exclusive support</b>
-          <svg viewBox="0 0 120 56"><rect x="10" y="8" width="64" height="40" rx="6" fill="rgba(14,116,144,.5)"/><rect x="30" y="16" width="64" height="40" rx="6" fill="rgba(34,211,238,.35)"/><rect x="50" y="4" width="48" height="34" rx="6" fill="rgba(34,211,238,.75)"/></svg>
-        </div>
-      </div>
     </div>
   </div>
 </section>
