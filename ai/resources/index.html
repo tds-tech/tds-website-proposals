@@ -564,7 +564,7 @@ footer{border-top:1px solid var(--line);padding:72px 0 40px;background:rgba(12,2
        dental; override post-mount por observer. Upgrade: fork del scanner con copy propio. */
     (function(){
       var host=document.getElementById("tds-ai-scanner"); if(!host) return;
-      var MAP=[[/Business/g,"Business"],[/business/g,"business"],[/yourpractice\.com/g,"yourbusiness.com"],[/business/g,"business"],[/Business/g,"Business"],[/customers/g,"customers"],[/customer/g,"customer"]];
+      var MAP=[[/Dental Practice/g,"Business"],[/Dental practice/g,"Business"],[/dental practice/g,"business"],[/yourpractice\.com/g,"yourbusiness.com"],[/doctor@/g,"you@"],[/Practices/g,"Businesses"],[/practices/g,"businesses"],[/Practice/g,"Business"],[/practice/g,"business"],[/Patients/g,"Customers"],[/patients/g,"customers"],[/Patient/g,"Customer"],[/patient/g,"customer"],[/Dentists/g,"Businesses"],[/dentists/g,"businesses"],[/Dentist/g,"Business"],[/dentist/g,"business"],[/ Dental /g," "]];  /* 10-15: el MAP anterior se auto-reescribió (dental->business sobre las regex) y quedó no-op */
       function fix(root){
         var w=document.createTreeWalker(root,NodeFilter.SHOW_TEXT),n;
         while((n=w.nextNode())){var t=n.nodeValue,o=t;MAP.forEach(function(m){t=t.replace(m[0],m[1]);});if(t!==o)n.nodeValue=t;}

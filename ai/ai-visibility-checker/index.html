@@ -549,7 +549,7 @@ footer{border-top:1px solid var(--line);padding:72px 0 40px;background:rgba(12,2
        dental; override post-mount por observer. Upgrade: fork del scanner con copy propio. */
     (function(){
       var host=document.getElementById("tds-ai-scanner"); if(!host) return;
-      var MAP=[[/Business/g,"Business"],[/business/g,"business"],[/yourpractice\.com/g,"yourbusiness.com"],[/business/g,"business"],[/Business/g,"Business"],[/customers/g,"customers"],[/customer/g,"customer"]];
+      var MAP=[[/Dental Practice/g,"Business"],[/Dental practice/g,"Business"],[/dental practice/g,"business"],[/yourpractice\.com/g,"yourbusiness.com"],[/doctor@/g,"you@"],[/Practices/g,"Businesses"],[/practices/g,"businesses"],[/Practice/g,"Business"],[/practice/g,"business"],[/Patients/g,"Customers"],[/patients/g,"customers"],[/Patient/g,"Customer"],[/patient/g,"customer"],[/Dentists/g,"Businesses"],[/dentists/g,"businesses"],[/Dentist/g,"Business"],[/dentist/g,"business"],[/ Dental /g," "]];  /* 10-15: el MAP anterior se auto-reescribió (dental->business sobre las regex) y quedó no-op */
       function fix(root){
         var w=document.createTreeWalker(root,NodeFilter.SHOW_TEXT),n;
         while((n=w.nextNode())){var t=n.nodeValue,o=t;MAP.forEach(function(m){t=t.replace(m[0],m[1]);});if(t!==o)n.nodeValue=t;}
@@ -570,7 +570,7 @@ footer{border-top:1px solid var(--line);padding:72px 0 40px;background:rgba(12,2
       <h2 id="ai-shift-h" style="margin:18px 0 14px;max-width:18ch">Customers stopped Googling. They started <em style="font-style:normal;color:var(--cy)">asking.</em></h2>
       <p style="max-width:44ch">Search moved from ten blue links to one confident answer. If AI doesn't know your business exists, neither do the customers it's recommending.</p>
       <p style="margin-top:26px"><b style="font-family:var(--disp);font-weight:800;font-size:2.4rem;color:var(--ink)">1 in 3</b></p>
-      <p style="max-width:40ch;margin-top:6px">customers now start their search for care with an AI assistant instead of a search engine.</p>
+      <p style="max-width:40ch;margin-top:6px">customers now start their search for a service with an AI assistant instead of a search engine.</p>
     </div>
     <div class="shell hud rv" style="--d:.12s">
       <div class="core" style="padding:34px;display:flex;flex-direction:column;gap:18px">
