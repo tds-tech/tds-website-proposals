@@ -25,7 +25,6 @@
    ============================================================ */
 :root{
   --g0:#070C18; --g1:#0C1424; --g2:#101B31;
-  /* Gabriel 09-23: "use a very bright white... there needs to be some contrast" */
   --ink:#F6FBFE; --mut:#B9CCDC; --dim:#8CA2B5;
   --cy:#22D3EE; --te:#0E7490; --ye:#FACC15;
   --line:rgba(148,184,210,.13); --line2:rgba(148,184,210,.22);
@@ -39,7 +38,7 @@
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-/* Gabriel 09-23: "maybe even put the text a little bit thicker" — Inter variable, 450 */
+/* Inter variable, 450 */
 body{background:var(--g0);color:var(--ink);font-family:var(--body);font-size:16.5px;font-weight:450;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 ::selection{background:rgba(34,211,238,.28);color:#fff}
 a{color:inherit;text-decoration:none}
@@ -47,7 +46,7 @@ img,svg,canvas{max-width:100%;display:block}
 button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 :focus-visible{outline:2px solid var(--cy);outline-offset:3px;border-radius:4px}
 h1,h2,h3{font-family:var(--disp);line-height:1.12;letter-spacing:-.015em;font-weight:700}
-/* paridad live: .heading-style-h2{text-transform:capitalize} en el Webflow CSS (Gabriel 09-23, caps) */
+/* paridad live: .heading-style-h2{text-transform:capitalize} en el Webflow CSS */
 h1,h2{text-transform:capitalize}
 h1{font-size:clamp(2.3rem,3.9vw,3.05rem);font-weight:800}
 h2{font-size:clamp(1.9rem,3.4vw,2.85rem)}
@@ -103,7 +102,7 @@ body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opa
 .btn-s{border:1px solid rgba(34,211,238,.38);color:var(--cy)}
 .btn-s .arr{background:rgba(34,211,238,.12)}
 .btn-s:hover{border-color:rgba(34,211,238,.7)}
-/* amarillo logo (Ramiro 10-12: "Read the full case studies" en amarillo como el logo TDS) */
+/* amarillo logo */
 .btn-y{background:var(--ye);color:#231A02}
 .btn-y .arr{background:rgba(35,26,2,.14)}
 .btn-y:hover{background:#FDD94A}
@@ -127,7 +126,7 @@ body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opa
 .tbar a:hover{color:#4ADEF2}
 @media(max-width:760px){:root{--tb:58px}.tbar p{font-size:.74rem}}
 @media(max-width:430px){:root{--tb:74px}}
-/* Ramiro 10-12: el dock scroll-driven de la nav se desfasaba al scrollear (gap entre tbar
+/* el dock scroll-driven de la nav se desfasaba al scrollear (gap entre tbar
    y nav mostrando el fondo en todas las subpáginas) — la barra queda SIEMPRE fija y negra */
 
 /* ============ NAV ============ */
@@ -162,7 +161,7 @@ body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opa
 .mnav .m-cta{color:var(--cy)}
 
 /* ============ HERO ============ */
-/* sin 100dvh: en desktop alto dejaba un vacío enorme arriba y abajo (Gabriel 09-23) */
+/* sin 100dvh: en desktop alto dejaba un vacío enorme arriba y abajo */
 .hero{display:flex;align-items:center;padding-block:140px 64px;overflow:hidden}
 .hero-bg{position:absolute;inset:0;pointer-events:none;background:radial-gradient(60% 55% at 72% 42%,rgba(14,116,144,.22),transparent 70%),radial-gradient(40% 40% at 12% 85%,rgba(34,211,238,.07),transparent 70%)}
 .hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center;width:100%}
@@ -234,7 +233,7 @@ a.met:hover b{color:var(--cy)}
 
 
 /* ============ SCANNER ============ */
-/* widget live embebido: la lupa azul del header confunde (Ramiro 10-12) — fuera */
+/* widget live embebido: la lupa azul del header confunde — fuera */
 #tds-ai-scanner .tds-hero-icon{display:none!important}
 .scan-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center}
 .scan-core{position:relative;overflow:hidden;padding:44px;display:flex;flex-direction:column;align-items:center;gap:20px;background:radial-gradient(70% 65% at 50% 30%,rgba(14,116,144,.16),transparent 72%),var(--g1)}
@@ -259,7 +258,7 @@ a.met:hover b{color:var(--cy)}
 /* video testimonials: local thumbnails; Wistia iframe injected only on play */
 .vt-play{position:relative;display:block;border-radius:var(--r-md);overflow:hidden;background:var(--g2)}
 .vt-card .vt-play,.vt-card .vt-embed{aspect-ratio:4/5}
-/* thumbs al natural (Ramiro 10-12: el wash desaturado se veía "café") */
+/* thumbs al natural */
 .vt-play img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .8s var(--ez2)}
 .vt-play:focus-visible{outline:2px solid var(--cy);outline-offset:-6px;box-shadow:inset 0 0 0 8px rgba(7,12,24,.85)}
 .vt-ic{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:62px;height:62px;border-radius:999px;display:flex;align-items:center;justify-content:center;background:rgba(7,12,24,.62);border:1px solid rgba(34,211,238,.45);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);transition:background-color .5s var(--ez2),border-color .5s var(--ez2);z-index:1}
@@ -288,7 +287,7 @@ a.met:hover b{color:var(--cy)}
 /* ============ FOUNDER ============ */
 .founder-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:56px;align-items:center}
 @media(max-width:960px){.f-photo{order:-1}}
-/* foto oficial del live a todo color, sin wash (Ramiro 10-12: "está como opaca") */
+/* foto oficial del live a todo color, sin wash */
 .f-photo{aspect-ratio:1004/958}
 .f-photo .core{position:relative;overflow:hidden;background:var(--g1)}
 .f-photo img{width:100%;height:100%;object-fit:cover;object-position:50% 30%}
@@ -327,7 +326,7 @@ a.met:hover b{color:var(--cy)}
 .svc ol li::before{content:counter(svc);position:absolute;left:0;top:.05em;color:var(--cy);font-family:var(--disp);font-weight:800}
 .svc h4{margin:34px 0 12px}
 .svc a{color:var(--cy);text-decoration:underline;text-underline-offset:3px}
-/* ---- capa de diseño de las service detail pages (Ramiro 10-12: "too plain... too boring").
+/* ---- capa de diseño de las service detail pages.
    La prosa no cambia (copy live verbatim); cambia la estructura visual:
    h3 = section headers con regla cyan · ol = el proceso real en step-cards numeradas ·
    ul = filas con hairline a 2 columnas (los <strong> pasan a línea de título). ---- */
@@ -380,7 +379,6 @@ footer{border-top:1px solid var(--line);padding:72px 0 40px;background:rgba(12,2
 .socials svg{width:16px;height:16px;fill:var(--mut)}
 .foot-base{margin-top:56px;padding-top:24px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:.8rem;color:var(--dim)}
 
-/* ============ FEEDBACK 09-23 (Gabriel) ============ */
 /* mission: texto + visual al lado ("some sort of a sign next to the text, not just text") */
 .mis-grid{display:grid;grid-template-columns:1.08fr .92fr;gap:52px;align-items:center}
 .sched{padding:30px;display:flex;flex-direction:column;gap:16px}
@@ -488,7 +486,7 @@ footer{border-top:1px solid var(--line);padding:72px 0 40px;background:rgba(12,2
 <body>
 <header>
   <div class="tbar" role="region" aria-label="Announcement">
-    <!-- Copy verbatim del sitio live (pedido Gabriel 08-12: usar el copy existente) -->
+    <!-- Copy verbatim del sitio live -->
     <p><b>Attention dentists:</b> We only partner with 5 new clients per month. Application does not guarantee partnership.</p>
   </div>
   <nav class="nav" aria-label="Main navigation">
@@ -560,8 +558,7 @@ footer{border-top:1px solid var(--line);padding:72px 0 40px;background:rgba(12,2
   </div>
 </section>
 
-<!-- Zigzag con las cards del live (Gabriel 09-23: "the way we have the referral steps [en el live]
-     looks more engaging... than one block of text next to each other") -->
+<!-- Zigzag con las cards del live -->
 <section aria-labelledby="rf-how-h" style="padding-top:60px">
   <div class="wrap">
     <h2 id="rf-how-h" class="rv" style="max-width:16ch;text-align:center;margin-inline:auto">How it works</h2>
@@ -615,7 +612,7 @@ footer{border-top:1px solid var(--line);padding:72px 0 40px;background:rgba(12,2
 
 <section aria-labelledby="rf-vt-h" style="padding-top:60px">
   <div class="wrap">
-    <!-- Copy + videos verbatim del sitio live /referral (voicenote Gabriel 09-17: no perder copy) -->
+    <!-- Copy + videos verbatim del sitio live /referral -->
     <p class="ro rv">Get results and stand out from the crowd.</p>
     <h2 id="rf-vt-h" class="rv" style="margin-top:14px;max-width:30ch">Client Success Stories: How Our Solutions Helped Them Achieve Remarkable Results</h2>
     <div class="vt-grid" role="list" aria-label="Video testimonials from referred practices">
